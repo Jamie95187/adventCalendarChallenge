@@ -51,16 +51,35 @@ public class TaskOne {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Collections.sort(data);
+    }
+
+    private int reduce (ArrayList<Integer> dataSet) {
+        int ans = 0;
+        int firstNum = dataSet.get(0);
+        int lastNum;
+        int i = dataSet.size() - 1;
+        while (firstNum + dataSet.get(i) > 2020) {
+            i--;
+        }
+        if (firstNum + dataSet.get(i) == 2020) {
+            ans = (firstNum * dataSet.get(i));
+            System.out.println(ans);
+        } else {
+            dataSet = new ArrayList<Integer>(dataSet.subList(1, i));
+            reduce(dataSet);
+        }
+        return ans;
+    }
+
+    public void printAnswer () {
+        System.out.println(reduce((ArrayList<Integer>) data));
     }
 
     public void printData () {
-        sortData();
         for(Integer entry: data) {
             System.out.println(entry);
         }
     }
 
-    private void sortData(){
-        Collections.sort(data);
-    }
 }
