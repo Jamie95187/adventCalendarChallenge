@@ -30,6 +30,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TaskOne {
@@ -53,8 +54,13 @@ public class TaskOne {
     }
 
     public void printData () {
+        sortData();
         for(Integer entry: data) {
             System.out.println(entry);
         }
+    }
+
+    private void sortData(){
+        Collections.sort(data);
     }
 }
