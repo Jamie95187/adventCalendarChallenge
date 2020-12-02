@@ -1,5 +1,9 @@
+import com.dayone.*;
+
 public class Runner {
     public static void main(String[] args) {
-        System.out.println("Test Runner!");
+        TaskOne solver = new TaskOne();
+        solver.readFile();
+        solver.printData();
     }
 }
