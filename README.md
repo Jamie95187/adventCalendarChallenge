@@ -2,7 +2,7 @@
 
 ### Task One
 
---- Day 1: Report Repair ---
+--- [Day 1: Report Repair](https://adventofcode.com/2020/day/1) ---
 
 After saving Christmas five years in a row, you've decided to take a vacation at a nice resort on a tropical island. Surely, Christmas will go on without you.
 
@@ -40,7 +40,7 @@ In your expense report, what is the product of the three entries that sum to 202
 
 ### Task Two
 
---- Day 2: Password Philosophy ---
+--- [Day 2: Password Philosophy](https://adventofcode.com/2020/day/2) ---
 
 Your flight departs in a few days from the coastal airport; the easiest way down to the coast from here is via toboggan.
 
