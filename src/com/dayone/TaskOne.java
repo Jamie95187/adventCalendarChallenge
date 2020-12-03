@@ -72,8 +72,50 @@ public class TaskOne {
         return ans;
     }
 
-    public void printAnswer () {
+    private int reduceForThree (ArrayList<Integer> dataSet) {
+        ArrayList<Integer> dataSetCopy = dataSet;
+        int ans = 0;
+        int highestPossibleIndexAfterFirstLoop = dataSet.size() - 1;
+        int firstNum = dataSet.get(0);
+        int j = 1;
+        int secondNum = dataSet.get(j);
+        int sumOfTwo = 2020 - firstNum;
+        int highestPossibleIndex = dataSet.size() - 1;
+        int i = dataSetCopy.size() - 1;
+        while (j < i) {
+            i = dataSetCopy.size() - 1;
+            secondNum = dataSetCopy.get(j);
+            while (i > j) {
+                if (secondNum + dataSetCopy.get(i) > sumOfTwo) {
+                    i--;
+                } else if (secondNum + dataSetCopy.get(i) == sumOfTwo) {
+                    ans = firstNum * secondNum * dataSetCopy.get(i);
+                    System.out.println(ans);
+                    return ans;
+                } else {
+                    highestPossibleIndex = i;
+                    break;
+                }
+            }
+            dataSetCopy = new ArrayList<Integer>(dataSetCopy.subList(0, highestPossibleIndex + 1));
+            if (j == 1) {
+                highestPossibleIndexAfterFirstLoop = highestPossibleIndex;
+            }
+            j++;
+        }
+        dataSet = new ArrayList<Integer>(dataSet.subList(1, highestPossibleIndexAfterFirstLoop));
+        if (ans == 0) {
+            reduceForThree(dataSet);
+        }
+        return ans;
+    }
+
+    public void printAnswerOne () {
         System.out.println(reduce((ArrayList<Integer>) data));
+    }
+
+    public void printAnswerTwo() {
+        System.out.println(reduceForThree((ArrayList<Integer>) data));
     }
 
     public void printData () {
