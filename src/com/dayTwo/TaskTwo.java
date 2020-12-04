@@ -53,4 +53,23 @@ public class TaskTwo {
         return validCount;
     }
 
+    public int checkForValidEntriesTaskTwo() {
+        int validCount = 0;
+        System.out.println(entries.size());
+        for (String entry: entries) {
+            int lowerIndex = Integer.parseInt(entry.split("-")[0]) - 1;
+            int upperIndex = Integer.parseInt(entry.split("-")[1].split("\\s")[0]) - 1;
+            char character = (entry.split("-")[1].split("\\s")[1].split(":")[0]).charAt(0);
+            String password = entry.split("-")[1].split("\\s")[2];
+
+            char[] charArray = password.toCharArray();
+            if (charArray[lowerIndex] == character && charArray[upperIndex] != character){
+                validCount++;
+            } else if (charArray[lowerIndex] != character && charArray[upperIndex] == character) {
+                validCount++;
+            }
+
+        }
+        return validCount;
+    }
 }
