@@ -31,7 +31,6 @@ public class TaskTwo {
 
     public int checkForValidEntries() {
         int validCount = 0;
-        System.out.println(entries.size());
         for (String entry: entries) {
             int charCount = 0;
             int lowerBound = Integer.parseInt(entry.split("-")[0]);

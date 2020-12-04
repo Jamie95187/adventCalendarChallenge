@@ -1,10 +1,11 @@
 import com.dayOne.*;
 import com.dayTwo.*;
+import com.dayThree.*;
 
 public class Runner {
 
     public static void main(String[] args) {
-        taskTwo();
+        taskThree();
     }
 
     public static void taskOne() {
@@ -19,5 +20,11 @@ public class Runner {
         solver.readFile();
         System.out.println(solver.checkForValidEntries());
         System.out.println(solver.checkForValidEntriesTaskTwo());
+    }
+
+    public static void taskThree() {
+        TaskThree solver = new TaskThree();
+        solver.readFile();
+        System.out.println(solver.countNumberOfTrees());
     }
 }
