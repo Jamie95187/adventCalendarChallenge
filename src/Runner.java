@@ -17,5 +17,6 @@ public class Runner {
     public static void taskTwo() {
         TaskTwo solver = new TaskTwo();
         solver.readFile();
+        System.out.println(solver.checkForValidEntries());
     }
 }
