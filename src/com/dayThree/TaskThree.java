@@ -29,17 +29,17 @@ public class TaskThree {
         }
     }
 
-    public int countNumberOfTrees() {
+    public int countNumberOfTrees(int right, int down) {
         int treeCount = 0;
         int tobogganPos = 0;
         int rowLength = slope.get(0).length;
         System.out.println("rowLength = " + rowLength);
-        for (char[] row : slope) {
-            System.out.println("Tree? = " + row[tobogganPos % rowLength]);
-            if (row[tobogganPos % rowLength] == '#') {
+        for (int i = 0; i < slope.size(); i = i + down) {
+            System.out.println("Tree? = " + slope.get(i)[tobogganPos % rowLength]);
+            if (slope.get(i)[tobogganPos % rowLength] == '#') {
                 treeCount++;
             }
-            tobogganPos = tobogganPos + 3;
+            tobogganPos = tobogganPos + right;
         }
         return treeCount;
     }

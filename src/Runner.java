@@ -25,6 +25,10 @@ public class Runner {
     public static void taskThree() {
         TaskThree solver = new TaskThree();
         solver.readFile();
-        System.out.println(solver.countNumberOfTrees());
+        System.out.println(solver.countNumberOfTrees(3, 1) *
+                solver.countNumberOfTrees(1, 1) *
+                solver.countNumberOfTrees(5, 1) *
+                solver.countNumberOfTrees(7, 1) *
+                solver.countNumberOfTrees(1, 2));
     }
 }
