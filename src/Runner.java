@@ -4,13 +4,12 @@ import com.dayThree.*;
 import com.dayFour.*;
 import com.dayFive.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Runner {
 
     public static void main(String[] args) throws IOException {
-        taskFive();
+        taskFour();
     }
 
     public static void taskOne() {
@@ -41,6 +40,11 @@ public class Runner {
         TaskFour solver = new TaskFour();
         solver.readFile();
         System.out.println(solver.countValidPassports());
+        System.out.println(solver.countValidPassportsPartTwo());
+        System.out.println(solver.validityChecks("eyr:2027\n" +
+                "ecl:amb iyr:2014 hcl:#fffffd\n" +
+                "pid:838758900\n" +
+                "hgt:177cm byr:1942"));
     }
 
     public static void taskFive() {
