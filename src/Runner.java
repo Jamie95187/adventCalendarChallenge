@@ -2,6 +2,7 @@ import com.dayOne.*;
 import com.dayTwo.*;
 import com.dayThree.*;
 import com.dayFour.*;
+import com.dayFive.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,7 +10,7 @@ import java.io.IOException;
 public class Runner {
 
     public static void main(String[] args) throws IOException {
-        taskFour();
+        taskFive();
     }
 
     public static void taskOne() {
@@ -40,5 +41,11 @@ public class Runner {
         TaskFour solver = new TaskFour();
         solver.readFile();
         System.out.println(solver.countValidPassports());
+    }
+
+    public static void taskFive() {
+        BoardingPasses solver = new BoardingPasses();
+        solver.readFile();
+        System.out.println(solver.highestSeatId());
     }
 }
