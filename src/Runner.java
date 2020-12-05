@@ -1,11 +1,15 @@
 import com.dayOne.*;
 import com.dayTwo.*;
 import com.dayThree.*;
+import com.dayFour.*;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Runner {
 
-    public static void main(String[] args) {
-        taskThree();
+    public static void main(String[] args) throws IOException {
+        taskFour();
     }
 
     public static void taskOne() {
@@ -30,5 +34,11 @@ public class Runner {
                 solver.countNumberOfTrees(5, 1) *
                 solver.countNumberOfTrees(7, 1) *
                 solver.countNumberOfTrees(1, 2));
+    }
+
+    public static void taskFour() throws IOException {
+        TaskFour solver = new TaskFour();
+        solver.readFile();
+        System.out.println(solver.countValidPassports());
     }
 }
