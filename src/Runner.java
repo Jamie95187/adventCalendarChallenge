@@ -46,6 +46,7 @@ public class Runner {
     public static void taskFive() {
         BoardingPasses solver = new BoardingPasses();
         solver.readFile();
-        System.out.println(solver.highestSeatId());
+        solver.highestSeatId();
+        System.out.println(solver.getMissingSeatId());
     }
 }
