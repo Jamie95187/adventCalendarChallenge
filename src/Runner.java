@@ -3,30 +3,31 @@ import com.dayTwo.*;
 import com.dayThree.*;
 import com.dayFour.*;
 import com.dayFive.*;
+import com.daySix.*;
 
 import java.io.IOException;
 
 public class Runner {
 
     public static void main(String[] args) throws IOException {
-        taskFour();
+        taskSix();
     }
 
-    public static void taskOne() {
+    private static void taskOne() {
         TaskOne solver = new TaskOne();
         solver.readFile();
         solver.printAnswerOne();
         solver.printAnswerTwo();
     }
 
-    public static void taskTwo() {
+    private static void taskTwo() {
         TaskTwo solver = new TaskTwo();
         solver.readFile();
         System.out.println(solver.checkForValidEntries());
         System.out.println(solver.checkForValidEntriesTaskTwo());
     }
 
-    public static void taskThree() {
+    private static void taskThree() {
         TaskThree solver = new TaskThree();
         solver.readFile();
         System.out.println(solver.countNumberOfTrees(3, 1) *
@@ -36,7 +37,7 @@ public class Runner {
                 solver.countNumberOfTrees(1, 2));
     }
 
-    public static void taskFour() throws IOException {
+    private static void taskFour() throws IOException {
         TaskFour solver = new TaskFour();
         solver.readFile();
         System.out.println(solver.countValidPassports());
@@ -47,10 +48,15 @@ public class Runner {
                 "hgt:177cm byr:1942"));
     }
 
-    public static void taskFive() {
+    private static void taskFive() {
         BoardingPasses solver = new BoardingPasses();
         solver.readFile();
         solver.highestSeatId();
         System.out.println(solver.getMissingSeatId());
+    }
+
+    private static void taskSix() throws IOException {
+        QuestionsTask solver = new QuestionsTask();
+        solver.test();
     }
 }
