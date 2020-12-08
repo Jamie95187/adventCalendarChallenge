@@ -61,8 +61,5 @@ public class BagChecker {
 
         bagsDirectlyHold(bagsDirectlyHoldingGold);
 
-        for (String bag : uniqueBags){
-            System.out.println(bag);
-        }
     }
 }

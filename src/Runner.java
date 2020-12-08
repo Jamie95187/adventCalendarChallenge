@@ -5,13 +5,14 @@ import com.dayFour.*;
 import com.dayFive.*;
 import com.daySix.*;
 import com.daySeven.*;
+import com.dayEight.*;
 
 import java.io.IOException;
 
 public class Runner {
 
     public static void main(String[] args) throws IOException {
-        taskSeven();
+        taskEight();
     }
 
     private static void taskOne() {
@@ -64,5 +65,11 @@ public class Runner {
 //        Day7 solver = new Day7("/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeven/bagData.txt");
 //        solver.bagCountPart1("shiny gold");
 //        solver.bagCountPart2("shiny gold");
+    }
+
+    private static void taskEight() {
+        DayEight solver = new DayEight();
+        solver.readFile();
+        System.out.println(solver.countValueOfAccumulator());
     }
 }
