@@ -4,13 +4,14 @@ import com.dayThree.*;
 import com.dayFour.*;
 import com.dayFive.*;
 import com.daySix.*;
+import com.daySeven.*;
 
 import java.io.IOException;
 
 public class Runner {
 
     public static void main(String[] args) throws IOException {
-        taskSix();
+        taskSeven();
     }
 
     private static void taskOne() {
@@ -42,10 +43,6 @@ public class Runner {
         solver.readFile();
         System.out.println(solver.countValidPassports());
         System.out.println(solver.countValidPassportsPartTwo());
-        System.out.println(solver.validityChecks("eyr:2027\n" +
-                "ecl:amb iyr:2014 hcl:#fffffd\n" +
-                "pid:838758900\n" +
-                "hgt:177cm byr:1942"));
     }
 
     private static void taskFive() {
@@ -58,5 +55,14 @@ public class Runner {
     private static void taskSix() throws IOException {
         QuestionsTask solver = new QuestionsTask();
         solver.test();
+    }
+
+    private static void taskSeven() {
+        BagChecker solver = new BagChecker();
+        solver.readFile();
+        solver.addToSet();
+//        Day7 solver = new Day7("/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeven/bagData.txt");
+//        solver.bagCountPart1("shiny gold");
+//        solver.bagCountPart2("shiny gold");
     }
 }
