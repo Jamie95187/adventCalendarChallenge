@@ -71,5 +71,8 @@ public class Runner {
         DayEight solver = new DayEight();
         solver.readFile();
         System.out.println(solver.countValueOfAccumulator());
+        System.out.println(solver.findIndex());
+        solver.readFile();
+        System.out.println(solver.countValueOfAccumulator());
     }
 }

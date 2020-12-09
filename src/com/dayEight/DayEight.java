@@ -3,10 +3,13 @@ package com.dayEight;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class DayEight {
 
     private static String[][] operations = new String[649][];
+    private static Queue<String[]> queue = new LinkedList<>();
 
     public void readFile(){
         BufferedReader reader;
@@ -36,13 +39,12 @@ public class DayEight {
         int count = 0;
         int j = 0;
         for (int i = 0; i < operations.length; i++) {
-//            System.out.println(operations[i][0]);
-//            String valueAsString = operations[j][0].split(" ")[1];
-//            System.out.println(valueAsString);
-//            int value = 1;
             int value = Integer.parseInt(operations[j][0].split(" ")[1]);
             String action = operations[j][0].split( " ")[0];
-//            System.out.println(action);
+            String[] queueAction = new String[2];
+            queueAction[0] = action;
+            queueAction[1] = Integer.toString(j);
+            queue.add(queueAction);
             if (operations[j][1] == "1") {
                 return count;
             }
@@ -55,9 +57,70 @@ public class DayEight {
             } else {
                 j++;
             }
+//            System.out.println("Poela = " + operations[j][0]);
+        }
+        return count;
+    }
+
+    public boolean checkForCompletion(String[][] operationsList) {
+        boolean complete = false;
+        int j = 0;
+        for (int i = 0; i < operationsList.length; i++) {
+            int value = Integer.parseInt(operationsList[j][0].split(" ")[1]);
+            String action = operationsList[j][0].split( " ")[0];
+            if (operationsList[j][1] == "1") {
+                return false;
+            }
+            operationsList[j][1] = "1";
+            if (action.contains("acc")){
+                j++;
+            } else if (action.contains("jmp")) {
+                j = j + value;
+            } else {
+                j++;
+            }
+            if (j == operationsList.length - 1) {
+                System.out.println("COmPLETED");
+                return true;
+            }
+        }
+        return complete;
+    }
+
+    public int findIndex() {
+        int indexToChange = 0;
+//        System.out.println(queue.size());
+        for(int i = 0; i < queue.size(); i++) {
+            String[][] copyOfOperations = operations;
+            String[] head = queue.remove();
+            if (head[0].contains("jmp")) {
+                indexToChange = Integer.parseInt(head[1]);
+                changeIndex(indexToChange, copyOfOperations);
+                if (checkForCompletion(copyOfOperations) == true) {
+                    System.out.println("Henlo One");
+                    break;
+                }
+            } else if (head[0].contains("nop")) {
+                indexToChange = Integer.parseInt(head[1]);
+                changeIndex(indexToChange, copyOfOperations);
+                if (checkForCompletion(copyOfOperations) == true) {
+                    System.out.println("Henlo Two");
+                    break;
+                }
+            }
         }
 
-        return count;
+        return indexToChange;
+    }
+
+    public void changeIndex(int i, String[][] op) {
+        int value = Integer.parseInt(op[i][0].split(" ")[1]);
+        String action = op[i][0].split( " ")[0];
+        if(action.contains("jmp")){
+            op[i][0] = "nop " + value;
+        } else {
+            op[i][0] = "jmp " + value;
+        }
     }
 
 }
