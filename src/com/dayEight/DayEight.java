@@ -9,7 +9,7 @@ import java.util.Queue;
 public class DayEight {
 
     private static String[][] operations = new String[649][];
-    private static Queue<String[]> queue = new LinkedList<>();
+    private static Queue<String[]> queue = new LinkedList<String[]>();
     private static int count = 0;
 
     public void readFile(){
@@ -66,19 +66,80 @@ public class DayEight {
         return count;
     }
 
-    private void checkIfFinished(String[][] listOfOperations) {
+    private boolean checkIfFinished(String[][] listOfOperations) {
         int indexOfOperation = 0;
-        for (int i = 0; i < listOfOperations.length; i++){
+        while (indexOfOperation < listOfOperations.length){
             int value = Integer.parseInt(listOfOperations[indexOfOperation][0].split(" ")[1]);
             String action = listOfOperations[indexOfOperation][0].split(" ")[0];
+            if (indexOfOperation == listOfOperations.length - 1) {
+                return true;
+            }
+            if (listOfOperations[indexOfOperation][1] == "1") {
+                return false;
+            }
+            if (action.contains("jmp")) {
+                indexOfOperation = indexOfOperation + value;
+            } else {
+                indexOfOperation++;
+            }
+            listOfOperations[indexOfOperation][1] = "1";
+        }
+        return false;
+    }
+
+    public void accCount() {
+        int i = 0;
+        while (i < 1) {
+            String[] queueItem = queue.remove();
+            String[][] copyOfOperations = changeAtIndex(Integer.parseInt(queueItem[1]));
+            if (checkIfFinished(copyOfOperations)) {
+                System.out.println(getAccForTaskTwo(copyOfOperations));
+                break;
+            }
         }
     }
 
-    public void checkForIndex() {
-        int index = Integer.parseInt(queue.remove()[1]);
-        String[][] copyOfOperations = operations;
-
-
+    private int getAccForTaskTwo(String[][] listOfOperations) {
+        count = 0;
+        int j = 0;
+        for (int i = 0; i < listOfOperations.length; i++) {
+            // value = "+45" | "-45"
+            int value = Integer.parseInt(listOfOperations[j][0].split(" ")[1]);
+            // action = "nop"
+            String action = listOfOperations[j][0].split( " ")[0];
+            String[] queueAction = new String[2];
+            queueAction[0] = action;
+            queueAction[1] = Integer.toString(j);
+            queue.add(queueAction);
+            if (listOfOperations[j][1] == "1") {
+                return count;
+            }
+            operations[j][1] = "1";
+            if (action.contains("acc")){
+                count = count + value;
+                j++;
+            } else if (action.contains("jmp")) {
+                j = j + value;
+            } else {
+                j++;
+            }
+        }
+        return count;
     }
 
+    private String[][] changeAtIndex(int i) {
+        String[][] copyListOfOperations = operations;
+        String action = copyListOfOperations[i][0].split(" ")[0];
+        String value = copyListOfOperations[i][0].split(" ")[1];
+        if (action.contains("jmp")) {
+            copyListOfOperations[i][0] = "nop" + " " + value;
+        } else if (action.contains("nop")) {
+            copyListOfOperations[i][0] = "jmp" + " " + value;
+        }
+        return copyListOfOperations;
+    }
+
+    public Queue<String[]> getQueue(){
+        return queue;
+    }
 }

@@ -8,6 +8,7 @@ import com.daySeven.*;
 import com.dayEight.*;
 
 import java.io.IOException;
+import java.util.Queue;
 
 public class Runner {
 
@@ -71,8 +72,10 @@ public class Runner {
         DayEight solver = new DayEight();
         solver.readFile();
         System.out.println(solver.countValueOfAccumulator());
-        System.out.println(solver.findIndex());
-        solver.readFile();
-        System.out.println(solver.countValueOfAccumulator());
+        Queue<String[]> queue = solver.getQueue();
+        for (String[] item : queue) {
+            System.out.println(item[0] + " " + item[1]);
+        }
+        solver.accCount();
     }
 }
