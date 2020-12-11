@@ -10,6 +10,7 @@ public class DayEight {
 
     private static String[][] operations = new String[649][];
     private static Queue<String[]> queue = new LinkedList<>();
+    private static int count = 0;
 
     public void readFile(){
         BufferedReader reader;
@@ -22,6 +23,8 @@ public class DayEight {
             while (line != null) {
                 if (line != null) {
                     String[] operator = new String[2];
+                    // line = "nop 134"
+                    // operator = [line, 0]
                     operator[0] = line;
                     operator[1] = "0";
                     operations[i] = operator;
@@ -36,10 +39,12 @@ public class DayEight {
     }
 
     public int countValueOfAccumulator() {
-        int count = 0;
+        count = 0;
         int j = 0;
         for (int i = 0; i < operations.length; i++) {
+            // value = "+45" | "-45"
             int value = Integer.parseInt(operations[j][0].split(" ")[1]);
+            // action = "nop"
             String action = operations[j][0].split( " ")[0];
             String[] queueAction = new String[2];
             queueAction[0] = action;
@@ -57,70 +62,23 @@ public class DayEight {
             } else {
                 j++;
             }
-//            System.out.println("Poela = " + operations[j][0]);
         }
         return count;
     }
 
-    public boolean checkForCompletion(String[][] operationsList) {
-        boolean complete = false;
-        int j = 0;
-        for (int i = 0; i < operationsList.length; i++) {
-            int value = Integer.parseInt(operationsList[j][0].split(" ")[1]);
-            String action = operationsList[j][0].split( " ")[0];
-            if (operationsList[j][1] == "1") {
-                return false;
-            }
-            operationsList[j][1] = "1";
-            if (action.contains("acc")){
-                j++;
-            } else if (action.contains("jmp")) {
-                j = j + value;
-            } else {
-                j++;
-            }
-            if (j == operationsList.length - 1) {
-                System.out.println("COmPLETED");
-                return true;
-            }
+    private void checkIfFinished(String[][] listOfOperations) {
+        int indexOfOperation = 0;
+        for (int i = 0; i < listOfOperations.length; i++){
+            int value = Integer.parseInt(listOfOperations[indexOfOperation][0].split(" ")[1]);
+            String action = listOfOperations[indexOfOperation][0].split(" ")[0];
         }
-        return complete;
     }
 
-    public int findIndex() {
-        int indexToChange = 0;
-//        System.out.println(queue.size());
-        for(int i = 0; i < queue.size(); i++) {
-            String[][] copyOfOperations = operations;
-            String[] head = queue.remove();
-            if (head[0].contains("jmp")) {
-                indexToChange = Integer.parseInt(head[1]);
-                changeIndex(indexToChange, copyOfOperations);
-                if (checkForCompletion(copyOfOperations) == true) {
-                    System.out.println("Henlo One");
-                    break;
-                }
-            } else if (head[0].contains("nop")) {
-                indexToChange = Integer.parseInt(head[1]);
-                changeIndex(indexToChange, copyOfOperations);
-                if (checkForCompletion(copyOfOperations) == true) {
-                    System.out.println("Henlo Two");
-                    break;
-                }
-            }
-        }
+    public void checkForIndex() {
+        int index = Integer.parseInt(queue.remove()[1]);
+        String[][] copyOfOperations = operations;
 
-        return indexToChange;
-    }
 
-    public void changeIndex(int i, String[][] op) {
-        int value = Integer.parseInt(op[i][0].split(" ")[1]);
-        String action = op[i][0].split( " ")[0];
-        if(action.contains("jmp")){
-            op[i][0] = "nop " + value;
-        } else {
-            op[i][0] = "jmp " + value;
-        }
     }
 
 }
