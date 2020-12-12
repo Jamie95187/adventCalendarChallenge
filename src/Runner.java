@@ -63,19 +63,12 @@ public class Runner {
         BagChecker solver = new BagChecker();
         solver.readFile();
         solver.addToSet();
-//        Day7 solver = new Day7("/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeven/bagData.txt");
-//        solver.bagCountPart1("shiny gold");
-//        solver.bagCountPart2("shiny gold");
     }
 
     private static void taskEight() {
         DayEight solver = new DayEight();
         solver.readFile();
         System.out.println(solver.countValueOfAccumulator());
-        Queue<String[]> queue = solver.getQueue();
-        for (String[] item : queue) {
-            System.out.println(item[0] + " " + item[1]);
-        }
         solver.accCount();
     }
 }

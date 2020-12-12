@@ -9,7 +9,7 @@ import java.util.Queue;
 public class DayEight {
 
     private static String[][] operations = new String[649][];
-    private static Queue<String[]> queue = new LinkedList<String[]>();
+    public Queue<String[]> queue = new LinkedList<String[]>();
     private static int count = 0;
 
     public void readFile(){
@@ -72,27 +72,31 @@ public class DayEight {
             int value = Integer.parseInt(listOfOperations[indexOfOperation][0].split(" ")[1]);
             String action = listOfOperations[indexOfOperation][0].split(" ")[0];
             if (indexOfOperation == listOfOperations.length - 1) {
+                System.out.println("Henlo from true");
                 return true;
             }
+            System.out.println(indexOfOperation + " visited? = " + listOfOperations[indexOfOperation][1]);
             if (listOfOperations[indexOfOperation][1] == "1") {
+                System.out.println("return false");
                 return false;
             }
+            listOfOperations[indexOfOperation][1] = "1";
             if (action.contains("jmp")) {
                 indexOfOperation = indexOfOperation + value;
             } else {
                 indexOfOperation++;
             }
-            listOfOperations[indexOfOperation][1] = "1";
         }
         return false;
     }
 
     public void accCount() {
         int i = 0;
-        while (i < 1) {
-            String[] queueItem = queue.remove();
+        for (String[] queueItem: queue) {
+            clearVisited();
             String[][] copyOfOperations = changeAtIndex(Integer.parseInt(queueItem[1]));
             if (checkIfFinished(copyOfOperations)) {
+                System.out.println("Henlo");
                 System.out.println(getAccForTaskTwo(copyOfOperations));
                 break;
             }
@@ -141,5 +145,15 @@ public class DayEight {
 
     public Queue<String[]> getQueue(){
         return queue;
+    }
+
+    public String[][] getOperations() {
+        return operations;
+    }
+
+    public void clearVisited() {
+        for (int i = 0; i < operations.length; i++) {
+            operations[i][1] = "0";
+        }
     }
 }
