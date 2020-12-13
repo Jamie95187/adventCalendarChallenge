@@ -71,13 +71,13 @@ public class DayEight {
         while (indexOfOperation < listOfOperations.length){
             int value = Integer.parseInt(listOfOperations[indexOfOperation][0].split(" ")[1]);
             String action = listOfOperations[indexOfOperation][0].split(" ")[0];
-            if (indexOfOperation == listOfOperations.length - 1) {
+            if (indexOfOperation == 648) {
                 System.out.println("Henlo from true");
                 return true;
             }
-            System.out.println(indexOfOperation + " visited? = " + listOfOperations[indexOfOperation][1]);
+//            System.out.println(indexOfOperation + " visited? = " + listOfOperations[indexOfOperation][1]);
             if (listOfOperations[indexOfOperation][1] == "1") {
-                System.out.println("return false");
+//                System.out.println("return false");
                 return false;
             }
             listOfOperations[indexOfOperation][1] = "1";
@@ -94,12 +94,16 @@ public class DayEight {
         int i = 0;
         for (String[] queueItem: queue) {
             clearVisited();
+            System.out.println("QueueItem = " + queueItem[0]);
             String[][] copyOfOperations = changeAtIndex(Integer.parseInt(queueItem[1]));
-            if (checkIfFinished(copyOfOperations)) {
-                System.out.println("Henlo");
-                System.out.println(getAccForTaskTwo(copyOfOperations));
-                break;
+            if (!queueItem[0].contains("acc")) {
+                if (checkIfFinished(copyOfOperations)) {
+                    System.out.println("Henlo");
+                    System.out.println(getAccForTaskTwo(copyOfOperations));
+                    break;
+                }
             }
+
         }
     }
 
