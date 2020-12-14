@@ -71,10 +71,6 @@ public class DayEight {
         while (indexOfOperation < listOfOperations.length){
             int value = Integer.parseInt(listOfOperations[indexOfOperation][0].split(" ")[1]);
             String action = listOfOperations[indexOfOperation][0].split(" ")[0];
-            if (indexOfOperation == 648) {
-                System.out.println("Henlo from true");
-                return true;
-            }
 //            System.out.println(indexOfOperation + " visited? = " + listOfOperations[indexOfOperation][1]);
             if (listOfOperations[indexOfOperation][1] == "1") {
 //                System.out.println("return false");
@@ -87,16 +83,23 @@ public class DayEight {
                 indexOfOperation++;
             }
         }
+        if (indexOfOperation >= listOfOperations.length - 1) {
+            System.out.println("Henlo from true");
+            return true;
+        }
         return false;
     }
 
     public void accCount() {
         int i = 0;
+        clearVisited();
         for (String[] queueItem: queue) {
-            clearVisited();
             System.out.println("QueueItem = " + queueItem[0]);
+            System.out.println("BEFORE CHANGING = " + operations[Integer.parseInt(queueItem[1])][0]);
             String[][] copyOfOperations = changeAtIndex(Integer.parseInt(queueItem[1]));
+            System.out.println("AFTER CHANGING = " + copyOfOperations[Integer.parseInt(queueItem[1])][0]);
             if (!queueItem[0].contains("acc")) {
+                System.out.println("Not ACC");
                 if (checkIfFinished(copyOfOperations)) {
                     System.out.println("Henlo");
                     System.out.println(getAccForTaskTwo(copyOfOperations));
