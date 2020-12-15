@@ -1,3 +1,4 @@
+import com.dayNine.Encoding;
 import com.dayOne.*;
 import com.dayTwo.*;
 import com.dayThree.*;
@@ -13,7 +14,7 @@ import java.util.Queue;
 public class Runner {
 
     public static void main(String[] args) throws IOException {
-        taskEight();
+        taskNine();
     }
 
     private static void taskOne() {
@@ -70,5 +71,11 @@ public class Runner {
         solver.readFile();
         System.out.println(solver.countValueOfAccumulator());
         solver.accCount();
+    }
+
+    private static void taskNine() {
+        Encoding solver = new Encoding();
+        solver.readFile();
+        solver.printData();
     }
 }
