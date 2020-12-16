@@ -27,6 +27,35 @@ public class Encoding {
         }
     }
 
+    private long findNumber(int n) {
+        long number = data.get(n+25);
+        boolean valid = false;
+            for (int i = n; i < n+25; i++) {
+                for (int j = n; j < i; i++) {
+                    if (data.get(i) + data.get(j) == number) {
+                        valid = true;
+                    }
+                }
+                for (int k = n + i; k < n+25; k++) {
+                    if (data.get(i) + data.get(k) == number) {
+                        valid = true;
+                    }
+                }
+            }
+            if (!valid) {
+                return data.get(n+25);
+            }
+        return number;
+    }
+
+    public void printAnswer(){
+        for(int index = 0; index < data.size() - 26; index++) {
+            if (findNumber(index) > 0L) {
+                System.out.println(findNumber(index));
+            }
+        }
+    }
+
     public void printData() {
         for (Long input : data){
             System.out.println(input);

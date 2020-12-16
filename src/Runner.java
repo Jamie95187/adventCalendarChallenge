@@ -76,6 +76,6 @@ public class Runner {
     private static void taskNine() {
         Encoding solver = new Encoding();
         solver.readFile();
-        solver.printData();
+        solver.printAnswer();
     }
 }
