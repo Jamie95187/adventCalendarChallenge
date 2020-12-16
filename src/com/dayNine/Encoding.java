@@ -28,17 +28,19 @@ public class Encoding {
     }
 
     private long findNumber(int n) {
-        long number = data.get(n+25);
+        long number = 0l;
         boolean valid = false;
             for (int i = n; i < n+25; i++) {
-                for (int j = n; j < i; i++) {
-                    if (data.get(i) + data.get(j) == number) {
+                for (int j = n; j < i; j++) {
+                    if (data.get(i) + data.get(j) == data.get(n+25)) {
                         valid = true;
+                        break;
                     }
                 }
                 for (int k = n + i; k < n+25; k++) {
-                    if (data.get(i) + data.get(k) == number) {
+                    if (data.get(i) + data.get(k) == data.get(n+25)) {
                         valid = true;
+                        break;
                     }
                 }
             }
