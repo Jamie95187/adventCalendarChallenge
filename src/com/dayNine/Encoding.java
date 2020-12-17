@@ -51,6 +51,28 @@ public class Encoding {
         return number;
     }
 
+    public int[] findRange() {
+        int lowest = taskTwoData.get(0);
+        int highest = taskTwoData.get(taskTwoData.size() - 1);
+        int sum = 0;
+
+        for (int i = taskTwoData.size() - 1; i >= 0; i--) {
+            if (sum == 0) {
+                highest = taskTwoData.get(i);
+                lowest = taskTwoData.get(i);
+            }
+            sum += taskTwoData.get(i);
+            if (sum > 14360655) {
+                sum = 0;
+            }
+        }
+
+        int[] answer = new int[2];
+        answer[0] = lowest;
+        answer[1] = highest;
+        return answer;
+    }
+
     public void printAnswer(){
         for(int index = 0; index < data.size() - 26; index++) {
             if (findNumber(index) > 0L) {
