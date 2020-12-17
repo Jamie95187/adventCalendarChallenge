@@ -9,6 +9,7 @@ import java.util.List;
 public class Encoding {
 
     private static List<Long> data = new ArrayList<>();
+    private static List<Integer> taskTwoData = new ArrayList<>();
 
     public void readFile() {
         BufferedReader reader;
@@ -61,6 +62,21 @@ public class Encoding {
     public void printData() {
         for (Long input : data){
             System.out.println(input);
+        }
+    }
+
+    private void reduceRange() {
+        for (Long number: data) {
+            if (number < 14360655) {
+                taskTwoData.add((int) (long) number);
+            }
+        }
+    }
+
+    public void printDataTwo() {
+        reduceRange();
+        for (int n : taskTwoData) {
+            System.out.println(n);
         }
     }
 }
