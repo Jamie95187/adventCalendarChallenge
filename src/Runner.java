@@ -78,5 +78,9 @@ public class Runner {
         solver.readFile();
 //        solver.printAnswer();
         solver.printDataTwo();
+        System.out.println("----------------------------------------------------");
+        System.out.println("lowest = " + solver.findRange()[0]);
+        System.out.println("highest = " + solver.findRange()[1]);
+        System.out.println(solver.findRange()[0] + solver.findRange()[1]);
     }
 }

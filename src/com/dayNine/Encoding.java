@@ -57,13 +57,20 @@ public class Encoding {
         int sum = 0;
 
         for (int i = taskTwoData.size() - 1; i >= 0; i--) {
-            if (sum == 0) {
-                highest = taskTwoData.get(i);
-                lowest = taskTwoData.get(i);
+            highest = taskTwoData.get(i);
+            sum = highest;
+            for (int j = i-1; j >= 0; j--) {
+                sum += taskTwoData.get(j);
+                if (sum == 14360655){
+                    lowest = taskTwoData.get(j);
+                    System.out.println("henlo!");
+                    break;
+                } else if (sum > 14360655){
+                    sum = 0;
+                }
             }
-            sum += taskTwoData.get(i);
-            if (sum > 14360655) {
-                sum = 0;
+            if (sum == 14360655) {
+                break;
             }
         }
 
