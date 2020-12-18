@@ -58,18 +58,25 @@ public class Encoding {
 
         for (int i = taskTwoData.size() - 1; i >= 0; i--) {
             highest = taskTwoData.get(i);
+            lowest = taskTwoData.get(i);
             sum = highest;
-            for (int j = i-1; j >= 0; j--) {
+            for (int j = i - 1; j >= 0; j--) {
                 sum += taskTwoData.get(j);
-                if (sum == 14360655){
+                if (taskTwoData.get(j) < lowest) {
                     lowest = taskTwoData.get(j);
-                    System.out.println("henlo!");
+                }
+                if (taskTwoData.get(j) > highest) {
+                    highest = taskTwoData.get(j);
+                }
+                if (sum == 14360655){
                     break;
                 } else if (sum > 14360655){
                     sum = 0;
+                    break;
                 }
             }
             if (sum == 14360655) {
+                System.out.println("hello");
                 break;
             }
         }
