@@ -7,14 +7,14 @@ import com.dayFive.*;
 import com.daySix.*;
 import com.daySeven.*;
 import com.dayEight.*;
+import com.dayTen.Adapter;
 
 import java.io.IOException;
-import java.util.Queue;
 
 public class Runner {
 
     public static void main(String[] args) throws IOException {
-        taskNine();
+        taskTen();
     }
 
     private static void taskOne() {
@@ -77,10 +77,17 @@ public class Runner {
         Encoding solver = new Encoding();
         solver.readFile();
 //        solver.printAnswer();
-        solver.printDataTwo();
-        System.out.println("----------------------------------------------------");
-        System.out.println("lowest = " + solver.findRange()[0]);
-        System.out.println("highest = " + solver.findRange()[1]);
+//        solver.printDataTwo();
+//        System.out.println("----------------------------------------------------");
+//        System.out.println("lowest = " + solver.findRange()[0]);
+//        System.out.println("highest = " + solver.findRange()[1]);
         System.out.println(solver.findRange()[0] + solver.findRange()[1]);
+    }
+
+    private static void taskTen() {
+        Adapter solver = new Adapter();
+        solver.readFile();
+        solver.sortList();
+        solver.printData();
     }
 }
