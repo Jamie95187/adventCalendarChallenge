@@ -10,6 +10,7 @@ import com.dayEight.*;
 import com.dayTen.Adapter;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class Runner {
 
@@ -89,5 +90,10 @@ public class Runner {
         solver.readFile();
         solver.sortList();
         solver.printData();
+        Map<Integer,Integer> taskOneAns = solver.getJoltageCount();
+        for (Map.Entry<Integer, Integer> joltCount : taskOneAns.entrySet()) {
+            System.out.println("Difference: " + joltCount.getKey() + "  " + "Count: " + joltCount.getValue());
+        }
+        System.out.println(taskOneAns.get(1) * taskOneAns.get(3));
     }
 }
