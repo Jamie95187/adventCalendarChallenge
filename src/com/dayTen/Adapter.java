@@ -70,4 +70,9 @@ public class Adapter<Hash> {
         countJoltDifferences();
         return joltageCount;
     }
+
+    public int findJoltageArrangements() {
+        int count = 0;
+        return count;
+    }
 }
