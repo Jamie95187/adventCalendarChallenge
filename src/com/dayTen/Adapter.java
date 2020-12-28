@@ -72,7 +72,50 @@ public class Adapter<Hash> {
     }
 
     public int findJoltageArrangements() {
+        // Difference of three doesnt change the arrangements count as one combination
         int count = 0;
         return count;
     }
+
+    /*
+    16
+    10
+    15
+    5
+    1
+    11
+    7
+    19
+    6
+    12
+    4
+
+    (0), 1, 4, 5, 6, 7, 10, 11, 12, 15, 16, 19, (22)
+    (0), 1, 4, 5, 6, 7, 10, 12, 15, 16, 19, (22)
+    (0), 1, 4, 5, 7, 10, 11, 12, 15, 16, 19, (22)
+    (0), 1, 4, 5, 7, 10, 12, 15, 16, 19, (22)
+    (0), 1, 4, 6, 7, 10, 11, 12, 15, 16, 19, (22)
+    (0), 1, 4, 6, 7, 10, 12, 15, 16, 19, (22)
+    (0), 1, 4, 7, 10, 11, 12, 15, 16, 19, (22)
+    (0), 1, 4, 7, 10, 12, 15, 16, 19, (22)
+
+    [4, 5, 6, 7] 4 consecutive ones
+    [10, 11, 12] 3 consecutive ones
+    [15, 16] 2 consecutive ones
+
+    ways of arranging 4 consecutive ones
+    [4, 7]
+    [4, 6, 7]
+    [4, 5, 7]
+    [4, 5, 6, 7]
+
+    ways of arranging 3 consecutive ones
+    [10, 12]
+    [10, 11, 12]
+
+    ways of arranging 2 consecutive ones
+    [15, 16]
+
+    4 * 2 * 1 = 8
+     */
 }
