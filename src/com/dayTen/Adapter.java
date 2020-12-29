@@ -9,6 +9,7 @@ public class Adapter<Hash> {
 
     private static List<Integer> joltageArray = new ArrayList<>();
     private static Map<Integer, Integer> joltageCount = new HashMap<Integer, Integer>();
+    private static Map<Integer, Integer> consecutiveOnesCount = new HashMap<Integer, Integer>();
 
     public void readFile() {
         BufferedReader reader;
@@ -69,6 +70,25 @@ public class Adapter<Hash> {
     public Map<Integer, Integer> getJoltageCount() {
         countJoltDifferences();
         return joltageCount;
+    }
+
+    public void populateConsecutiveOnesMap(){
+        // Populate array such that [numConsecOnes, amountOfOccurrence]
+        for (int i = 0; i < joltageArray.size() - 1; i++) {
+            int count = 0;
+            if (joltageArray.get(i).equals(joltageArray.get(i+1) - 1)) {
+                count++;
+            } else {
+                if (count > 2) {
+                    if (consecutiveOnesCount.containsKey(count)) {
+                        consecutiveOnesCount.put(count, consecutiveOnesCount.get(count) + 1);
+                    } else {
+                       consecutiveOnesCount.put(count, 1);
+                    }
+                }
+                count = 0;
+            }
+        }
     }
 
     public int findJoltageArrangements() {
