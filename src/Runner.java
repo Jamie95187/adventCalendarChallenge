@@ -89,11 +89,9 @@ public class Runner {
         Adapter solver = new Adapter();
         solver.readFile();
         solver.sortList();
-        solver.printData();
-        Map<Integer,Integer> taskOneAns = solver.getJoltageCount();
-        for (Map.Entry<Integer, Integer> joltCount : taskOneAns.entrySet()) {
-            System.out.println("Difference: " + joltCount.getKey() + "  " + "Count: " + joltCount.getValue());
-        }
-        System.out.println(taskOneAns.get(1) * taskOneAns.get(3));
+//        solver.printData();
+        solver.populateConsecutiveOnesMap();
+        solver.printConsecutiveOnesMap();
+        solver.printAnswerTwo();
     }
 }

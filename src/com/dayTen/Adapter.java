@@ -74,20 +74,37 @@ public class Adapter<Hash> {
 
     public void populateConsecutiveOnesMap(){
         // Populate array such that [numConsecOnes, amountOfOccurrence]
+        int count = 1;
         for (int i = 0; i < joltageArray.size() - 1; i++) {
-            int count = 0;
-            if (joltageArray.get(i).equals(joltageArray.get(i+1) - 1)) {
+            if (joltageArray.get(i) == (joltageArray.get(i+1) - 1)) {
+//                System.out.println("ELE ONE : " + joltageArray.get(i) + " ELE TWO : " + (joltageArray.get(i+1) - 1));
                 count++;
             } else {
-                if (count > 2) {
+                if (count >= 3) {
+//                    System.out.println("loop 2");
                     if (consecutiveOnesCount.containsKey(count)) {
                         consecutiveOnesCount.put(count, consecutiveOnesCount.get(count) + 1);
                     } else {
                        consecutiveOnesCount.put(count, 1);
                     }
                 }
-                count = 0;
+                count = 1;
             }
+            if (i == joltageArray.size() - 1) {
+                if (count >= 3) {
+                    if (consecutiveOnesCount.containsKey(count)) {
+                        consecutiveOnesCount.put(count, consecutiveOnesCount.get(count) + 1);
+                    } else {
+                        consecutiveOnesCount.put(count, 1);
+                    }
+                }
+            }
+        }
+    }
+
+    public void printConsecutiveOnesMap() {
+        for(Map.Entry<Integer, Integer> entry : consecutiveOnesCount.entrySet()) {
+            System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue());
         }
     }
 
@@ -137,5 +154,21 @@ public class Adapter<Hash> {
     [15, 16]
 
     4 * 2 * 1 = 8
+
      */
+
+    public void printAnswerTwo() {
+        long ans = 1;
+        for (Map.Entry<Integer, Integer> entry : consecutiveOnesCount.entrySet()) {
+            if (entry.getKey() ==  3) {
+                ans = ans * (long) Math.pow(3, entry.getValue());
+            } else if (entry.getKey() == 4) {
+                ans = ans *  (long) Math.pow(4, entry.getValue());
+            } else if (entry.getKey() == 5) {
+                ans = ans * (long) Math.pow(7, entry.getValue());
+            }
+        }
+        System.out.println("Answer : "+ ans);
+    }
 }
+
