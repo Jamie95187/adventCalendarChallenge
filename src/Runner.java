@@ -89,7 +89,7 @@ public class Runner {
         Adapter solver = new Adapter();
         solver.readFile();
         solver.sortList();
-//        solver.printData();
+        solver.printData();
         solver.populateConsecutiveOnesMap();
         solver.printConsecutiveOnesMap();
         solver.printAnswerTwo();

@@ -16,6 +16,7 @@ public class Adapter<Hash> {
         try {
             reader = new BufferedReader(new FileReader(
                     "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayTen/joltage.txt"
+//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayTen/exampleone.txt"
             ));
             String line = reader.readLine();
             while (line != null) {
@@ -74,7 +75,11 @@ public class Adapter<Hash> {
 
     public void populateConsecutiveOnesMap(){
         // Populate array such that [numConsecOnes, amountOfOccurrence]
+        // Edge case for first element
         int count = 1;
+        if (joltageArray.get(0) == 1) {
+            count = 2;
+        }
         for (int i = 0; i < joltageArray.size() - 1; i++) {
             if (joltageArray.get(i) == (joltageArray.get(i+1) - 1)) {
 //                System.out.println("ELE ONE : " + joltageArray.get(i) + " ELE TWO : " + (joltageArray.get(i+1) - 1));
@@ -99,6 +104,9 @@ public class Adapter<Hash> {
                     }
                 }
             }
+        }
+        if(count != 0) {
+            consecutiveOnesCount.put(count, consecutiveOnesCount.get(count) +1);
         }
     }
 
@@ -161,9 +169,9 @@ public class Adapter<Hash> {
         long ans = 1;
         for (Map.Entry<Integer, Integer> entry : consecutiveOnesCount.entrySet()) {
             if (entry.getKey() ==  3) {
-                ans = ans * (long) Math.pow(3, entry.getValue());
+                ans = ans * (long) Math.pow(2, entry.getValue());
             } else if (entry.getKey() == 4) {
-                ans = ans *  (long) Math.pow(4, entry.getValue());
+                ans = ans * (long) Math.pow(4, entry.getValue());
             } else if (entry.getKey() == 5) {
                 ans = ans * (long) Math.pow(7, entry.getValue());
             }
