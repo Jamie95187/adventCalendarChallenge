@@ -1,3 +1,4 @@
+import com.dayEleven.SeatingSystem;
 import com.dayNine.Encoding;
 import com.dayOne.*;
 import com.dayTwo.*;
@@ -15,7 +16,7 @@ import java.util.Map;
 public class Runner {
 
     public static void main(String[] args) throws IOException {
-        taskTen();
+        taskEleven();
     }
 
     private static void taskOne() {
@@ -93,5 +94,11 @@ public class Runner {
         solver.populateConsecutiveOnesMap();
         solver.printConsecutiveOnesMap();
         solver.printAnswerTwo();
+    }
+
+    private static void taskEleven() {
+        SeatingSystem ss = new SeatingSystem();
+        ss.populateSeatingPlan();
+        ss.printSeatAsRows();
     }
 }
