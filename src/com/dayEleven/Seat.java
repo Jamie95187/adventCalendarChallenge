@@ -2,12 +2,12 @@ package com.dayEleven;
 
 public class Seat {
 
-    private static boolean isSeat;
-    private static boolean occupied;
+    private boolean isSeat;
+    private boolean occupied;
 
-    public Seat(boolean seatStatus) {
-        isSeat = seatStatus;
-        occupied = false;
+    public Seat(boolean isSeat) {
+        this.isSeat = isSeat;
+        this.occupied = false;
     }
 
     public void changeSeatOccupied() {

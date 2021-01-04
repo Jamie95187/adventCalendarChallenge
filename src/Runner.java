@@ -100,5 +100,7 @@ public class Runner {
         SeatingSystem ss = new SeatingSystem();
         ss.populateSeatingPlan();
         ss.printSeatAsRows();
+        ss.printSeatingPlan();
+        ss.checkNeighbourMethod();
     }
 }
