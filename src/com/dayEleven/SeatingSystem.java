@@ -144,7 +144,6 @@ public class SeatingSystem {
                     }
                 }
             } else if (yCor == seatAsRows.get(0).length() - 1){
-                System.out.println(seatingPlan.length - 1);
                 if (seatingPlan[xCor + 1][yCor].isSeatOccupied()) {
                     numberOfOccupiedSeats++;
                 }
@@ -161,7 +160,6 @@ public class SeatingSystem {
                     numberOfOccupiedSeats++;
                 }
             } else {
-                System.out.println("OKAY 3");
                 if (seatingPlan[xCor + 1][yCor].isSeatOccupied()) {
                     numberOfOccupiedSeats++;
                 }
@@ -190,19 +188,57 @@ public class SeatingSystem {
         return numberOfOccupiedSeats;
     }
 
-    public void iterateRounds() {
-        int numberOfChanges = 0;
+    public void makeIterations() {
+        while (oneIteration() > 0) {
+            oneIteration();
+        }
+        int numberOfOccupiedSeats = 0;
+        for (int i = 0; i < seatAsRows.size(); i++) {
+            for (int j = 0; j < seatAsRows.get(0).length(); j++) {
+                if (seatingPlan[i][j].isSeatOccupied()) {
+                    numberOfOccupiedSeats++;
+                }
+            }
+        }
+        System.out.println(numberOfOccupiedSeats);
+    }
 
+    private int oneIteration() {
+        printSeatingPlan();
+        int numberOfChanges = 0;
+        Seat[][] copyOfSeatingPlan = seatingPlan;
+        System.out.println(" 0 3 NEIGHBOURS = " + checkNeighbouringSeats(0, 3));
+        System.out.println(" 0 3 IS IT A SEAT " + seatingPlan[0][3].getSeatStatus());
+        System.out.println(" 0 3 IS SEAT OCCUPIED " + seatingPlan[0][3].isSeatOccupied());
+        for (int i = 0; i < seatAsRows.size(); i++) {
+            for (int j = 0; j < seatAsRows.get(0).length(); j++) {
+                if (!seatingPlan[i][j].isSeatOccupied() && seatingPlan[i][j].getSeatStatus()) {
+                    if (i == 0 && j == 3) {
+                        System.out.println("YESSS!");
+                        System.out.println(" 0 3 NEIGHBOURS = " + checkNeighbouringSeats(0, 3));
+                    }
+                    if (checkNeighbouringSeats(i, j) == 0) {
+                        copyOfSeatingPlan[i][j].changeSeatOccupied();
+                        numberOfChanges++;
+                    }
+                } else if (seatingPlan[i][j].isSeatOccupied()){
+                    if (checkNeighbouringSeats(i, j) >= 4) {
+                        copyOfSeatingPlan[i][j].changeSeatOccupied();
+                        numberOfChanges++;
+                    }
+                }
+            }
+        }
+        seatingPlan = copyOfSeatingPlan;
+        return numberOfChanges;
     }
 
     public void checkNeighbourMethod() {
-        seatingPlan[0][2].changeSeatOccupied();
-        seatingPlan[0][3].changeSeatOccupied();
-        seatingPlan[2][2].changeSeatOccupied();
         printSeatingPlan();
-        int i = 1;
-        int j = 2;
-        System.out.println(checkNeighbouringSeats(i,j));
+        System.out.println(checkNeighbouringSeats(0,0));
+        System.out.println(checkNeighbouringSeats(0,3));
+        oneIteration();
+        printSeatingPlan();
     }
 
     public void printSeatAsRows() {
@@ -212,12 +248,10 @@ public class SeatingSystem {
     }
 
     public void printSeatingPlan() {
-        System.out.println("MAX I " + seatAsRows.size());
-        System.out.println("MAX J " + seatAsRows.get(0).length());
         for (int i = 0; i < seatAsRows.size(); i++) {
             for (int j = 0; j < seatAsRows.get(0).length(); j++) {
-//                System.out.print("IS SEAT? " + seatingPlan[i][j].getSeatStatus() + " ");
-                System.out.print(seatingPlan[i][j].isSeatOccupied() + " ");
+//                System.out.print(seatingPlan[i][j].getSeatStatus() + " ");
+                System.out.print("iCor : " + i + " jCor : " + j  +" "  + seatingPlan[i][j].isSeatOccupied() + " ");
             }
             System.out.println("\n");
         }
