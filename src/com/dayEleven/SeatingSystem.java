@@ -16,9 +16,9 @@ public class SeatingSystem {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayEleven/seatingArrangements.txt"
+                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayEleven/seatingArrangements.txt"
 //                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayEleven/exampleData.txt"
-//            ));
+            ));
             String line = reader.readLine();
             while (line != null) {
                 seatAsRows.add(line);
@@ -235,6 +235,16 @@ public class SeatingSystem {
         }
         seatingPlan = copyOfSeatingPlan;
         return numberOfChanges;
+    }
+
+    private void visionCheckForOccupiedChairs(int x, int y) {
+
+    }
+
+    private void checkNorth(int x, int y) {
+        while(x >= 0) {
+            x
+        }
     }
 
 //    public void checkNeighbourMethod() {
