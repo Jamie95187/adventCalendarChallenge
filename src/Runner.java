@@ -99,7 +99,7 @@ public class Runner {
     private static void taskEleven() {
         SeatingSystem ss = new SeatingSystem();
         ss.populateSeatingPlan();
-        ss.checkNeighbourMethod();
+//        ss.checkNeighbourMethod();
         ss.makeIterations();
     }
 }

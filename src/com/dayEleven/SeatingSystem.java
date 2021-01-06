@@ -17,8 +17,8 @@ public class SeatingSystem {
         try {
             reader = new BufferedReader(new FileReader(
 //                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayEleven/seatingArrangements.txt"
-                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayEleven/exampleData.txt"
-            ));
+//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayEleven/exampleData.txt"
+//            ));
             String line = reader.readLine();
             while (line != null) {
                 seatAsRows.add(line);
@@ -237,20 +237,20 @@ public class SeatingSystem {
         return numberOfChanges;
     }
 
-    public void checkNeighbourMethod() {
-        printSeatingPlan();
-        oneIteration();
-        oneIteration();
-        System.out.println(checkNeighbouringSeats(2, 0));
-        System.out.println(seatingPlan[2][0].isSeatOccupied());
-        printSeatingPlan();
-    }
+//    public void checkNeighbourMethod() {
+//        printSeatingPlan();
+//        oneIteration();
+//        oneIteration();
+//        System.out.println(checkNeighbouringSeats(2, 0));
+//        System.out.println(seatingPlan[2][0].isSeatOccupied());
+//        printSeatingPlan();
+//    }
 
-    public void printSeatAsRows() {
-        for (int i = 0; i < seatAsRows.size() ; i++) {
-            System.out.println(seatAsRows.get(i));
-        }
-    }
+//    public void printSeatAsRows() {
+//        for (int i = 0; i < seatAsRows.size() ; i++) {
+//            System.out.println(seatAsRows.get(i));
+//        }
+//    }
 
     public void printSeatingPlan() {
         for (int i = 0; i < seatAsRows.size(); i++) {
