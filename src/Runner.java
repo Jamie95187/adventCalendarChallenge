@@ -99,9 +99,7 @@ public class Runner {
     private static void taskEleven() {
         SeatingSystem ss = new SeatingSystem();
         ss.populateSeatingPlan();
-//        ss.printSeatAsRows();
-//        ss.printSeatingPlan();
-//        ss.makeIterations();
         ss.checkNeighbourMethod();
+        ss.makeIterations();
     }
 }

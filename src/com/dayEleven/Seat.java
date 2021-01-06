@@ -21,4 +21,8 @@ public class Seat {
     public boolean isSeatOccupied() {
         return occupied;
     }
+
+    public void setSeatOccupied(boolean occupied) {
+        this.occupied = occupied;
+    }
 }
