@@ -237,14 +237,209 @@ public class SeatingSystem {
         return numberOfChanges;
     }
 
-    private void visionCheckForOccupiedChairs(int x, int y) {
-
+    private int oneIterationPartTwo() {
+      int numberOfChanges = 0;
+        Seat[][] copyOfSeatingPlan = createCloneOfSeatingPlan();
+        for (int i = 0; i < seatAsRows.size(); i++) {
+            for (int j = 0; j < seatAsRows.get(0).length(); j++) {
+                if (!seatingPlan[i][j].isSeatOccupied() && seatingPlan[i][j].getSeatStatus()) {
+                    if (visionCheckForOccupiedChairs(i, j) == 0) {
+                        copyOfSeatingPlan[i][j].changeSeatOccupied();
+                        numberOfChanges++;
+                    }
+                } else if (seatingPlan[i][j].isSeatOccupied()){
+                    if (visionCheckForOccupiedChairs(i, j) >= 5) {
+                        copyOfSeatingPlan[i][j].changeSeatOccupied();
+                        numberOfChanges++;
+                    }
+                }
+            }
+        }
+        seatingPlan = copyOfSeatingPlan;
+        return numberOfChanges;
     }
 
-    private void checkNorth(int x, int y) {
-        while(x >= 0) {
-            x
+    public void makeIterationsPartTwo() {
+        while (oneIterationPartTwo() > 0) {
+            oneIterationPartTwo();
         }
+        int numberOfOccupiedSeats = 0;
+        for (int i = 0; i < seatAsRows.size(); i++) {
+            for (int j = 0; j < seatAsRows.get(0).length(); j++) {
+                if (seatingPlan[i][j].isSeatOccupied()) {
+                    numberOfOccupiedSeats++;
+                }
+            }
+        }
+        System.out.println(numberOfOccupiedSeats);
+    }
+
+    private int visionCheckForOccupiedChairs(int x, int y) {
+        int numberOfVisibleOccupiedChairs = 0;
+        if (checkNorth(x, y)) {
+            numberOfVisibleOccupiedChairs++;
+        }
+        if (checkNorthEast(x, y)) {
+            numberOfVisibleOccupiedChairs++;
+        }
+        if (checkEast(x, y)) {
+            numberOfVisibleOccupiedChairs++;
+        }
+        if (checkSouthEast(x, y)) {
+            numberOfVisibleOccupiedChairs++;
+        }
+        if (checkSouth(x, y)) {
+            numberOfVisibleOccupiedChairs++;
+        }
+        if (checkSouthWest(x, y)) {
+            numberOfVisibleOccupiedChairs++;
+        }
+        if (checkWest(x, y)) {
+            numberOfVisibleOccupiedChairs++;
+        }
+        if (checkNorthWest(x, y)) {
+            numberOfVisibleOccupiedChairs++;
+        }
+        return numberOfVisibleOccupiedChairs;
+    }
+
+    // Todo check if isSeat and occupied. And need to make change such that if come across empty seat first then cant see through it
+    private boolean checkNorth(int x, int y) {
+        x = x - 1;
+        boolean seenChair = false;
+        while(x >= 0) {
+            if (seatingPlan[x][y].getSeatStatus()) {
+                if (seatingPlan[x][y].getSeatStatus()) {
+                    if (!seatingPlan[x][y].isSeatOccupied()) {
+                    } else {
+                        seenChair = true;
+                    }
+                    break;
+                }
+            }
+            x--;
+        }
+        return seenChair;
+    }
+
+    private boolean checkNorthEast(int x, int y) {
+        x = x - 1;
+        y = y + 1;
+        boolean seenChair = false;
+        while (x >= 0 && y < seatAsRows.get(0).length()) {
+            if (seatingPlan[x][y].getSeatStatus()) {
+                if (!seatingPlan[x][y].isSeatOccupied()) {
+                } else {
+                    seenChair = true;
+                }
+                break;
+            }
+            x--;
+            y++;
+        }
+        return seenChair;
+    }
+
+    private boolean checkEast(int x, int y) {
+        y = y + 1;
+        boolean seenChair = false;
+        while (y < seatAsRows.get(0).length()) {
+            if (seatingPlan[x][y].getSeatStatus()) {
+                if (!seatingPlan[x][y].isSeatOccupied()) {
+                } else {
+                    seenChair = true;
+                }
+                break;
+            }
+            y++;
+        }
+        return seenChair;
+    }
+
+    private boolean checkSouthEast(int x, int y) {
+        x = x + 1;
+        y = y + 1;
+        boolean seenChair = false;
+        while (x < seatAsRows.size() && y < seatAsRows.get(0).length()) {
+            if (seatingPlan[x][y].getSeatStatus()) {
+                if (!seatingPlan[x][y].isSeatOccupied()) {
+                } else {
+                    seenChair = true;
+                }
+                break;
+            }
+            x++;
+            y++;
+        }
+        return seenChair;
+    }
+
+    private boolean checkSouth(int x, int y) {
+        x = x + 1;
+        boolean seenChair = false;
+        while (x < seatAsRows.size()) {
+            if (seatingPlan[x][y].getSeatStatus()) {
+                if (!seatingPlan[x][y].isSeatOccupied()) {
+                } else {
+                    seenChair = true;
+                }
+                break;
+            }
+            x++;
+        }
+        return seenChair;
+    }
+
+    private boolean checkSouthWest(int x, int y) {
+        x = x + 1;
+        y = y - 1;
+        boolean seenChair = false;
+        while (x < seatAsRows.size() && y >= 0) {
+            if (seatingPlan[x][y].getSeatStatus()) {
+                if (!seatingPlan[x][y].isSeatOccupied()) {
+                } else {
+                    seenChair = true;
+                }
+                break;
+            }
+            x++;
+            y--;
+        }
+        return seenChair;
+    }
+
+    private boolean checkWest(int x, int y) {
+        y = y - 1;
+        boolean seenChair = false;
+        while (y >= 0) {
+            if (seatingPlan[x][y].getSeatStatus()) {
+                if (!seatingPlan[x][y].isSeatOccupied()) {
+                } else {
+                    seenChair = true;
+                }
+                break;
+            }
+            y--;
+        }
+        return seenChair;
+    }
+
+    private boolean checkNorthWest(int x, int y) {
+        x = x - 1;
+        y = y - 1;
+        boolean seenChair = false;
+        while (y >= 0 && x >= 0) {
+            if (seatingPlan[x][y].getSeatStatus()) {
+                if (!seatingPlan[x][y].isSeatOccupied()) {
+                } else {
+                    seenChair = true;
+                }
+                break;
+            }
+            x--;
+            y--;
+        }
+        return seenChair;
     }
 
 //    public void checkNeighbourMethod() {
