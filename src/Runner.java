@@ -1,6 +1,7 @@
 import com.dayEleven.SeatingSystem;
 import com.dayNine.Encoding;
 import com.dayOne.*;
+import com.dayTwelve.*;
 import com.dayTwo.*;
 import com.dayThree.*;
 import com.dayFour.*;
@@ -11,12 +12,11 @@ import com.dayEight.*;
 import com.dayTen.Adapter;
 
 import java.io.IOException;
-import java.util.Map;
 
 public class Runner {
 
     public static void main(String[] args) throws IOException {
-        taskEleven();
+        taskTwelve();
     }
 
     private static void taskOne() {
@@ -101,5 +101,10 @@ public class Runner {
         ss.populateSeatingPlan();
 //        ss.checkNeighbourMethod();
         ss.makeIterationsPartTwo();
+    }
+
+    private static void taskTwelve() {
+        RainRisk rr = new RainRisk();
+        rr.makeMultipleInstructions();
     }
 }
