@@ -30,8 +30,8 @@ public class RainRisk {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayTwelve/NavigationInstructions.txt"
-                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayTwelve/exampleNavigationInstructions.txt"
+                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayTwelve/NavigationInstructions.txt"
+//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayTwelve/exampleNavigationInstructions.txt"
             ));
             String line = reader.readLine();
             while (line != null) {
