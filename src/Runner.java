@@ -105,6 +105,7 @@ public class Runner {
 
     private static void taskTwelve() {
         RainRisk rr = new RainRisk();
-        rr.makeMultipleInstructions();
+//        rr.makeMultipleInstructions();
+        rr.multipleActionsPartTwo();
     }
 }
