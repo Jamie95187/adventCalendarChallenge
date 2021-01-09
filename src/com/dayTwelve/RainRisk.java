@@ -105,10 +105,10 @@ public class RainRisk {
     private void changeDirectionOfWayPoint(String[] instruction) {
         int degrees = Integer.parseInt(instruction[1]) % 360;
         if (instruction[0].contains("R")) {
-            updateWaypointClockWise((currentDirectionOfWaypoint + (degrees/90)) % 4);
+            updateWaypointClockWise(degrees/90);
             currentDirectionOfWaypoint = (currentDirectionOfWaypoint + (degrees/90)) % 4;
         } else {
-            updateWaypointAntiClockWise((4 + currentDirectionOfWaypoint - (degrees/90)) % 4);
+            updateWaypointAntiClockWise(degrees/90);
             currentDirectionOfWaypoint = (4 + currentDirectionOfWaypoint - (degrees/90)) % 4;
         }
     }
@@ -178,6 +178,16 @@ public class RainRisk {
             west += wayPointWest * value;
             south += wayPointSouth * value;
         }
+        System.out.println("WAYPOINT EAST : " + wayPointEast);
+        System.out.println("WAYPOINT WEST : " + wayPointWest);
+        System.out.println("WAYPOINT SOUTH : " + wayPointSouth);
+        System.out.println("WAYPOINT NORTH : " + waypointNorth);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("EAST : " + east);
+        System.out.println("WEST : " + west);
+        System.out.println("SOUTH : " + south);
+        System.out.println("NORTH : " + north);
+        System.out.println("---------------------------------");
     }
 
     public void multipleActionsPartTwo() {
