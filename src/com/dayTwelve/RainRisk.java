@@ -16,14 +16,6 @@ public class RainRisk {
     private int wayPointEast = 10;
     private int wayPointSouth = 0;
     private int wayPointWest = 0;
-//    private Map<String, Integer> waypointPositionRelativeToCompass;
-//    {
-//        waypointPositionRelativeToCompass = new HashMap<>();
-//        waypointPositionRelativeToCompass.put("East", 10);
-//        waypointPositionRelativeToCompass.put("South", 0);
-//        waypointPositionRelativeToCompass.put("West", 0);
-//        waypointPositionRelativeToCompass.put("North", 1);
-//    }
     private static Map<Integer, String> directionHashMap;
     static {
         directionHashMap = new HashMap<>();
@@ -131,28 +123,16 @@ public class RainRisk {
             wayPointSouth = eastValue;
             wayPointWest = southValue;
             waypointNorth = westValue;
-//            waypointPositionRelativeToCompass.put("East", northValue);
-//            waypointPositionRelativeToCompass.put("South", eastValue);
-//            waypointPositionRelativeToCompass.put("West", southValue);
-//            waypointPositionRelativeToCompass.put("North", westValue);
         } else if (clockwiseTurn == 2) {
             wayPointEast = westValue;
             wayPointSouth = northValue;
             wayPointWest = eastValue;
             waypointNorth = southValue;
-//            waypointPositionRelativeToCompass.put("East", westValue);
-//            waypointPositionRelativeToCompass.put("South", northValue);
-//            waypointPositionRelativeToCompass.put("West", eastValue);
-//            waypointPositionRelativeToCompass.put("North", southValue);
         } else {
             wayPointEast = southValue;
             wayPointSouth = westValue;
             wayPointWest = northValue;
             waypointNorth = eastValue;
-//            waypointPositionRelativeToCompass.put("East", southValue);
-//            waypointPositionRelativeToCompass.put("South", westValue);
-//            waypointPositionRelativeToCompass.put("West", northValue);
-//            waypointPositionRelativeToCompass.put("North", eastValue);
         }
     }
 
@@ -161,37 +141,21 @@ public class RainRisk {
         int southValue = wayPointSouth;
         int westValue = wayPointWest;
         int northValue = waypointNorth;
-//        int eastValue = waypointPositionRelativeToCompass.get("East");
-//        int southValue = waypointPositionRelativeToCompass.get("South");
-//        int westValue = waypointPositionRelativeToCompass.get("West");
-//        int northValue = waypointPositionRelativeToCompass.get("North");
         if (antiClockwiseTurn == 1) {
             wayPointEast = southValue;
             wayPointSouth = westValue;
             wayPointWest = northValue;
             waypointNorth = eastValue;
-//            waypointPositionRelativeToCompass.put("East", southValue);
-//            waypointPositionRelativeToCompass.put("South", westValue);
-//            waypointPositionRelativeToCompass.put("West", northValue);
-//            waypointPositionRelativeToCompass.put("North", eastValue);
         } else if (antiClockwiseTurn == 2) {
             wayPointEast = westValue;
             wayPointSouth = northValue;
             wayPointWest = eastValue;
             waypointNorth = southValue;
-//            waypointPositionRelativeToCompass.put("East", westValue);
-//            waypointPositionRelativeToCompass.put("South", northValue);
-//            waypointPositionRelativeToCompass.put("West", eastValue);
-//            waypointPositionRelativeToCompass.put("North", southValue);
         } else {
             wayPointEast = northValue;
             wayPointSouth = eastValue;
             wayPointWest = southValue;
             waypointNorth = westValue;
-//            waypointPositionRelativeToCompass.put("East", northValue);
-//            waypointPositionRelativeToCompass.put("South", eastValue);
-//            waypointPositionRelativeToCompass.put("West", southValue);
-//            waypointPositionRelativeToCompass.put("North", westValue);
         }
     }
 
