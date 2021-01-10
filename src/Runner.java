@@ -1,6 +1,7 @@
 import com.dayEleven.SeatingSystem;
 import com.dayNine.Encoding;
 import com.dayOne.*;
+import com.dayThirteen.ShuttleSearch;
 import com.dayTwelve.*;
 import com.dayTwo.*;
 import com.dayThree.*;
@@ -16,7 +17,7 @@ import java.io.IOException;
 public class Runner {
 
     public static void main(String[] args) throws IOException {
-        taskTwelve();
+        taskThirteen();
     }
 
     private static void taskOne() {
@@ -107,5 +108,10 @@ public class Runner {
         RainRisk rr = new RainRisk();
 //        rr.makeMultipleInstructions();
         rr.multipleActionsPartTwo();
+    }
+
+    private static void taskThirteen() {
+        ShuttleSearch ss = new ShuttleSearch();
+        ss.fineShortestWait();
     }
 }

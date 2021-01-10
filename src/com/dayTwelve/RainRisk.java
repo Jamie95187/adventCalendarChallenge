@@ -178,16 +178,6 @@ public class RainRisk {
             west += wayPointWest * value;
             south += wayPointSouth * value;
         }
-//        System.out.println("WAYPOINT EAST : " + wayPointEast);
-//        System.out.println("WAYPOINT WEST : " + wayPointWest);
-//        System.out.println("WAYPOINT SOUTH : " + wayPointSouth);
-//        System.out.println("WAYPOINT NORTH : " + waypointNorth);
-//        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//        System.out.println("EAST : " + east);
-//        System.out.println("WEST : " + west);
-//        System.out.println("SOUTH : " + south);
-//        System.out.println("NORTH : " + north);
-//        System.out.println("---------------------------------");
     }
 
     public void multipleActionsPartTwo() {
