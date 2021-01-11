@@ -41,7 +41,8 @@ public class ShuttleSearch {
 
     private void populateWaitTimeArrayList() {
         for (int i = 0; i < busIds.size(); i++) {
-            int waitTimeForBus = timestampDeparture - (timestampDeparture/busIds.get(i)) * busIds.get(i);
+            int waitTimeForBus = ((timestampDeparture/busIds.get(i)) + 1) * busIds.get(i) - timestampDeparture;
+            System.out.println("WAIT TIME FOR BUS : " + waitTimeForBus);
             waitTime.add(waitTimeForBus);
         }
     }
@@ -50,11 +51,14 @@ public class ShuttleSearch {
         populateBusIdsList();
         populateWaitTimeArrayList();
         int shortestWaitTime = waitTime.get(0);
+        int indexOfShortestWaitTime = 0;
         for (int i = 0; i < waitTime.size(); i++) {
-            if (shortestWaitTime < waitTime.get(i)) {
+            if (shortestWaitTime > waitTime.get(i)) {
                 shortestWaitTime = waitTime.get(i);
+                indexOfShortestWaitTime = i;
             }
         }
-        System.out.println(shortestWaitTime);
+
+        System.out.println(busIds.get(indexOfShortestWaitTime) * waitTime.get(indexOfShortestWaitTime));
     }
 }
