@@ -61,4 +61,8 @@ public class ShuttleSearch {
 
         System.out.println(busIds.get(indexOfShortestWaitTime) * waitTime.get(indexOfShortestWaitTime));
     }
+
+    public void chineseRemainder(int a, int b) {
+        
+    }
 }
