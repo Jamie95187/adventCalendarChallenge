@@ -62,6 +62,15 @@ public class ShuttleSearch {
         System.out.println(busIds.get(indexOfShortestWaitTime) * waitTime.get(indexOfShortestWaitTime));
     }
 
+    // Example timetable part two 7,13,x,x,59,x,31,19
+    // solve for
+    //          t % 7 = 0
+    //          t % 13 = 12
+    //          t % 59 = 55
+    //          t % 31 = 25
+    //          t % 19 = 0
+    // Need to learn how to find modulo inverse
+
     public void chineseRemainder(int a, int b) {
         
     }
