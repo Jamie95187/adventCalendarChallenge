@@ -10,8 +10,10 @@ public class ShuttleSearch {
 
     private int timestampDeparture;
     private String busTimeTable;
+    private List<Integer> busIdsPartTwo = new ArrayList<Integer>();
     private List<Integer> busIds = new ArrayList<Integer>();
     private List<Integer> waitTime = new ArrayList<Integer>();
+    private List<int[]> equations = new ArrayList();
 
     public ShuttleSearch() {
         BufferedReader reader;
@@ -47,6 +49,13 @@ public class ShuttleSearch {
         }
     }
 
+    private void populateBusIdsWithXs() {
+        String[] arrayOfBusIds = busTimeTable.split(",");
+        for (int i = 0; i < arrayOfBusIds.length; i++) {
+            busIdsPartTwo.add(Integer.parseInt(arrayOfBusIds[i]));
+        }
+    }
+
     public void fineShortestWait() {
         populateBusIdsList();
         populateWaitTimeArrayList();
@@ -71,7 +80,35 @@ public class ShuttleSearch {
     //          t % 19 = 0
     // Need to learn how to find modulo inverse
 
-    public void chineseRemainder(int a, int b) {
-        
+    public void chineseRemainderTheorem() {
+        int sum = 0;
+        for(int i = 0; i < equations.size(); i++) {
+            for(int j = 0; j < equations.size(); j++) {
+
+            }
+        }
+    }
+
+    private void populationListOfEquations() {
+        for(int i = 0; i < busIdsPartTwo.size(); i++) {
+            equations.add(equationSetup(i));
+        }
+    }
+
+    private int findValueOfMi(int i) {
+        int sumOfModuli = 0;
+        int Mi;
+        for(int k = 0; k < equations.size(); k++) {
+            sumOfModuli += equations.get(k)[1];
+        }
+        Mi = sumOfModuli / equations.get(i)[1];
+        return Mi;
+    }
+
+    private int[] equationSetup(int index) {
+        int[] equationValues = new int[2];
+        equationValues[1] = busIdsPartTwo.get(index);
+        equationValues[0] = (busIdsPartTwo.get(index) - index) % busIdsPartTwo.get(index);
+        return equationValues;
     }
 }
