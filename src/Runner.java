@@ -112,6 +112,6 @@ public class Runner {
 
     private static void taskThirteen() {
         ShuttleSearch ss = new ShuttleSearch();
-        ss.fineShortestWait();
+        ss.chineseRemainderTheorem();
     }
 }

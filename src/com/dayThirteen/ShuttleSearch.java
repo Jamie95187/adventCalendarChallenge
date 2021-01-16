@@ -10,7 +10,7 @@ public class ShuttleSearch {
 
     private int timestampDeparture;
     private String busTimeTable;
-    private List<Integer> busIdsPartTwo = new ArrayList<Integer>();
+    private List<String> busIdsPartTwo = new ArrayList<String>();
     private List<Integer> busIds = new ArrayList<Integer>();
     private List<Integer> waitTime = new ArrayList<Integer>();
     private List<int[]> equations = new ArrayList();
@@ -19,8 +19,9 @@ public class ShuttleSearch {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayThirteen/BusTimetable.txt"
-//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayThirteen/exampleTimetable.txt"
+//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayThirteen/BusTimetable.txt"
+                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayThirteen/exampleTimetable.txt"
+//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayThirteen/exampleTimetablePartTwo.txt"
             ));
             String line = reader.readLine();
             timestampDeparture = Integer.parseInt(line);
@@ -49,10 +50,10 @@ public class ShuttleSearch {
         }
     }
 
-    private void populateBusIdsWithXs() {
+    private void populateBusIdsListWithXs() {
         String[] arrayOfBusIds = busTimeTable.split(",");
         for (int i = 0; i < arrayOfBusIds.length; i++) {
-            busIdsPartTwo.add(Integer.parseInt(arrayOfBusIds[i]));
+            busIdsPartTwo.add(arrayOfBusIds[i]);
         }
     }
 
@@ -81,34 +82,53 @@ public class ShuttleSearch {
     // Need to learn how to find modulo inverse
 
     public void chineseRemainderTheorem() {
+        populateBusIdsListWithXs();
+        populateListOfEquations();
         int sum = 0;
-        for(int i = 0; i < equations.size(); i++) {
-            for(int j = 0; j < equations.size(); j++) {
-
-            }
+        int productOfModuli = 1;
+        for (int i = 0; i < equations.size(); i++) {
+            sum += equations.get(i)[0] * findValueOfMi(i) * findValueOfMiPrime(i);
+            productOfModuli = productOfModuli * equations.get(i)[1];
         }
+        int answer;
+        answer = sum % productOfModuli;
+//        System.out.println("SUM : " + sum);
+//        System.out.println("PRODUCT OF MODULI : " + productOfModuli);
+        System.out.println(answer);
     }
 
-    private void populationListOfEquations() {
+    private void populateListOfEquations() {
         for(int i = 0; i < busIdsPartTwo.size(); i++) {
+            if(!busIdsPartTwo.get(i).contains("x"))
             equations.add(equationSetup(i));
         }
     }
 
     private int findValueOfMi(int i) {
-        int sumOfModuli = 0;
+        int productOfModuli = 1;
         int Mi;
         for(int k = 0; k < equations.size(); k++) {
-            sumOfModuli += equations.get(k)[1];
+            productOfModuli = productOfModuli * equations.get(k)[1];
         }
-        Mi = sumOfModuli / equations.get(i)[1];
+        Mi = productOfModuli / equations.get(i)[1];
         return Mi;
+    }
+
+    private int findValueOfMiPrime(int i) {
+        int mi = equations.get(i)[1];
+        int inverseMi = 0;
+        for(int k = 0; k < mi; k++) {
+            if ((k * findValueOfMi(i)) % mi == 1) {
+                inverseMi = k;
+            }
+        }
+        return inverseMi % mi;
     }
 
     private int[] equationSetup(int index) {
         int[] equationValues = new int[2];
-        equationValues[1] = busIdsPartTwo.get(index);
-        equationValues[0] = (busIdsPartTwo.get(index) - index) % busIdsPartTwo.get(index);
+        equationValues[1] = Integer.parseInt(busIdsPartTwo.get(index));
+        equationValues[0] = (Integer.parseInt(busIdsPartTwo.get(index)) - index) % Integer.parseInt(busIdsPartTwo.get(index));
         return equationValues;
     }
 }
