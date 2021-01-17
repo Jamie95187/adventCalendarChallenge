@@ -19,8 +19,8 @@ public class ShuttleSearch {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayThirteen/BusTimetable.txt"
-                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayThirteen/exampleTimetable.txt"
+                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayThirteen/BusTimetable.txt"
+//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayThirteen/exampleTimetable.txt"
 //                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayThirteen/exampleTimetablePartTwo.txt"
             ));
             String line = reader.readLine();
@@ -53,6 +53,7 @@ public class ShuttleSearch {
     private void populateBusIdsListWithXs() {
         String[] arrayOfBusIds = busTimeTable.split(",");
         for (int i = 0; i < arrayOfBusIds.length; i++) {
+//            System.out.println("BUS IDS : " + arrayOfBusIds[i]);
             busIdsPartTwo.add(arrayOfBusIds[i]);
         }
     }
@@ -84,16 +85,20 @@ public class ShuttleSearch {
     public void chineseRemainderTheorem() {
         populateBusIdsListWithXs();
         populateListOfEquations();
-        int sum = 0;
-        int productOfModuli = 1;
+        long sum = 0;
+        long productOfModuli = 1;
         for (int i = 0; i < equations.size(); i++) {
-            sum += equations.get(i)[0] * findValueOfMi(i) * findValueOfMiPrime(i);
+            System.out.println("VALUE OF MI : " + findValueOfMi(i));
+            System.out.println("VALUE OF MI PRIME : " + findValueOfMiPrime(i));
+            System.out.println("CURRENT SUM TO ADD " + equations.get(i)[0] * findValueOfMi(i) * findValueOfMiPrime(i));
+            System.out.println(equations.get(i)[0]);
+            sum += Math.abs(equations.get(i)[0] * findValueOfMi(i) * findValueOfMiPrime(i));
             productOfModuli = productOfModuli * equations.get(i)[1];
         }
-        int answer;
+        long answer;
         answer = sum % productOfModuli;
-//        System.out.println("SUM : " + sum);
-//        System.out.println("PRODUCT OF MODULI : " + productOfModuli);
+        System.out.println("SUM : " + sum);
+        System.out.println("PRODUCT OF MODULI : " + productOfModuli);
         System.out.println(answer);
     }
 
@@ -104,9 +109,9 @@ public class ShuttleSearch {
         }
     }
 
-    private int findValueOfMi(int i) {
-        int productOfModuli = 1;
-        int Mi;
+    private long findValueOfMi(int i) {
+        long productOfModuli = 1;
+        long Mi;
         for(int k = 0; k < equations.size(); k++) {
             productOfModuli = productOfModuli * equations.get(k)[1];
         }
@@ -128,7 +133,9 @@ public class ShuttleSearch {
     private int[] equationSetup(int index) {
         int[] equationValues = new int[2];
         equationValues[1] = Integer.parseInt(busIdsPartTwo.get(index));
-        equationValues[0] = (Integer.parseInt(busIdsPartTwo.get(index)) - index) % Integer.parseInt(busIdsPartTwo.get(index));
+        equationValues[0] = ((equationValues[1]) - (index % equationValues[1])) % Integer.parseInt(busIdsPartTwo.get(index));
+//        System.out.println("EQ 1 : " + equationValues[0]);
+//        System.out.println("EQ 2 : " + equationValues[1]);
         return equationValues;
     }
 }
