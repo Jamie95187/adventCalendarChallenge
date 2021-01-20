@@ -6,8 +6,9 @@ public class SpokenNumber {
     private int previouslySpoken;
     private int mostRecentlySpoken;
 
-    public SpokenNumber(int num, int previous) {
-        previouslySpoken = previous;
+    public SpokenNumber(int num, int recent) {
+        previouslySpoken = 0;
+        mostRecentlySpoken = recent;
         number = num;
     }
 
