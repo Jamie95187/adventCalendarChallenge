@@ -12,18 +12,20 @@ public class MemoryGame {
         addInitialDataToHistory(inputData);
         previousNumber = inputData[inputData.length];
         int indexTracker = inputData.length + 1;
-        for (int i = indexTracker; i <= 2020; i++) {
+        for (int i = indexTracker; i <= 2021; i++) {
             int spokenNumber = 0;
-            history.get(previousNumber).setPreviouslySpoken(history.get(previousNumber).getMostRecentlySpoken());
-            history.get(previousNumber).setMostRecentlySpoken(i - 1);
-            if (history.get(previousNumber).getPreviouslySpoken() == 0) {
-                previousNumber = 0;
+            if (history.containsKey(previousNumber)) {
+                if (history.get(previousNumber).getPreviouslySpoken() == 0) {
+                    previousNumber = 0;
+                } else {
+                    previousNumber = history.get(previousNumber).getMostRecentlySpoken() - history.get(previousNumber).getPreviouslySpoken();
+                }
             } else {
-                int
+                int age = history.get(previousNumber).getMostRecentlySpoken() - history.get(previousNumber).getPreviouslySpoken();
+                SpokenNumber newEntry = new SpokenNumber(previousNumber, i - 1);
+                history.put(i - 1, newEntry);
                 previousNumber = history.get(previousNumber).getMostRecentlySpoken() - history.get(previousNumber).getPreviouslySpoken();
             }
-
-
         }
     }
 
