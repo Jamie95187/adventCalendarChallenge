@@ -14,25 +14,15 @@ public class MemoryGame {
         int indexTracker = inputData.length + 1;
         for (int i = indexTracker; i <= 2020; i++) {
             int spokenNumber = 0;
-            if (history.containsKey(previousNumber) ) {
-                if (history.get(previousNumber).getPreviouslySpoken() == 0) {
-                    history.get(previousNumber).setPreviouslySpoken(history.get(previousNumber).getMostRecentlySpoken());
-                    history.get(previousNumber).setMostRecentlySpoken(i);
-                    int age = i - history.get(previousNumber).getMostRecentlySpoken();
-                    if (history.containsKey(age)) {
-                        if (history.get(age).getPreviouslySpoken() == 0) {
-                            
-                        }
-                    }
-                } else {
-
-                }
-                int age = history.get(previousNumber).getMostRecentlySpoken() - history.get(previousNumber).getPreviouslySpoken();
-                previousNumber = age;
-            } else {
-                SpokenNumber number = new SpokenNumber(0, i)
+            history.get(previousNumber).setPreviouslySpoken(history.get(previousNumber).getMostRecentlySpoken());
+            history.get(previousNumber).setMostRecentlySpoken(i - 1);
+            if (history.get(previousNumber).getPreviouslySpoken() == 0) {
                 previousNumber = 0;
+            } else {
+                int
+                previousNumber = history.get(previousNumber).getMostRecentlySpoken() - history.get(previousNumber).getPreviouslySpoken();
             }
+
 
         }
     }
