@@ -1,4 +1,5 @@
 import com.dayEleven.SeatingSystem;
+import com.dayFifteen.MemoryGame;
 import com.dayNine.Encoding;
 import com.dayOne.*;
 import com.dayThirteen.ShuttleSearch;
@@ -17,7 +18,7 @@ import java.io.IOException;
 public class Runner {
 
     public static void main(String[] args) throws IOException {
-        taskThirteen();
+        taskFifteen();
     }
 
     private static void taskOne() {
@@ -113,5 +114,14 @@ public class Runner {
     private static void taskThirteen() {
         ShuttleSearch ss = new ShuttleSearch();
         ss.chineseRemainderTheorem();
+    }
+
+    private static void taskFifteen() {
+        int[] data = new int[3];
+        data[0] = 0;
+        data[1] = 3;
+        data[2] = 6;
+        MemoryGame mg = new MemoryGame();
+        mg.game(data);
     }
 }

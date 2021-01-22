@@ -4,11 +4,9 @@ public class SpokenNumber {
 
     private int number;
     private int previouslySpoken;
-    private int mostRecentlySpoken;
 
-    public SpokenNumber(int num, int recent) {
-        previouslySpoken = 0;
-        mostRecentlySpoken = recent;
+    public SpokenNumber(int num, int index) {
+        previouslySpoken = index;
         number = num;
     }
 
@@ -16,16 +14,7 @@ public class SpokenNumber {
         previouslySpoken = previouslySpokenIndex;
     }
 
-    public void setMostRecentlySpoken(int recentlySpokenIndex) {
-        mostRecentlySpoken = recentlySpokenIndex;
-    }
-
-    public int getMostRecentlySpoken() {
-        return mostRecentlySpoken;
-    }
-
-    public int getPreviouslySpoken(){
+    public int getPreviouslySpoken() {
         return previouslySpoken;
     }
-
 }

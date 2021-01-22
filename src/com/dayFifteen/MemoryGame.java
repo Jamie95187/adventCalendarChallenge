@@ -10,29 +10,29 @@ public class MemoryGame {
 
     public void game(int[] inputData) {
         addInitialDataToHistory(inputData);
-        previousNumber = inputData[inputData.length];
+        previousNumber = inputData[inputData.length -1];
         int indexTracker = inputData.length + 1;
-        for (int i = indexTracker; i <= 2021; i++) {
-            int spokenNumber = 0;
+        for (int i = indexTracker; i <= 10; i++) {
+//            System.out.println("previous spoken : " +  history.get(previousNumber).getPreviouslySpoken());
+            int age = 0;
             if (history.containsKey(previousNumber)) {
-                if (history.get(previousNumber).getPreviouslySpoken() == 0) {
-                    previousNumber = 0;
-                } else {
-                    previousNumber = history.get(previousNumber).getMostRecentlySpoken() - history.get(previousNumber).getPreviouslySpoken();
-                }
+                age =  (i - 1) - history.get(previousNumber).getPreviouslySpoken();
+                history.get(previousNumber).setPreviouslySpoken(i - 1);
             } else {
-                int age = history.get(previousNumber).getMostRecentlySpoken() - history.get(previousNumber).getPreviouslySpoken();
-                SpokenNumber newEntry = new SpokenNumber(previousNumber, i - 1);
-                history.put(i - 1, newEntry);
-                previousNumber = history.get(previousNumber).getMostRecentlySpoken() - history.get(previousNumber).getPreviouslySpoken();
+                SpokenNumber newEntry = new SpokenNumber(previousNumber, i);
+                history.put(previousNumber, newEntry);
             }
+            previousNumber = age;
+            System.out.println("PN : " + previousNumber);
         }
+        System.out.println(previousNumber);
     }
 
     private void addInitialDataToHistory(int[] inputData) {
+        System.out.println("LENGTH : " + inputData.length);
         for (int i = 1; i <= inputData.length; i++) {
-            SpokenNumber number = new SpokenNumber(inputData[i-1], i);
-            history.put(inputData[i-1], number);
+            SpokenNumber number = new SpokenNumber(inputData[i - 1], i);
+            history.put(inputData[i - 1], number);
         }
     }
 
