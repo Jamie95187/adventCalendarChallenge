@@ -12,7 +12,7 @@ public class MemoryGame {
         addInitialDataToHistory(inputData);
         previousNumber = inputData[inputData.length -1];
         int indexTracker = inputData.length + 1;
-        for (int i = indexTracker; i <= 10; i++) {
+        for (int i = indexTracker; i <= 16; i++) {
 //            System.out.println("previous spoken : " +  history.get(previousNumber).getPreviouslySpoken());
             int age = 0;
             if (history.containsKey(previousNumber)) {
