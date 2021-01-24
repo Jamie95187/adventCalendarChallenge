@@ -118,8 +118,8 @@ public class Runner {
 
     private static void taskFifteen() {
         int[] data = new int[3];
-        data[0] = 1;
-        data[1] = 3;
+        data[0] = 3;
+        data[1] = 1;
         data[2] = 2;
         MemoryGame mg = new MemoryGame();
         mg.game(data);
