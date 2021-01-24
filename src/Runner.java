@@ -117,13 +117,13 @@ public class Runner {
     }
 
     private static void taskFifteen() {
-        int[] data = new int[3];
-        data[0] = 0;
-        data[1] = 3;
-        data[2] = 6;
-//        data[3] = 4;
-//        data[4] = 7;
-//        data[5] = 0;
+        int[] data = new int[6];
+        data[0] = 15;
+        data[1] = 5;
+        data[2] = 1;
+        data[3] = 4;
+        data[4] = 7;
+        data[5] = 0;
         MemoryGame mg = new MemoryGame();
         mg.game(data);
     }

@@ -10,7 +10,7 @@ public class MemoryGame {
 
     public void game(int[] inputData) {
         addInitialDataToHistory(inputData);
-        previousNumber = inputData[2];
+        previousNumber = inputData[inputData.length - 1];
         int indexTracker = inputData.length + 1;
         for (int i = indexTracker; i <= 2020; i++) {
             int age = 0;
