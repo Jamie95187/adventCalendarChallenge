@@ -131,6 +131,6 @@ public class Runner {
 
     private static void taskSixteen() {
         TicketTranslation tt = new TicketTranslation();
-        tt.getRules();
+        tt.test();
     }
 }
