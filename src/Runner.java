@@ -2,6 +2,7 @@ import com.dayEleven.SeatingSystem;
 import com.dayFifteen.MemoryGame;
 import com.dayNine.Encoding;
 import com.dayOne.*;
+import com.daySixteen.TicketTranslation;
 import com.dayThirteen.ShuttleSearch;
 import com.dayTwelve.*;
 import com.dayTwo.*;
@@ -18,7 +19,7 @@ import java.io.IOException;
 public class Runner {
 
     public static void main(String[] args) throws IOException {
-        taskFifteen();
+        taskSixteen();
     }
 
     private static void taskOne() {
@@ -126,5 +127,10 @@ public class Runner {
         data[5] = 0;
         MemoryGame mg = new MemoryGame();
         mg.game(data);
+    }
+
+    private static void taskSixteen() {
+        TicketTranslation tt = new TicketTranslation();
+        tt.getRules();
     }
 }
