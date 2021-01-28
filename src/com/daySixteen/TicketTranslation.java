@@ -3,6 +3,7 @@ package com.daySixteen;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -15,6 +16,7 @@ public class TicketTranslation {
 
     List<int[]> rules = new ArrayList<>();
     List<String> nearbyTickets = new ArrayList<>();
+    List<String> validNearbyTickets = new ArrayList<>();
     List<Integer> errors = new ArrayList<>();
 
     private void getRules() {
@@ -61,6 +63,7 @@ public class TicketTranslation {
     private void getErrors() {
         int errorCount = 0;
         for (int i = 0; i < nearbyTickets.size(); i++) {
+            boolean validTicket = true;
             String[] values = nearbyTickets.get(i).split(",");
             for (int j = 0; j < values.length; j++) {
                 int value = Integer.parseInt(values[j]);
@@ -75,18 +78,32 @@ public class TicketTranslation {
                     }
                 }
                 if (!validValue) {
+                    validTicket = false;
                     errors.add(value);
                     errorCount += value;
                 }
             }
+            if (validTicket) {
+                validNearbyTickets.add(nearbyTickets.get(i));
+            }
         }
         System.out.println("error Count : " + errorCount);
+    }
+
+    private List<String> copyNearbyTickets() {
+        List<String> copyOfNearbyTickets = new ArrayList<>();
+        for(int i = 0; i < nearbyTickets.size(); i++) {
+            copyOfNearbyTickets.add(nearbyTickets.get(i));
+        }
+        return copyOfNearbyTickets;
     }
 
     public void test() {
         getRules();
         getNearbyTickets();
         getErrors();
+        System.out.println("NEARby TICKETS SIZE " + nearbyTickets.size());
+        System.out.println("VALID NEARBY TICKET SIZE " + validNearbyTickets.size());
         System.out.println(errors.size());
     }
 
