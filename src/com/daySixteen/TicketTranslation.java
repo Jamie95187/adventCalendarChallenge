@@ -7,9 +7,7 @@ import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.regex.*;
 
 public class TicketTranslation {
@@ -18,6 +16,7 @@ public class TicketTranslation {
     List<String> nearbyTickets = new ArrayList<>();
     List<String> validNearbyTickets = new ArrayList<>();
     List<Integer> errors = new ArrayList<>();
+    Map<Integer, List<Integer>> tallyOfValidValues = new HashMap<Integer, List<Integer>>();
 
     private void getRules() {
         try {
@@ -98,6 +97,13 @@ public class TicketTranslation {
             copyOfNearbyTickets.add(nearbyTickets.get(i));
         }
         return copyOfNearbyTickets;
+    }
+
+    private void populateTallyMap() {
+        for (int i = 0; i < rules.size(); i++) {
+            List<Integer> listOfIndex = new ArrayList<>();
+            tallyOfValidValues.put(i, listOfIndex);
+        }
     }
 
     public void test() {
