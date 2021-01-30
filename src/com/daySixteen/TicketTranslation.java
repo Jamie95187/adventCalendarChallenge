@@ -16,12 +16,12 @@ public class TicketTranslation {
     List<String> nearbyTickets = new ArrayList<>();
     List<String> validNearbyTickets = new ArrayList<>();
     List<Integer> errors = new ArrayList<>();
-    Map<Integer, List<Integer>> tallyOfValidValues = new HashMap<Integer, List<Integer>>();
+    Map<Integer, List<String>> indexOfFieldAndValues = new HashMap<Integer, List<String>>();
 
     private void getRules() {
         try {
-//            String path = "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySixteen/Rules.txt";
-            String path = "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySixteen/exampleRulesPartTwo.txt";
+            String path = "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySixteen/Rules.txt";
+//            String path = "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySixteen/exampleRulesPartTwo.txt";
 //            String path = "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySixteen/exampleRules.txt";
             String content = Files.readString(Paths.get(path), StandardCharsets.US_ASCII);
             Pattern p = Pattern.compile("\\d+");
@@ -46,8 +46,8 @@ public class TicketTranslation {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySixteen/Tickets.txt"
-                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySixteen/exampleDataPartTwo.txt"
+                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySixteen/Tickets.txt"
+//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySixteen/exampleDataPartTwo.txt"
 //                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySixteen/exampleData.txt"
             ));
             String line = reader.readLine();
@@ -99,10 +99,133 @@ public class TicketTranslation {
         return copyOfNearbyTickets;
     }
 
-    private void populateTallyMap() {
-        for (int i = 0; i < rules.size(); i++) {
-            List<Integer> listOfIndex = new ArrayList<>();
-            tallyOfValidValues.put(i, listOfIndex);
+    private void populateIndexToValueMap() {
+        List<String> zero_index = new ArrayList<String>();
+        List<String> one_index = new ArrayList<String>();
+        List<String> two_index = new ArrayList<String>();
+        List<String> three_index = new ArrayList<String>();
+        List<String> four_index = new ArrayList<String>();
+        List<String> five_index = new ArrayList<String>();
+        List<String> six_index = new ArrayList<String>();
+        List<String> seven_index = new ArrayList<String>();
+        List<String> eight_index = new ArrayList<String>();
+        List<String> nine_index = new ArrayList<String>();
+        List<String> ten_index = new ArrayList<String>();
+        List<String> eleven_index= new ArrayList<String>();
+        List<String> twelve_index = new ArrayList<String>();
+        List<String> thirteen_index = new ArrayList<String>();
+        List<String> fourteen_index = new ArrayList<String>();
+        List<String> fifteen_index = new ArrayList<String>();
+        List<String> sixteen_index = new ArrayList<String>();
+        for (int i = 0; i < validNearbyTickets.size(); i++) {
+            String[] values = validNearbyTickets.get(i).split(",");
+            for(int j = 0; j < values.length; j++) {
+                switch(j) {
+                    case 0:
+                        zero_index.add(values[j]);
+                        break;
+                    case 1:
+                        one_index.add(values[j]);
+                        break;
+                    case 2:
+                        two_index.add(values[j]);
+                        break;
+                    case 3:
+                        three_index.add(values[j]);
+                        break;
+                    case 4:
+                        four_index.add(values[j]);
+                        break;
+                    case 5:
+                        five_index.add(values[j]);
+                        break;
+                    case 6:
+                        six_index.add(values[j]);
+                        break;
+                    case 7:
+                        seven_index.add(values[j]);
+                        break;
+                    case 8:
+                        eight_index.add(values[j]);
+                        break;
+                    case 9:
+                        nine_index.add(values[j]);
+                        break;
+                    case 10:
+                        ten_index.add(values[j]);
+                        break;
+                    case 11:
+                        eleven_index.add(values[j]);
+                        break;
+                    case 12:
+                        twelve_index.add(values[j]);
+                        break;
+                    case 13:
+                        thirteen_index.add(values[j]);
+                        break;
+                    case 14:
+                        fourteen_index.add(values[j]);
+                        break;
+                    case 15:
+                        fifteen_index.add(values[j]);
+                        break;
+                    case 16:
+                        sixteen_index.add(values[j]);
+                        break;
+                }
+            }
+        }
+        for (int k = 0; k < 16; k++) {
+            switch(k) {
+                case 0:
+                    indexOfFieldAndValues.put(k, zero_index);
+                    break;
+                case 1:
+                    indexOfFieldAndValues.put(k, one_index);
+                    break;
+                case 2:
+                    indexOfFieldAndValues.put(k, two_index);
+                    break;
+                case 3:
+                    indexOfFieldAndValues.put(k, three_index);
+                    break;
+                case 4:
+                    indexOfFieldAndValues.put(k, four_index);
+                    break;
+                case 5:
+                    indexOfFieldAndValues.put(k, six_index);
+                    break;
+                case 6:
+                    indexOfFieldAndValues.put(k, seven_index);
+                    break;
+                case 7:
+                    indexOfFieldAndValues.put(k, eight_index);
+                    break;
+                case 8:
+                    indexOfFieldAndValues.put(k, nine_index);
+                    break;
+                case 9:
+                    indexOfFieldAndValues.put(k, ten_index);
+                    break;
+                case 10:
+                    indexOfFieldAndValues.put(k, eleven_index);
+                    break;
+                case 11:
+                    indexOfFieldAndValues.put(k, twelve_index);
+                    break;
+                case 12:
+                    indexOfFieldAndValues.put(k, thirteen_index);
+                    break;
+                case 13:
+                    indexOfFieldAndValues.put(k, fourteen_index);
+                    break;
+                case 14:
+                    indexOfFieldAndValues.put(k, fifteen_index);
+                    break;
+                case 15:
+                    indexOfFieldAndValues.put(k, sixteen_index);
+                    break;
+            }
         }
     }
 
@@ -110,6 +233,9 @@ public class TicketTranslation {
         getRules();
         getNearbyTickets();
         getErrors();
+        populateIndexToValueMap();
+        System.out.println("FIRST COLUMN : " + indexOfFieldAndValues.get(0));
+        System.out.println("MAP SIZE : " + indexOfFieldAndValues.size());
         System.out.println("NEARby TICKETS SIZE " + nearbyTickets.size());
         System.out.println("VALID NEARBY TICKET SIZE " + validNearbyTickets.size());
         System.out.println(errors.size());
