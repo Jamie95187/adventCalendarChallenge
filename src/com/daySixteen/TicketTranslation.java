@@ -229,6 +229,14 @@ public class TicketTranslation {
         }
     }
 
+    private void findFields(){
+        for(Map.Entry<Integer, List<String>> entry : indexOfFieldAndValues.entrySet()) {
+            for(int i = 0; i < entry.getValue().size(); i++) {
+                int value = Integer.parseInt(entry.getValue().get(i));
+            }
+        }
+    }
+
     public void test() {
         getRules();
         getNearbyTickets();
