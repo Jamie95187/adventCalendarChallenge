@@ -117,6 +117,10 @@ public class TicketTranslation {
         List<String> fourteen_index = new ArrayList<String>();
         List<String> fifteen_index = new ArrayList<String>();
         List<String> sixteen_index = new ArrayList<String>();
+        List<String> seventeen_index = new ArrayList<String>();
+        List<String> eighteen_index = new ArrayList<String>();
+        List<String> nineteen_index = new ArrayList<String>();
+        List<String> twenty_index = new ArrayList<String>();
         for (int i = 0; i < validNearbyTickets.size(); i++) {
             String[] values = validNearbyTickets.get(i).split(",");
             for(int j = 0; j < values.length; j++) {
@@ -172,10 +176,22 @@ public class TicketTranslation {
                     case 16:
                         sixteen_index.add(values[j]);
                         break;
+                    case 17:
+                        seventeen_index.add(values[j]);
+                        break;
+                    case 18:
+                        eighteen_index.add(values[j]);
+                        break;
+                    case 19:
+                        nineteen_index.add(values[j]);
+                        break;
+                    case 20:
+                        twenty_index.add(values[j]);
+                        break;
                 }
             }
         }
-        for (int k = 0; k < 16; k++) {
+        for (int k = 0; k < 20; k++) {
             switch(k) {
                 case 0:
                     indexOfFieldAndValues.put(k, zero_index);
@@ -225,16 +241,39 @@ public class TicketTranslation {
                 case 15:
                     indexOfFieldAndValues.put(k, sixteen_index);
                     break;
+                case 16:
+                    indexOfFieldAndValues.put(k, seventeen_index);
+                    break;
+                case 17:
+                    indexOfFieldAndValues.put(k, eighteen_index);
+                    break;
+                case 18:
+                    indexOfFieldAndValues.put(k, nineteen_index);
+                    break;
+                case 19:
+                    indexOfFieldAndValues.put(k, twenty_index);
+                    break;
             }
         }
     }
 
-    private void findFields(){
-        for(Map.Entry<Integer, List<String>> entry : indexOfFieldAndValues.entrySet()) {
-            for(int i = 0; i < entry.getValue().size(); i++) {
-                int value = Integer.parseInt(entry.getValue().get(i));
+
+
+    private List<Boolean> findField(int index){
+        List<Boolean> rulesVsIndex = new ArrayList<>();
+        for (int k = 0; k < rules.size(); k++) {
+            Boolean ruleBoolean = true;
+            for(int i = 0; i < indexOfFieldAndValues.get(index).size(); i++) {
+                int value = Integer.parseInt(indexOfFieldAndValues.get(index).get(i));
+                int[] rule = rules.get(k);
+                if(value < rule[0] || value > rule[1] && value < rule[2] || value > rule[3]) {
+                    ruleBoolean = false;
+                    break;
+                }
             }
+            rulesVsIndex.add(ruleBoolean);
         }
+        return rulesVsIndex;
     }
 
     public void test() {
@@ -242,6 +281,10 @@ public class TicketTranslation {
         getNearbyTickets();
         getErrors();
         populateIndexToValueMap();
+        List<Boolean> listOfIndexVsRules = findField(0);
+        for (int i = 0; i<  listOfIndexVsRules.size(); i++) {
+            System.out.println(listOfIndexVsRules.get(i));
+        }
         System.out.println("FIRST COLUMN : " + indexOfFieldAndValues.get(0));
         System.out.println("MAP SIZE : " + indexOfFieldAndValues.size());
         System.out.println("NEARby TICKETS SIZE " + nearbyTickets.size());
