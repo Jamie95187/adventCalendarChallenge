@@ -256,25 +256,28 @@ public class TicketTranslation {
 
 
 
-    private List<Boolean> findField(int index){
-        List<Boolean> rulesVsIndex = new ArrayList<>();
+    private List<Integer> findField(int index){
+        List<Integer> rulesVsIndex = new ArrayList<>();
         for (int k = 0; k < rules.size(); k++) {
             Boolean ruleBoolean = true;
             for(int i = 0; i < indexOfFieldAndValues.get(index).size(); i++) {
                 int value = Integer.parseInt(indexOfFieldAndValues.get(index).get(i));
                 int[] rule = rules.get(k);
                 if(value < rule[0] || value > rule[1] && value < rule[2] || value > rule[3]) {
-                    System.out.println("FOR RULE :" + k + " " + value + " VALUE DOESNT FIT ");
+                    if (i == 0) {
+                        System.out.println("FALSE FOR " + k);
+                    }
                     ruleBoolean = false;
                     break;
                 }
+                if (!ruleBoolean) {
+                    break;
+                }
+                rulesVsIndex.add(k);
             }
-            rulesVsIndex.add(ruleBoolean);
         }
         return rulesVsIndex;
     }
-
-    // Fields and values can overlap. Values dont exclusively fit in one rule
 
     public void test() {
         getRules();
@@ -283,15 +286,12 @@ public class TicketTranslation {
         populateIndexToValueMap();
         List<Integer> fieldsOfInterest = new ArrayList<>();
         for(int i = 0; i < indexOfFieldAndValues.size(); i++) {
-            List<Boolean> listOfIndexVsRules = findField(i);
-            if(listOfIndexVsRules.get(1) == true){
-//            if(listOfIndexVsRules.get(0) == true || listOfIndexVsRules.get(1) == true || listOfIndexVsRules.get(2) == true || listOfIndexVsRules.get(3) == true || listOfIndexVsRules.get(4) == true || listOfIndexVsRules.get(5) == true || listOfIndexVsRules.get(6) == true ) {
-                fieldsOfInterest.add(i);
-                System.out.println(i);
-            }
+            List<Integer> listOfIndexVsRules = findField(i);
+            System.out.println("COLUMN : " + i + " - " + indexOfFieldAndValues.get(i));
+            System.out.println("POSSIBLE RULES : " + listOfIndexVsRules);
+            System.out.println("  ");
         }
-
-        System.out.println("FIRST COLUMN : " + indexOfFieldAndValues.get(0));
+        System.out.println(" ");
 //        System.out.println("MAP SIZE : " + indexOfFieldAndValues.size());
 //        System.out.println("NEARby TICKETS SIZE " + nearbyTickets.size());
 //        System.out.println("VALID NEARBY TICKET SIZE " + validNearbyTickets.size());
