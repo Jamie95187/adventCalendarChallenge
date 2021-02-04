@@ -310,7 +310,8 @@ public class TicketTranslation {
         mapOfRules.entrySet().forEach(entry -> {
             System.out.println(entry.getKey() + " " + entry.getValue());
         });
-        int x =  79 * 61 * 67 * 113 * 127 * 137;
+        long x =  (long)79 * (long)61 * (long)67 * (long)113 * (long)127 * (long)137;
+        System.out.println(x);
     }
 
 }
