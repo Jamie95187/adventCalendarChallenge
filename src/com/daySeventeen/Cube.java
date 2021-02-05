@@ -4,7 +4,7 @@ public class Cube {
 
     boolean active;
 
-    public Cube(int x, int y, int z, boolean state) {
+    public Cube(boolean state) {
         active = state;
     }
 
