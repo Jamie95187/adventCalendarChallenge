@@ -22,9 +22,9 @@ public class ConwaysCubes {
                 int xCounter = 0;
                 for (char c : charArray) {
                     if (c == '.') {
-                        grid[xCounter][yCounter][1] = new Cube(false);
+                        grid[xCounter][yCounter][0] = new Cube(false);
                     } else {
-                        grid[xCounter][yCounter][1] = new Cube(true);
+                        grid[xCounter][yCounter][0] = new Cube(true);
                     }
                     xCounter++;
                 }
@@ -38,5 +38,15 @@ public class ConwaysCubes {
         }
     }
 
+    public void test() {
+        readInitialGrid();
+        for(int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                for (int k = 0; k < grid[i][j].length; k++) {
+                    System.out.println("i = " + i + " j = " + j + " k = " + k + " state = " + grid[i][j][k].getState());
+                }
+            }
+        }
+    }
 
 }
