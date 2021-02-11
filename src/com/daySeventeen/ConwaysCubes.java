@@ -7,29 +7,30 @@ import java.io.IOException;
 public class ConwaysCubes {
 
     Cube[][][] grid;
-    int xMax = 10;
-    int yMax = 10;
-    int zMax = 10;
+    int xMax = 5;
+    int yMax = 5;
+    int zMax = 3;
 
     public void readInitialGrid() {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/initialGrid.txt"
+//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/initialGrid.txt"
+                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/exampleGrid.txt"
             ));
-            grid = new Cube[10][10][3];
-            for (int i = 0; i < 10; i++) {
-                for (int j = 0; j < 10; j++){
+            grid = new Cube[5][5][3];
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 5; j++){
                     grid[i][j][0] = new Cube(false);
                     grid[i][j][2] = new Cube(false);
                 }
             }
-            for (int l = 0; l < 10; l++) {
+            for (int l = 0; l < 5; l++) {
                 for (int k = 0; k < 3; k++) {
                     grid[0][l][k] = new Cube(false);
-                    grid[9][l][k] = new Cube(false);
+                    grid[4][l][k] = new Cube(false);
                     grid[l][0][k] = new Cube(false);
-                    grid[l][9][k] = new Cube(false);
+                    grid[l][4][k] = new Cube(false);
                 }
             }
             String line = reader.readLine();
@@ -438,6 +439,15 @@ public class ConwaysCubes {
             }
         }
         return aliveNeighbours;
+    }
+
+    public void oneGeneration() {
+        Cube[][][] copyOfGrid = new Cube[5][5][3];
+        for (int y = 0; y < yMax; y++) {
+            for (int z = 0; z < zMax; z++) {
+
+            }
+        }
     }
 
     public void test() {
