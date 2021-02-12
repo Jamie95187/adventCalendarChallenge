@@ -58,7 +58,10 @@ public class ConwaysCubes {
 
     public int countAliveNeighbours(int x, int y, int z) {
         int aliveNeighbours = 0;
-        aliveNeighbours = aliveNeighbours + checkXZeroPlane(x, y, z) + checkCorners(x, y, z);
+        while(aliveNeighbours != 0) {
+            checkIfIsCorner(x, y, z);
+        }
+        aliveNeighbours = aliveNeighbours + checkXZeroPlane(x, y, z) + checkIfIsCorner(x, y, z);
         // z = -1
         if (grid[x-1][y+1][z-1].getState()) {
             aliveNeighbours++;
@@ -413,7 +416,7 @@ public class ConwaysCubes {
         return aliveNeighbours;
     }
 
-    private int checkCorners(int x, int y, int z) {
+    private int checkIfIsCorner(int x, int y, int z) {
         int aliveNeighbours = 0;
         if (x == 0 && y == 0 && z == 0) {
             if (grid[x][y+1][z].getState()) {
@@ -437,17 +440,60 @@ public class ConwaysCubes {
             if (grid[x][y][z+1].getState()) {
                 aliveNeighbours++;
             }
-        }
+        } else if (x == 0, y == yMax)
         return aliveNeighbours;
     }
 
     public void oneGeneration() {
         Cube[][][] copyOfGrid = new Cube[5][5][3];
-        for (int y = 0; y < yMax; y++) {
-            for (int z = 0; z < zMax; z++) {
 
+        // Outside buffer zone all cubes are inactive
+
+        for (int x = 0; x < xMax; x++) {
+            if (countAliveNeighbours(x,0,0) == 3) {
+                copyOfGrid[x][0][0] = new Cube(true);
+            }
+            if (countAliveNeighbours(x,yMax - 1,0) == 3) {
+                copyOfGrid[x][yMax - 1][0] = new Cube(true);
+            }
+            if (countAliveNeighbours(x,0,zMax - 1) == 3 ) {
+                copyOfGrid[x][0][zMax - 1] = new Cube(true);
+            }
+            if (countAliveNeighbours(x, yMax - 1, zMax - 1) == 3) {
+                copyOfGrid[x][yMax - 1][zMax - 1]  = new Cube(true);
             }
         }
+
+        for (int y = 0; y < yMax; y++) {
+            if (countAliveNeighbours(0,y,0) == 3) {
+                copyOfGrid[0][y][0] = new Cube(true);
+            }
+            if (countAliveNeighbours(xMax - 1,y,0) == 3) {
+                copyOfGrid[xMax - 1][y][0] = new Cube(true);
+            }
+            if (countAliveNeighbours(0,y,zMax - 1) == 3 ) {
+                copyOfGrid[0][y][zMax - 1] = new Cube(true);
+            }
+            if (countAliveNeighbours(xMax - 1, y, zMax - 1) == 3) {
+                copyOfGrid[xMax - 1][y][zMax - 1] = new Cube(true);
+            }
+        }
+
+        for (int z = 0; z < zMax; z++) {
+            if (countAliveNeighbours(0,0,z) == 3) {
+                copyOfGrid[0][0][z] = new Cube(true);
+            }
+            if (countAliveNeighbours(0,yMax - 1,z) == 3) {
+                copyOfGrid[0][yMax - 1][z] = new Cube(true);
+            }
+            if (countAliveNeighbours(xMax - 1,0,z) == 3 ) {
+                copyOfGrid[xMax - 1][0][z] = new Cube(true);
+            }
+            if (countAliveNeighbours(xMax - 1, yMax - 1, z) == 3) {
+                copyOfGrid[xMax - 1][yMax - 1][z] = new Cube(true);
+            }
+        }
+
     }
 
     public void test() {
