@@ -149,7 +149,7 @@ public class ConwaysCubes {
         int aliveNeighbours = 0;
         if (x == 0) {
             if (y == 0) {
-                if (z != zMax) {
+                if (z != 0 && z != zMax) {
                     if (grid[x][y+1][z-1].getState()) {
                         aliveNeighbours++;
                     }
@@ -185,7 +185,7 @@ public class ConwaysCubes {
                     }
                 }
             } else if (y == yMax) {
-                if (z != zMax) {
+                if (z != 0 && z != zMax) {
                     if (grid[x][y-1][z-1].getState()) {
                         aliveNeighbours++;
                     }
@@ -341,6 +341,92 @@ public class ConwaysCubes {
                     if (grid[x][y][z+1].getState()) {
                         aliveNeighbours++;
                     }
+                }
+            }
+        }
+        return aliveNeighbours;
+    }
+
+    private int countXMaxPlane(int x, int y, int z) {
+        int aliveNeighbours = 0;
+        if (x == xMax) {
+            if (y == 0) {
+                if (z != 0 && z != zMax) {
+                    if (grid[x][y+1][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x-1][y][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x-1][y+1][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y+1][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x-1][y][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x-1][y+1][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y+1][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x-1][y][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x-1][y+1][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                }
+            } else if (y == yMax) {
+                if (z != 0 && z != zMax) {
+                    if (grid[x][y - 1][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x - 1][y][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x - 1][y - 1][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y][z + 1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y - 1][z + 1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x - 1][y][z + 1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x - 1][y - 1][z + 1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y][z - 1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y - 1][z - 1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x - 1][y][z - 1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x - 1][y - 1][z - 1].getState()) {
+                        aliveNeighbours++;
+                    }
+                }
+            } else {
+                if(z == 0) {
+
+                } else if ( z == zMax ) {
+
                 }
             }
         }
