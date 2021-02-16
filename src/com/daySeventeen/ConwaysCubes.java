@@ -445,7 +445,83 @@ public class ConwaysCubes {
         return aliveNeighbours;
     }
 
-    private int checkIfIsCorner(int x, int y, int z) {
+    private int countYZeroPlane(int x, int y, int z) {
+        int aliveNeighbours = 0;
+        if (y == 0) {
+            if (z == 0 && x != 0 || x != xMax) {
+                if (grid[x][y][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y+1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y+1][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y+1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y+1][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y+1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y+1][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+            } else if (z == zMax && x != 0 || x != xMax) {
+                if (grid[x][y][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y+1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y+1][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y+1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y+1][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y+1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y+1][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+            }
+        }
+        return aliveNeighbours;
+    }
+
+    private int countCorners(int x, int y, int z) {
         int aliveNeighbours = 0;
         if (x == 0 && y == 0 && z == 0) {
             if (grid[x][y+1][z].getState()) {
@@ -634,28 +710,28 @@ public class ConwaysCubes {
 
         // Check corners of grid
 
-        if(checkIfIsCorner(0,0,0) == 3) {
+        if(countCorners(0,0,0) == 3) {
             copyOfGrid[0][0][0] = new Cube(true);
         }
-        if(checkIfIsCorner(0,yMax,0) == 3) {
+        if(countCorners(0,yMax,0) == 3) {
             copyOfGrid[0][yMax][0] = new Cube(true);
         }
-        if(checkIfIsCorner(xMax,0,0) == 3) {
+        if(countCorners(xMax,0,0) == 3) {
             copyOfGrid[xMax][0][0] = new Cube(true);
         }
-        if(checkIfIsCorner(0,0,zMax) == 3) {
+        if(countCorners(0,0,zMax) == 3) {
             copyOfGrid[0][0][zMax] = new Cube(true);
         }
-        if(checkIfIsCorner(xMax,yMax,0) == 3) {
+        if(countCorners(xMax,yMax,0) == 3) {
             copyOfGrid[xMax][yMax][0] = new Cube(true);
         }
-        if(checkIfIsCorner(xMax,0,zMax) == 3) {
+        if(countCorners(xMax,0,zMax) == 3) {
             copyOfGrid[xMax][0][zMax] = new Cube(true);
         }
-        if(checkIfIsCorner(0,yMax,zMax) == 3) {
+        if(countCorners(0,yMax,zMax) == 3) {
             copyOfGrid[0][yMax][zMax] = new Cube(true);
         }
-        if(checkIfIsCorner(xMax,yMax,zMax) == 3) {
+        if(countCorners(xMax,yMax,zMax) == 3) {
             copyOfGrid[xMax][yMax][zMax] = new Cube(true);
         }
 
