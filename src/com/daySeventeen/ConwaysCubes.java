@@ -521,6 +521,82 @@ public class ConwaysCubes {
         return aliveNeighbours;
     }
 
+    private int countYMaxPlane(int x, int y, int z) {
+        int aliveNeighbours = 0;
+        if (y == yMax) {
+            if (z == 0 && x != 0 || x != xMax) {
+                if (grid[x][y][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y-1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y-1][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y-1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y-1][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y-1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y-1][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+            } else if (z == zMax && x != 0 || x != xMax) {
+                if (grid[x][y][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y-1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y-1][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y-1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y-1][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y-1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y-1][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+            }
+        }
+        return aliveNeighbours;
+    }
+
     private int countCorners(int x, int y, int z) {
         int aliveNeighbours = 0;
         if (x == 0 && y == 0 && z == 0) {
