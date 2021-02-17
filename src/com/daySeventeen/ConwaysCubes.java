@@ -811,9 +811,6 @@ public class ConwaysCubes {
             copyOfGrid[xMax][yMax][zMax] = new Cube(true);
         }
 
-        // Check the sides excluding corners of cube grid
-
-
     }
 
     public void test() {
