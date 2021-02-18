@@ -145,7 +145,7 @@ public class ConwaysCubes {
         return aliveNeighbours;
     }
 
-    private int checkXZeroPlane(int x, int y, int z) {
+    private int countXZeroPlane(int x, int y, int z) {
         int aliveNeighbours = 0;
         if (x == 0) {
             if (y == 0) {
@@ -781,6 +781,18 @@ public class ConwaysCubes {
 
     public void oneGeneration() {
         Cube[][][] copyOfGrid = new Cube[5][5][3];
+
+        for (int x = 0; x < grid.length; x++) {
+            for (int y = 0; y < grid[0].length; y++) {
+                for (int z = 0; z < grid[0][0].length; z++) {
+                    if (countCorners(x, y, z) == 3 || countXZeroPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3 || countYZeroPlane(x, y, z) == 3 || checkNeighboursForInnerCube(x, y, z) == 3) {
+                        copyOfGrid[x][y][z] = new Cube(true);
+                    } else {
+                        copyOfGrid[x][y][z] = new Cube(false);
+                    }
+                }
+            }
+        }
 
         // Outside buffer zone all cubes are inactive
 
