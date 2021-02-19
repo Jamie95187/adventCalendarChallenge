@@ -782,6 +782,8 @@ public class ConwaysCubes {
 
     public void oneGeneration() {
 
+        System.out.println("Initial grid data ");
+
         for(int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
                 for (int k = 0; k < grid[i][j].length; k++) {
@@ -793,6 +795,8 @@ public class ConwaysCubes {
         System.out.println("-----------------------------------------------------------");
 
         Cube[][][] copyOfGrid = new Cube[5][5][3];
+
+        System.out.println("Gid After One Generation");
 
         for (int x = 0; x < grid.length; x++) {
             for (int y = 0; y < grid[0].length; y++) {
