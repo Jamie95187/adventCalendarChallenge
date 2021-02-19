@@ -781,6 +781,17 @@ public class ConwaysCubes {
     }
 
     public void oneGeneration() {
+
+        for(int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                for (int k = 0; k < grid[i][j].length; k++) {
+                    System.out.println("i = " + i + " j = " + j + " k = " + k + " state = " + grid[i][j][k].getState());
+                }
+            }
+        }
+
+        System.out.println("-----------------------------------------------------------");
+
         Cube[][][] copyOfGrid = new Cube[5][5][3];
 
         for (int x = 0; x < grid.length; x++) {
@@ -795,10 +806,10 @@ public class ConwaysCubes {
             }
         }
 
-        for(int i = 0; i < copyOfGrid.length; i++) {
-            for (int j = 0; j < copyOfGrid[i].length; j++) {
-                for (int k = 0; k < copyOfGrid[i][j].length; k++) {
-                    System.out.println("i = " + i + " j = " + j + " k = " + k + " state = " + copyOfGrid[i][j][k].getState());
+        for(int x = 0; x < copyOfGrid.length; x++) {
+            for (int y = 0; y < copyOfGrid[x].length; y++) {
+                for (int z = 0; z < copyOfGrid[x][y].length; z++) {
+                    System.out.println("x = " + x + " y = " + y + " z = " + z + " state = " + copyOfGrid[x][y][z].getState());
                 }
             }
         }
