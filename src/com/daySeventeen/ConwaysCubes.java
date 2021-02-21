@@ -1125,28 +1125,18 @@ public class ConwaysCubes {
         for (int x = 0; x < grid.length; x++) {
             for (int y = 0; y < grid[0].length; y++) {
                 for (int z = 0; z < grid[0][0].length; z++) {
-//                    if (!grid[x][y][z].getState()) {
-//                        if (countCorners(x, y, z) == 3 || countXZeroPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3 || countYZeroPlane(x, y, z) == 3 || checkNeighboursForInnerCube(x, y, z) == 3) {
-//                            copyOfGrid[x][y][z] = new Cube(true);
-//                        } else {
-//                            copyOfGrid[x][y][z] = new Cube(false);
-//                        }
-//                    } else {
-//                        if (countCorners(x, y, z) == 3 || countXZeroPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3 || countYZeroPlane(x, y, z) == 3 || checkNeighboursForInnerCube(x, y, z) == 3 ||
-//                            countCorners(x, y, z) == 2 || countXZeroPlane(x, y, z) == 2 || countXMaxPlane(x, y, z) == 2 || countYMaxPlane(x, y, z) == 2 || countYZeroPlane(x, y, z) == 2 || checkNeighboursForInnerCube(x, y, z) == 2) {
-//                            copyOfGrid[x][y][z] = new Cube(true);
-//                        } else {
-//                            copyOfGrid[x][y][z] = new Cube(false);
-//                        }
-//                    }
                     if (!grid[x][y][z].getState()) {
-                        if (checkNeighboursForInnerCube(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3) {
+                        if (countCorners(x, y, z) == 3 || countXZeroPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3 ||
+                                countYZeroPlane(x, y, z) == 3 || checkNeighboursForInnerCube(x, y, z) == 3 || countZZeroPlane(x, y, z) == 3 || countZMaxPlane(x, y, z) == 3) {
                             copyOfGrid[x][y][z] = new Cube(true);
                         } else {
                             copyOfGrid[x][y][z] = new Cube(false);
                         }
                     } else {
-                        if (checkNeighboursForInnerCube(x, y, z) == 3 || checkNeighboursForInnerCube(x, y, z) == 2 || countYMaxPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 2) {
+                        if (countCorners(x, y, z) == 3 || countXZeroPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3 ||
+                                countYZeroPlane(x, y, z) == 3 || checkNeighboursForInnerCube(x, y, z) == 3 || countCorners(x, y, z) == 2 || countXZeroPlane(x, y, z) == 2
+                                || countXMaxPlane(x, y, z) == 2 || countYMaxPlane(x, y, z) == 2 || countYZeroPlane(x, y, z) == 2 || checkNeighboursForInnerCube(x, y, z) ==  2
+                                || countZZeroPlane(x, y, z) == 3 || countZMaxPlane(x, y, z) == 2) {
                             copyOfGrid[x][y][z] = new Cube(true);
                         } else {
                             copyOfGrid[x][y][z] = new Cube(false);
