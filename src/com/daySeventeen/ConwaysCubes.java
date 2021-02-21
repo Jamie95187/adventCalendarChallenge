@@ -290,6 +290,58 @@ public class ConwaysCubes {
                     if (grid[x+1][y+1][z-1].getState()) {
                         aliveNeighbours++;
                     }
+                } else {
+                    if (grid[x][y-1][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x+1][y-1][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y-1][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y-1][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x+1][y-1][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x+1][y-1][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x+1][y][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x+1][y][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x+1][y][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y+1][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x+1][y+1][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y+1][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y+1][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x+1][y+1][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x+1][y+1][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
                 }
             }
         }
@@ -440,6 +492,58 @@ public class ConwaysCubes {
                     if (grid[x-1][y+1][z-1].getState()) {
                         aliveNeighbours++;
                     }
+                } else {
+                    if (grid[x][y-1][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x-1][y-1][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y-1][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y-1][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x-1][y-1][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x-1][y-1][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x-1][y][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x-1][y][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x-1][y][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y+1][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y+1][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x][y+1][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x-1][y+1][z].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x-1][y+1][z-1].getState()) {
+                        aliveNeighbours++;
+                    }
+                    if (grid[x-1][y][z+1].getState()) {
+                        aliveNeighbours++;
+                    }
                 }
             }
         }
@@ -515,6 +619,58 @@ public class ConwaysCubes {
                     aliveNeighbours++;
                 }
                 if (grid[x-1][y+1][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+            } else if (x != 0 && x != xMax && z != 0 && z != zMax) {
+                if (grid[x][y][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y+1][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y+1][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y+1][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y+1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y+1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y+1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y+1][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y+1][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y+1][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y][z+1].getState()) {
                     aliveNeighbours++;
                 }
             }
@@ -593,6 +749,174 @@ public class ConwaysCubes {
                 if (grid[x-1][y-1][z-1].getState()) {
                     aliveNeighbours++;
                 }
+            } else if (x != 0 && x != xMax && z != 0 && z != zMax) {
+                if (grid[x][y][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y-1][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y-1][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y-1][z-1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y-1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y-1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y-1][z].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x][y-1][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x+1][y-1][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+                if (grid[x-1][y-1][z+1].getState()) {
+                    aliveNeighbours++;
+                }
+            }
+        }
+        return aliveNeighbours;
+    }
+
+    private int countZZeroPlane(int x, int y, int z) {
+        int aliveNeighbours = 0;
+        if (z == 0 && x != 0 && x != xMax && y != 0 && y != yMax) {
+            if (grid[x][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y-1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y-1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y-1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y+1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y+1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+        }
+        return aliveNeighbours;
+    }
+
+    private int countZMaxPlane(int x, int y, int z) {
+        int aliveNeighbours = 0;
+        if (z == zMax && x != 0 && x != xMax && y != 0 && y != yMax) {
+            if (grid[x][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y-1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y-1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y-1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y+1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y+1][z-1].getState()) {
+                aliveNeighbours++;
             }
         }
         return aliveNeighbours;
@@ -816,13 +1140,13 @@ public class ConwaysCubes {
 //                        }
 //                    }
                     if (!grid[x][y][z].getState()) {
-                        if (checkNeighboursForInnerCube(x, y, z) == 3) {
+                        if (checkNeighboursForInnerCube(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3) {
                             copyOfGrid[x][y][z] = new Cube(true);
                         } else {
                             copyOfGrid[x][y][z] = new Cube(false);
                         }
                     } else {
-                        if (checkNeighboursForInnerCube(x, y, z) == 3 || checkNeighboursForInnerCube(x, y, z) == 2) {
+                        if (checkNeighboursForInnerCube(x, y, z) == 3 || checkNeighboursForInnerCube(x, y, z) == 2 || countYMaxPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 2) {
                             copyOfGrid[x][y][z] = new Cube(true);
                         } else {
                             copyOfGrid[x][y][z] = new Cube(false);
