@@ -10,6 +10,9 @@ public class ConwaysCubes {
     int xMax = 4;
     int yMax = 4;
     int zMax = 2;
+    boolean incrX = false;
+    boolean incrY = false;
+    boolean incrZ = false;
 
     public void readInitialGrid() {
         BufferedReader reader;
@@ -1105,22 +1108,22 @@ public class ConwaysCubes {
     }
 
     public void oneGeneration() {
+//
+//        System.out.println("Initial grid data ");
+//
+//        for(int i = 0; i < grid.length; i++) {
+//            for (int j = 0; j < grid[i].length; j++) {
+//                for (int k = 0; k < grid[i][j].length; k++) {
+//                    System.out.println("i = " + i + " j = " + j + " k = " + k + " state = " + grid[i][j][k].getState());
+//                }
+//            }
+//        }
+//
+//        System.out.println("-----------------------------------------------------------");
 
-        System.out.println("Initial grid data ");
+        Cube[][][] copyOfGrid = new Cube[xMax + 1][yMax + 1][zMax + 1];
 
-        for(int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                for (int k = 0; k < grid[i][j].length; k++) {
-                    System.out.println("i = " + i + " j = " + j + " k = " + k + " state = " + grid[i][j][k].getState());
-                }
-            }
-        }
-
-        System.out.println("-----------------------------------------------------------");
-
-        Cube[][][] copyOfGrid = new Cube[5][5][3];
-
-        System.out.println("Gid After One Generation");
+//        System.out.println("Gid After One Generation");
 
         for (int x = 0; x < grid.length; x++) {
             for (int y = 0; y < grid[0].length; y++) {
@@ -1132,6 +1135,15 @@ public class ConwaysCubes {
                         } else {
                             copyOfGrid[x][y][z] = new Cube(false);
                         }
+                        if (countXZeroPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 3) {
+                            incrX = true;
+                        }
+                        if (countYZeroPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3) {
+                            incrY = true;
+                        }
+                        if (countZMaxPlane(x, y, z) == 3 || countZZeroPlane(x, y, z) == 3) {
+                            incrZ = true;
+                        }
                     } else {
                         if (countCorners(x, y, z) == 3 || countXZeroPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3 ||
                                 countYZeroPlane(x, y, z) == 3 || checkNeighboursForInnerCube(x, y, z) == 3 || countCorners(x, y, z) == 2 || countXZeroPlane(x, y, z) == 2
@@ -1141,19 +1153,42 @@ public class ConwaysCubes {
                         } else {
                             copyOfGrid[x][y][z] = new Cube(false);
                         }
+                        if (countXZeroPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 2 || countXZeroPlane(x, y, z) == 2) {
+                            incrX = true;
+                        }
+                        if (countYZeroPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 2 || countYZeroPlane(x, y, z) == 2) {
+                            incrY = true;
+                        }
+                        if (countZZeroPlane(x, y, z) == 3 || countZMaxPlane(x, y, z) == 3 || countZMaxPlane(x, y, z) == 2 || countZZeroPlane(x, y, z) == 2) {
+                            incrZ = true;
+                        }
                     }
                 }
             }
         }
 
-        for(int x = 0; x < copyOfGrid.length; x++) {
-            for (int y = 0; y < copyOfGrid[x].length; y++) {
-                for (int z = 0; z < copyOfGrid[x][y].length; z++) {
-                    System.out.println("x = " + x + " y = " + y + " z = " + z + " state = " + copyOfGrid[x][y][z].getState());
-                }
-            }
+//        for(int x = 0; x < copyOfGrid.length; x++) {
+//            for (int y = 0; y < copyOfGrid[x].length; y++) {
+//                for (int z = 0; z < copyOfGrid[x][y].length; z++) {
+//                    System.out.println("x = " + x + " y = " + y + " z = " + z + " state = " + copyOfGrid[x][y][z].getState());
+//                }
+//            }
+//        }
+
+        if (incrX) {
+            xMax = xMax + 2;
+        }
+        if (incrY) {
+            yMax = yMax + 2;
+        }
+        if (incrZ) {
+            zMax = zMax + 2;
         }
 
+    }
+
+    private void renderNewGrid(Cube[][][] copyOfGrid) {
+        
     }
 
     public void test() {
