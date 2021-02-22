@@ -1108,17 +1108,8 @@ public class ConwaysCubes {
     }
 
     public void oneGeneration() {
-//
+
 //        System.out.println("Initial grid data ");
-//
-//        for(int i = 0; i < grid.length; i++) {
-//            for (int j = 0; j < grid[i].length; j++) {
-//                for (int k = 0; k < grid[i][j].length; k++) {
-//                    System.out.println("i = " + i + " j = " + j + " k = " + k + " state = " + grid[i][j][k].getState());
-//                }
-//            }
-//        }
-//
 //        System.out.println("-----------------------------------------------------------");
 
         Cube[][][] copyOfGrid = new Cube[xMax + 1][yMax + 1][zMax + 1];
@@ -1199,15 +1190,19 @@ public class ConwaysCubes {
         for (int i = 0; i < xMax + 1; i++) {
             for (int j = 0; j < yMax + 1; j++){
                 newGrid[i][j][0] = new Cube(false);
-                newGrid[i][j][zMax + 1] = new Cube(false);
+                newGrid[i][j][zMax] = new Cube(false);
             }
         }
-        for (int l = 0; l < yMax + 1; l++) {
+        for (int y = 0; y < yMax + 1; y++) {
             for (int k = 0; k < zMax + 1; k++) {
-                newGrid[0][l][k] = new Cube(false);
-                newGrid[xMax + 1][l][k] = new Cube(false);
-                newGrid[l][0][k] = new Cube(false);
-                newGrid[l][yMax + 1][k] = new Cube(false);
+                newGrid[0][y][k] = new Cube(false);
+                newGrid[xMax][y][k] = new Cube(false);
+            }
+        }
+        for (int x = 0; x < xMax + 1; x++) {
+            for (int z = 0; z < zMax + 1; z++) {
+                newGrid[x][0][z] = new Cube(false);
+                newGrid[x][yMax][z] = new Cube(false);
             }
         }
 
@@ -1223,7 +1218,7 @@ public class ConwaysCubes {
             for (int x = 1; x < xMax; x++) {
                 for (int y = 1; y < yMax; y++) {
                     for (int z = 0; z <= zMax; z++) {
-                        newGrid[x][y][z] = copyOfGrid[x][y][z];
+                        newGrid[x][y][z] = copyOfGrid[x-1][y-1][z];
                     }
                 }
             }
@@ -1231,7 +1226,7 @@ public class ConwaysCubes {
             for (int x = 1; x < xMax; x++) {
                 for (int y = 0; y <= yMax; y++) {
                     for (int z = 0; z <= zMax; z++) {
-                        newGrid[x][y][z] = copyOfGrid[x][y][z];
+                        newGrid[x][y][z] = copyOfGrid[x-1][y][z];
                     }
                 }
             }
@@ -1239,7 +1234,7 @@ public class ConwaysCubes {
             for (int x = 1; x < xMax; x++) {
                 for (int y = 0; y <= yMax; y++) {
                     for (int z = 1; z < zMax; z++) {
-                        newGrid[x][y][z] = copyOfGrid[x][y][z];
+                        newGrid[x][y][z] = copyOfGrid[x-1][y][z-1];
                     }
                 }
             }
@@ -1247,7 +1242,7 @@ public class ConwaysCubes {
             for (int x = 0; x <= xMax; x++) {
                 for (int y = 1; y < yMax; y++) {
                     for (int z = 0; z <= zMax; z++) {
-                        newGrid[x][y][z] = copyOfGrid[x][y][z];
+                        newGrid[x][y][z] = copyOfGrid[x][y-1][z];
                     }
                 }
             }
@@ -1255,7 +1250,7 @@ public class ConwaysCubes {
             for (int x = 0; x <= xMax; x++) {
                 for (int y = 1; y < yMax; y++) {
                     for (int z = 1; z < zMax; z++) {
-                        newGrid[x][y][z] = copyOfGrid[x][y][z];
+                        newGrid[x][y][z] = copyOfGrid[x][y-1][z-1];
                     }
                 }
             }
@@ -1263,7 +1258,7 @@ public class ConwaysCubes {
             for (int x = 0; x <= xMax; x++) {
                 for (int y = 0; y <= yMax; y++) {
                     for (int z = 1; z < zMax; z++) {
-                        newGrid[x][y][z] = copyOfGrid[x][y][z];
+                        newGrid[x][y][z] = copyOfGrid[x][y][z-1];
                     }
                 }
             }
@@ -1271,7 +1266,7 @@ public class ConwaysCubes {
             for (int x = 1; x <= xMax; x++) {
                 for (int y = 1; y <= yMax; y++) {
                     for (int z = 1; z <= zMax; z++) {
-                        newGrid[x][y][z] = copyOfGrid[x][y][z];
+                        newGrid[x][y][z] = copyOfGrid[x-1][y-1][z-1];
                     }
                 }
             }
@@ -1281,14 +1276,14 @@ public class ConwaysCubes {
 
     public void test() {
         readInitialGrid();
-//        for(int i = 0; i < grid.length; i++) {
-//            for (int j = 0; j < grid[i].length; j++) {
-//                for (int k = 0; k < grid[i][j].length; k++) {
-//                    System.out.println("i = " + i + " j = " + j + " k = " + k + " state = " + grid[i][j][k].getState());
-//                }
-//            }
-//        }
         oneGeneration();
+        for(int x = 0; x < grid.length; x++) {
+            for (int y = 0; y < grid[x].length; y++) {
+                for (int z = 0; z < grid[x][y].length; z++) {
+                    System.out.println("x = " + x + " y = " + y + " z = " + z + " state = " + grid[x][y][z].getState());
+                }
+            }
+        }
     }
 
 }
