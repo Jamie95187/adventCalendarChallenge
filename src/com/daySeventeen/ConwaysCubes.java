@@ -1165,7 +1165,7 @@ public class ConwaysCubes {
 //                }
 //            }
 //        }
-
+        System.out.println("YMAX = " + yMax);
         if (incrX) {
             xMax = xMax + 2;
         }
@@ -1181,7 +1181,7 @@ public class ConwaysCubes {
         incrX = false;
         incrY = false;
         incrZ = false;
-
+//        System.out.println("YMAX = " + yMax);
     }
 
     private void renderNewGrid(Cube[][][] copyOfGrid) {
@@ -1263,9 +1263,9 @@ public class ConwaysCubes {
                 }
             }
         } else if (incrX && incrY && incrZ) {
-            for (int x = 1; x <= xMax; x++) {
-                for (int y = 1; y <= yMax; y++) {
-                    for (int z = 1; z <= zMax; z++) {
+            for (int x = 1; x < xMax; x++) {
+                for (int y = 1; y < yMax; y++) {
+                    for (int z = 1; z < zMax; z++) {
                         newGrid[x][y][z] = copyOfGrid[x-1][y-1][z-1];
                     }
                 }
@@ -1279,12 +1279,13 @@ public class ConwaysCubes {
         oneGeneration();
         oneGeneration();
         for (int z = 0; z <= zMax; z++) {
-            System.out.println("------------------" + z + " Z Plane --------------------");
+            System.out.println("------------------ " + z + " Z Plane --------------------");
             for (int x = 0; x <= xMax; x++) {
                 for (int y = 0; y <= yMax; y++) {
                     System.out.println("x = " + x + " y = " + y + " state = " + grid[x][y][z].getState());
                 }
             }
+            System.out.println(" ");
         }
     }
 
