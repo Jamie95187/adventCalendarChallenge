@@ -1185,10 +1185,98 @@ public class ConwaysCubes {
             zMax = zMax + 2;
         }
 
+        renderNewGrid(copyOfGrid);
+
+        incrX = false;
+        incrY = false;
+        incrZ = false;
+
     }
 
     private void renderNewGrid(Cube[][][] copyOfGrid) {
-        
+        Cube[][][] newGrid = new Cube[xMax + 1][yMax + 1][zMax + 1];
+
+        for (int i = 0; i < xMax + 1; i++) {
+            for (int j = 0; j < yMax + 1; j++){
+                newGrid[i][j][0] = new Cube(false);
+                newGrid[i][j][zMax + 1] = new Cube(false);
+            }
+        }
+        for (int l = 0; l < yMax + 1; l++) {
+            for (int k = 0; k < zMax + 1; k++) {
+                newGrid[0][l][k] = new Cube(false);
+                newGrid[xMax + 1][l][k] = new Cube(false);
+                newGrid[l][0][k] = new Cube(false);
+                newGrid[l][yMax + 1][k] = new Cube(false);
+            }
+        }
+
+        if (!incrX && !incrY && !incrZ) {
+            for (int x = 0; x <= xMax; x++) {
+                for (int y = 0; y <= yMax; y++) {
+                    for (int z = 0; z <= zMax; z++) {
+                        newGrid[x][y][z] = copyOfGrid[x][y][z];
+                    }
+                }
+            }
+        } else if (incrX && incrY && !incrZ) {
+            for (int x = 1; x < xMax; x++) {
+                for (int y = 1; y < yMax; y++) {
+                    for (int z = 0; z <= zMax; z++) {
+                        newGrid[x][y][z] = copyOfGrid[x][y][z];
+                    }
+                }
+            }
+        } else if (incrX && !incrY && !incrZ) {
+            for (int x = 1; x < xMax; x++) {
+                for (int y = 0; y <= yMax; y++) {
+                    for (int z = 0; z <= zMax; z++) {
+                        newGrid[x][y][z] = copyOfGrid[x][y][z];
+                    }
+                }
+            }
+        } else if (incrX && !incrY && incrZ) {
+            for (int x = 1; x < xMax; x++) {
+                for (int y = 0; y <= yMax; y++) {
+                    for (int z = 1; z < zMax; z++) {
+                        newGrid[x][y][z] = copyOfGrid[x][y][z];
+                    }
+                }
+            }
+        } else if (!incrX && incrY && !incrZ) {
+            for (int x = 0; x <= xMax; x++) {
+                for (int y = 1; y < yMax; y++) {
+                    for (int z = 0; z <= zMax; z++) {
+                        newGrid[x][y][z] = copyOfGrid[x][y][z];
+                    }
+                }
+            }
+        } else if (!incrX && incrY && incrZ) {
+            for (int x = 0; x <= xMax; x++) {
+                for (int y = 1; y < yMax; y++) {
+                    for (int z = 1; z < zMax; z++) {
+                        newGrid[x][y][z] = copyOfGrid[x][y][z];
+                    }
+                }
+            }
+        } else if (!incrX && !incrY && incrZ) {
+            for (int x = 0; x <= xMax; x++) {
+                for (int y = 0; y <= yMax; y++) {
+                    for (int z = 1; z < zMax; z++) {
+                        newGrid[x][y][z] = copyOfGrid[x][y][z];
+                    }
+                }
+            }
+        } else if (incrX && incrY && incrZ) {
+            for (int x = 1; x <= xMax; x++) {
+                for (int y = 1; y <= yMax; y++) {
+                    for (int z = 1; z <= zMax; z++) {
+                        newGrid[x][y][z] = copyOfGrid[x][y][z];
+                    }
+                }
+            }
+        }
+        grid = newGrid;
     }
 
     public void test() {
