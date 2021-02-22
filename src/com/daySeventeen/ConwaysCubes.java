@@ -1277,10 +1277,12 @@ public class ConwaysCubes {
     public void test() {
         readInitialGrid();
         oneGeneration();
-        for(int x = 0; x < grid.length; x++) {
-            for (int y = 0; y < grid[x].length; y++) {
-                for (int z = 0; z < grid[x][y].length; z++) {
-                    System.out.println("x = " + x + " y = " + y + " z = " + z + " state = " + grid[x][y][z].getState());
+        oneGeneration();
+        for (int z = 0; z <= zMax; z++) {
+            System.out.println("------------------" + z + " Z Plane --------------------");
+            for (int x = 0; x <= xMax; x++) {
+                for (int y = 0; y <= yMax; y++) {
+                    System.out.println("x = " + x + " y = " + y + " state = " + grid[x][y][z].getState());
                 }
             }
         }
