@@ -1109,12 +1109,7 @@ public class ConwaysCubes {
 
     public void oneGeneration() {
 
-//        System.out.println("Initial grid data ");
-//        System.out.println("-----------------------------------------------------------");
-
         Cube[][][] copyOfGrid = new Cube[xMax + 1][yMax + 1][zMax + 1];
-
-//        System.out.println("Gid After One Generation");
 
         for (int x = 0; x < grid.length; x++) {
             for (int y = 0; y < grid[0].length; y++) {
@@ -1127,9 +1122,11 @@ public class ConwaysCubes {
                             copyOfGrid[x][y][z] = new Cube(false);
                         }
                         if (countXZeroPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 3) {
+                            System.out.println("HENLO");
                             incrX = true;
                         }
                         if (countYZeroPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3) {
+                            System.out.println("NO");
                             incrY = true;
                         }
                         if (countZMaxPlane(x, y, z) == 3 || countZZeroPlane(x, y, z) == 3) {
@@ -1143,15 +1140,6 @@ public class ConwaysCubes {
                             copyOfGrid[x][y][z] = new Cube(true);
                         } else {
                             copyOfGrid[x][y][z] = new Cube(false);
-                        }
-                        if (countXZeroPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 2 || countXZeroPlane(x, y, z) == 2) {
-                            incrX = true;
-                        }
-                        if (countYZeroPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 2 || countYZeroPlane(x, y, z) == 2) {
-                            incrY = true;
-                        }
-                        if (countZZeroPlane(x, y, z) == 3 || countZMaxPlane(x, y, z) == 3 || countZMaxPlane(x, y, z) == 2 || countZZeroPlane(x, y, z) == 2) {
-                            incrZ = true;
                         }
                     }
                 }
@@ -1167,17 +1155,18 @@ public class ConwaysCubes {
 //        }
         System.out.println("YMAX = " + yMax);
         if (incrX) {
-            xMax = xMax + 2;
+            this.xMax = this.xMax + 2;
         }
         if (incrY) {
-            yMax = yMax + 2;
+            this.yMax = this.yMax + 2;
+            System.out.println("Hello");
         }
         if (incrZ) {
-            zMax = zMax + 2;
+            this.zMax = zMax + 2;
         }
-
+        System.out.println("YMAX BEFORE RENDER = " + yMax);
         renderNewGrid(copyOfGrid);
-
+        System.out.println("YMAX AFTER RENDER = " + yMax);
         incrX = false;
         incrY = false;
         incrZ = false;
@@ -1274,10 +1263,7 @@ public class ConwaysCubes {
         grid = newGrid;
     }
 
-    public void test() {
-        readInitialGrid();
-        oneGeneration();
-        oneGeneration();
+    private void printGrid() {
         for (int z = 0; z <= zMax; z++) {
             System.out.println("------------------ " + z + " Z Plane --------------------");
             for (int x = 0; x <= xMax; x++) {
@@ -1287,6 +1273,16 @@ public class ConwaysCubes {
             }
             System.out.println(" ");
         }
+    }
+
+    public void test() {
+        readInitialGrid();
+        oneGeneration();
+        System.out.println("After first generation ");
+        printGrid();
+//        System.out.println("After second generation ");
+//        oneGeneration();
+//        printGrid();
     }
 
 }
