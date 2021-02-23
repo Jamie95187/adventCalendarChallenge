@@ -1153,6 +1153,7 @@ public class ConwaysCubes {
 //                }
 //            }
 //        }
+
         System.out.println("YMAX = " + yMax);
         if (incrX) {
             this.xMax = this.xMax + 2;
