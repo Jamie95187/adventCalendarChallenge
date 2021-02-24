@@ -1122,11 +1122,9 @@ public class ConwaysCubes {
                             copyOfGrid[x][y][z] = new Cube(false);
                         }
                         if (countXZeroPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 3) {
-                            System.out.println("HENLO");
                             incrX = true;
                         }
                         if (countYZeroPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3) {
-                            System.out.println("NO");
                             incrY = true;
                         }
                         if (countZMaxPlane(x, y, z) == 3 || countZZeroPlane(x, y, z) == 3) {
@@ -1154,24 +1152,19 @@ public class ConwaysCubes {
 //            }
 //        }
 
-        System.out.println("YMAX = " + yMax);
         if (incrX) {
             this.xMax = this.xMax + 2;
         }
         if (incrY) {
             this.yMax = this.yMax + 2;
-            System.out.println("Hello");
         }
         if (incrZ) {
             this.zMax = zMax + 2;
         }
-        System.out.println("YMAX BEFORE RENDER = " + yMax);
         renderNewGrid(copyOfGrid);
-        System.out.println("YMAX AFTER RENDER = " + yMax);
         incrX = false;
         incrY = false;
         incrZ = false;
-//        System.out.println("YMAX = " + yMax);
     }
 
     private void renderNewGrid(Cube[][][] copyOfGrid) {
@@ -1281,8 +1274,18 @@ public class ConwaysCubes {
         oneGeneration();
         System.out.println("After first generation ");
         printGrid();
-//        System.out.println("After second generation ");
-//        oneGeneration();
+        System.out.println("STATE AT 1,3,0 = " + grid[1][3][0].getState());
+        System.out.println("ALIVE NEIGHBOURS = " + checkNeighboursForInnerCube(1,3,0));
+        System.out.println("STATE AT 1,5,0 = " + grid[1][5][0].getState());
+        System.out.println("ALIVE NEIGHBOURS = " + checkNeighboursForInnerCube(1,5,0));
+        System.out.println("STATE AT 2,2,0 = " + grid[2][2][0].getState());
+        System.out.println("ALIVE NEIGHBOURS = " + checkNeighboursForInnerCube(2,2,0));
+        System.out.println("STATE AT 4,3,0 = " + grid[4][3][0].getState());
+        System.out.println("ALIVE NEIGHBOURS = " + checkNeighboursForInnerCube(4,3,0));
+        System.out.println("STATE AT 4,4,0 = " + grid[4][4][0].getState());
+        System.out.println("ALIVE NEIGHBOURS = " + checkNeighboursForInnerCube(4,4,0));
+        System.out.println("After second generation ");
+        oneGeneration();
 //        printGrid();
     }
 
