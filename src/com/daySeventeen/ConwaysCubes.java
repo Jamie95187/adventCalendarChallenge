@@ -544,7 +544,7 @@ public class ConwaysCubes {
                     if (grid[x-1][y+1][z-1].getState()) {
                         aliveNeighbours++;
                     }
-                    if (grid[x-1][y][z+1].getState()) {
+                    if (grid[x-1][y+1][z+1].getState()) {
                         aliveNeighbours++;
                     }
                 }
@@ -1122,13 +1122,13 @@ public class ConwaysCubes {
                             copyOfGrid[x][y][z] = new Cube(false);
                         }
                         if (countXZeroPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 3) {
-                            incrX = true;
+                            this.incrX = true;
                         }
                         if (countYZeroPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3) {
-                            incrY = true;
+                            this.incrY = true;
                         }
                         if (countZMaxPlane(x, y, z) == 3 || countZZeroPlane(x, y, z) == 3) {
-                            incrZ = true;
+                            this.incrZ = true;
                         }
                     } else {
                         if (countCorners(x, y, z) == 3 || countXZeroPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3 ||
@@ -1152,19 +1152,19 @@ public class ConwaysCubes {
 //            }
 //        }
 
-        if (incrX) {
+        if (this.incrX) {
             this.xMax = this.xMax + 2;
         }
-        if (incrY) {
+        if (this.incrY) {
             this.yMax = this.yMax + 2;
         }
-        if (incrZ) {
+        if (this.incrZ) {
             this.zMax = zMax + 2;
         }
         renderNewGrid(copyOfGrid);
-        incrX = false;
-        incrY = false;
-        incrZ = false;
+        this.incrX = false;
+        this.incrY = false;
+        this.incrZ = false;
     }
 
     private void renderNewGrid(Cube[][][] copyOfGrid) {
@@ -1189,7 +1189,7 @@ public class ConwaysCubes {
             }
         }
 
-        if (!incrX && !incrY && !incrZ) {
+        if (!this.incrX && !this.incrY && !this.incrZ) {
             for (int x = 0; x <= xMax; x++) {
                 for (int y = 0; y <= yMax; y++) {
                     for (int z = 0; z <= zMax; z++) {
@@ -1197,7 +1197,7 @@ public class ConwaysCubes {
                     }
                 }
             }
-        } else if (incrX && incrY && !incrZ) {
+        } else if (this.incrX && this.incrY && !this.incrZ) {
             for (int x = 1; x < xMax; x++) {
                 for (int y = 1; y < yMax; y++) {
                     for (int z = 0; z <= zMax; z++) {
@@ -1205,7 +1205,7 @@ public class ConwaysCubes {
                     }
                 }
             }
-        } else if (incrX && !incrY && !incrZ) {
+        } else if (this.incrX && !this.incrY && !this.incrZ) {
             for (int x = 1; x < xMax; x++) {
                 for (int y = 0; y <= yMax; y++) {
                     for (int z = 0; z <= zMax; z++) {
@@ -1213,7 +1213,7 @@ public class ConwaysCubes {
                     }
                 }
             }
-        } else if (incrX && !incrY && incrZ) {
+        } else if (this.incrX && !this.incrY && this.incrZ) {
             for (int x = 1; x < xMax; x++) {
                 for (int y = 0; y <= yMax; y++) {
                     for (int z = 1; z < zMax; z++) {
@@ -1221,7 +1221,7 @@ public class ConwaysCubes {
                     }
                 }
             }
-        } else if (!incrX && incrY && !incrZ) {
+        } else if (!this.incrX && this.incrY && !this.incrZ) {
             for (int x = 0; x <= xMax; x++) {
                 for (int y = 1; y < yMax; y++) {
                     for (int z = 0; z <= zMax; z++) {
@@ -1229,7 +1229,7 @@ public class ConwaysCubes {
                     }
                 }
             }
-        } else if (!incrX && incrY && incrZ) {
+        } else if (!this.incrX && this.incrY && this.incrZ) {
             for (int x = 0; x <= xMax; x++) {
                 for (int y = 1; y < yMax; y++) {
                     for (int z = 1; z < zMax; z++) {
@@ -1237,7 +1237,7 @@ public class ConwaysCubes {
                     }
                 }
             }
-        } else if (!incrX && !incrY && incrZ) {
+        } else if (!this.incrX && !this.incrY && this.incrZ) {
             for (int x = 0; x <= xMax; x++) {
                 for (int y = 0; y <= yMax; y++) {
                     for (int z = 1; z < zMax; z++) {
@@ -1245,7 +1245,7 @@ public class ConwaysCubes {
                     }
                 }
             }
-        } else if (incrX && incrY && incrZ) {
+        } else if (this.incrX && this.incrY && this.incrZ) {
             for (int x = 1; x < xMax; x++) {
                 for (int y = 1; y < yMax; y++) {
                     for (int z = 1; z < zMax; z++) {
@@ -1282,11 +1282,11 @@ public class ConwaysCubes {
         System.out.println("ALIVE NEIGHBOURS = " + checkNeighboursForInnerCube(2,2,1));
         System.out.println("STATE AT 4,3,1 = " + grid[4][3][1].getState());
         System.out.println("ALIVE NEIGHBOURS = " + countXMaxPlane(4,3,1));
-        System.out.println("STATE AT 4,4,1 = " + grid[4][4][1].getState());
-        System.out.println("ALIVE NEIGHBOURS = " + countXMaxPlane(4,4,1));
+        System.out.println("STATE AT 4,5,1 = " + grid[4][4][1].getState());
+        System.out.println("ALIVE NEIGHBOURS = " + countXMaxPlane(4,5,1));
         System.out.println("After second generation ");
         oneGeneration();
-//        printGrid();
+        printGrid();
     }
 
 }
