@@ -1286,6 +1286,11 @@ public class ConwaysCubes {
     public void test() {
         readInitialGrid();
         oneGeneration();
+        oneGeneration();
+        oneGeneration();
+        oneGeneration();
+        oneGeneration();
+        oneGeneration();
         System.out.println("Number of active cubes = " + countActiveCubes());
 //        System.out.println("After first generation ");
 //        printGrid();
