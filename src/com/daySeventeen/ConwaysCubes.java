@@ -7,8 +7,8 @@ import java.io.IOException;
 public class ConwaysCubes {
 
     Cube[][][] grid;
-    int xMax = 4;
-    int yMax = 4;
+    int xMax = 9;
+    int yMax = 9;
     int zMax = 2;
     boolean incrX = false;
     boolean incrY = false;
@@ -18,22 +18,22 @@ public class ConwaysCubes {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/initialGrid.txt"
-                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/exampleGrid.txt"
+                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/initialGrid.txt"
+//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/exampleGrid.txt"
             ));
-            grid = new Cube[5][5][3];
-            for (int i = 0; i < 5; i++) {
-                for (int j = 0; j < 5; j++){
+            grid = new Cube[xMax+1][yMax+1][zMax+1];
+            for (int i = 0; i <= xMax; i++) {
+                for (int j = 0; j <= yMax; j++){
                     grid[i][j][0] = new Cube(false);
-                    grid[i][j][2] = new Cube(false);
+                    grid[i][j][zMax] = new Cube(false);
                 }
             }
-            for (int l = 0; l < 5; l++) {
-                for (int k = 0; k < 3; k++) {
+            for (int l = 0; l <= xMax; l++) {
+                for (int k = 0; k <= zMax; k++) {
                     grid[0][l][k] = new Cube(false);
-                    grid[4][l][k] = new Cube(false);
+                    grid[xMax][l][k] = new Cube(false);
                     grid[l][0][k] = new Cube(false);
-                    grid[l][4][k] = new Cube(false);
+                    grid[l][yMax][k] = new Cube(false);
                 }
             }
             String line = reader.readLine();
@@ -1285,6 +1285,7 @@ public class ConwaysCubes {
 
     public void test() {
         readInitialGrid();
+        System.out.println("Number of active cubes = " + countActiveCubes());
         oneGeneration();
         oneGeneration();
         oneGeneration();
