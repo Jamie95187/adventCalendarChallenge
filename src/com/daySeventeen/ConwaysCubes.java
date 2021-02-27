@@ -256,7 +256,7 @@ public class ConwaysCubes {
                     if (grid[x+1][y][z+1].getState()) {
                         aliveNeighbours++;
                     }
-                    if (grid[x+1][y+1][z+1].getState()) {
+                    if (grid[x][y][z+1].getState()) {
                         aliveNeighbours++;
                     }
                 } else if (z == zMax) {
