@@ -7,8 +7,8 @@ import java.io.IOException;
 public class ConwaysCubes {
 
     Cube[][][] grid;
-    int xMax = 9;
-    int yMax = 9;
+    int xMax = 4;
+    int yMax = 4;
     int zMax = 2;
     boolean incrX = false;
     boolean incrY = false;
@@ -18,8 +18,8 @@ public class ConwaysCubes {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/initialGrid.txt"
-//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/exampleGrid.txt"
+//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/initialGrid.txt"
+                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/exampleGrid.txt"
             ));
             grid = new Cube[xMax+1][yMax+1][zMax+1];
             for (int i = 0; i <= xMax; i++) {
@@ -60,6 +60,96 @@ public class ConwaysCubes {
     }
 
     private int checkNeighboursForInnerCube(int x, int y, int z) {
+        int aliveNeighbours = 0;
+        if (x != 0 && x != xMax && y != 0 && y != yMax && z != 0 && z != zMax) {
+            // z = -1
+            if (grid[x-1][y+1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y+1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y-1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y-1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y-1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y][z-1].getState()) {
+                aliveNeighbours++;
+            }
+
+            // z = 0
+            if (grid[x-1][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+
+            // z = +1
+            if (grid[x-1][y+1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y+1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y-1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y-1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y-1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+        }
+        return aliveNeighbours;
+    }
+
+    private int testCheckNeighboursForInnerCube(int x, int y, int z, Cube[][][] grid) {
         int aliveNeighbours = 0;
         if (x != 0 && x != xMax && y != 0 && y != yMax && z != 0 && z != zMax) {
             // z = -1
@@ -1132,9 +1222,9 @@ public class ConwaysCubes {
                         }
                     } else {
                         if (countCorners(x, y, z) == 3 || countXZeroPlane(x, y, z) == 3 || countXMaxPlane(x, y, z) == 3 || countYMaxPlane(x, y, z) == 3 ||
-                                countYZeroPlane(x, y, z) == 3 || checkNeighboursForInnerCube(x, y, z) == 3 || countCorners(x, y, z) == 2 || countXZeroPlane(x, y, z) == 2
-                                || countXMaxPlane(x, y, z) == 2 || countYMaxPlane(x, y, z) == 2 || countYZeroPlane(x, y, z) == 2 || checkNeighboursForInnerCube(x, y, z) ==  2
-                                || countZZeroPlane(x, y, z) == 3 || countZMaxPlane(x, y, z) == 2) {
+                                countYZeroPlane(x, y, z) == 3 || countZZeroPlane(x, y, z) == 3 || countZMaxPlane(x, y, z) == 3 || checkNeighboursForInnerCube(x, y, z) == 3 ||
+                                countCorners(x, y, z) == 2 || countXZeroPlane(x, y, z) == 2 || countXMaxPlane(x, y, z) == 2 || countYZeroPlane(x, y, z) == 2 ||
+                                countYMaxPlane(x, y, z) == 2 || countZZeroPlane(x, y, z) == 2 || countZMaxPlane(x, y, z) == 2 || checkNeighboursForInnerCube(x, y, z) == 2) {
                             copyOfGrid[x][y][z] = new Cube(true);
                         } else {
                             copyOfGrid[x][y][z] = new Cube(false);
@@ -1307,6 +1397,42 @@ public class ConwaysCubes {
 //        System.out.println("ALIVE NEIGHBOURS = " + countXMaxPlane(4,5,1));
 //        System.out.println("After second generation ");
 //        printGrid();
+    }
+
+    public void testInnerGrid() {
+        Cube[][][] gridOne = new Cube[3][3][3];
+        for(int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+                for (int z = 0; z < 3; z++) {
+                    gridOne[x][y][z] = new Cube(false);
+                }
+            }
+        }
+        gridOne[0][0][0] = new Cube(true);
+        gridOne[2][2][2] = new Cube(true);
+        gridOne[2][2][0] = new Cube(true);
+        gridOne[0][0][2] = new Cube(true);
+
+        /* Test for grid such that
+           z = 0
+           #..
+           ...
+           ..#
+
+           z = 1
+           ...
+           ...
+           ...
+
+           z = 2
+           #..
+           ...
+           ..#
+
+           We expect the method to return 4 when we call on coordinate (1,1,1)
+        */
+
+        System.out.println(testCheckNeighboursForInnerCube(1,1,1, gridOne));
     }
 
 }
