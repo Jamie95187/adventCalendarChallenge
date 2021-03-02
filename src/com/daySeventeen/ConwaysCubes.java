@@ -7,9 +7,15 @@ import java.io.IOException;
 public class ConwaysCubes {
 
     Cube[][][] grid;
-    int xMax = 4;
-    int yMax = 4;
+
+    // For tests
+    int xMax = 2;
+    int yMax = 2;
     int zMax = 2;
+
+//    int xMax = 4;
+//    int yMax = 4;
+//    int zMax = 2;
     boolean incrX = false;
     boolean incrY = false;
     boolean incrZ = false;
@@ -1714,7 +1720,7 @@ public class ConwaysCubes {
            ...
 
            z = 1
-           .#.
+           x#.
            ##.
            ...
 
@@ -1750,15 +1756,15 @@ public class ConwaysCubes {
            z = 1
            ...
            ##.
-           .#.
+           x#.
 
            z = 2
            ...
            ##.
            ##.
 
-           We expect the method to return 11 when we call on coordinate (0,0,1)
-        */
+           We expect the method to return 11 when we call on coordinate (0,2,1)
+
            gridOne[0][1][0] = new Cube(true);
            gridOne[0][2][0] = new Cube(true);
            gridOne[1][1][0] = new Cube(true);
@@ -1766,15 +1772,119 @@ public class ConwaysCubes {
            gridOne[0][1][1] = new Cube(true);
            gridOne[1][1][1] = new Cube(true);
            gridOne[1][2][1] = new Cube(true);
-           gridOne[1][1][1] = new Cube(true);
-           gridOne[0][0][2] = new Cube(true);
            gridOne[0][1][2] = new Cube(true);
-           gridOne[1][0][2] = new Cube(true);
+           gridOne[0][2][2] = new Cube(true);
            gridOne[1][1][2] = new Cube(true);
+           gridOne[1][2][2] = new Cube(true);
 
-            
-           System.out.println(testCountXZeroPlane(0,0,1, gridOne));
 
+           System.out.println(testCountXZeroPlane(0,2,1, gridOne));
+        */
+
+        /* Test for grid such that
+           z = 0
+           ##.
+           x#.
+           ##.
+
+           z = 1
+           ##.
+           ##.
+           ##.
+
+           z = 2
+           ...
+           ...
+           ...
+
+           We expect the method to return 11 when we call on coordinate (0,1,0)
+
+           gridOne[0][0][0] = new Cube(true);
+           gridOne[0][2][0] = new Cube(true);
+           gridOne[1][0][0] = new Cube(true);
+           gridOne[1][1][0] = new Cube(true);
+           gridOne[1][2][0] = new Cube(true);
+           gridOne[0][0][1] = new Cube(true);
+           gridOne[0][1][1] = new Cube(true);
+           gridOne[0][2][1] = new Cube(true);
+           gridOne[1][0][1] = new Cube(true);
+           gridOne[1][1][1] = new Cube(true);
+           gridOne[1][2][1] = new Cube(true);
+
+           System.out.println(testCountXZeroPlane(0,1,0, gridOne));
+        */
+
+        /* Test for grid such that
+           z = 0
+           ...
+           ...
+           ...
+
+           z = 1
+           ##.
+           ##.
+           ##.
+
+           z = 2
+           ##.
+           x#.
+           ##.
+
+           We expect the method to return 11
+
+            gridOne[0][0][2] = new Cube(true);
+            gridOne[0][2][2] = new Cube(true);
+            gridOne[1][0][2] = new Cube(true);
+            gridOne[1][1][2] = new Cube(true);
+            gridOne[1][2][2] = new Cube(true);
+            gridOne[0][0][1] = new Cube(true);
+            gridOne[0][1][1] = new Cube(true);
+            gridOne[0][2][1] = new Cube(true);
+            gridOne[1][0][1] = new Cube(true);
+            gridOne[1][1][1] = new Cube(true);
+            gridOne[1][2][1] = new Cube(true);
+
+            System.out.println(testCountXZeroPlane(0,1,2, gridOne));
+        */
+
+        /* Test for grid such that
+           z = 0
+           ##.
+           ##.
+           ##.
+
+           z = 1
+           ##.
+           x#.
+           ##.
+
+           z = 2
+           ##.
+           ##.
+           ##.
+
+           We expect the method to return 17
+         */
+
+        gridOne[0][0][0] = new Cube(true);
+        gridOne[0][1][0] = new Cube(true);
+        gridOne[0][2][0] = new Cube(true);
+        gridOne[1][0][0] = new Cube(true);
+        gridOne[1][1][0] = new Cube(true);
+        gridOne[1][2][0] = new Cube(true);
+        gridOne[0][0][1] = new Cube(true);
+        gridOne[0][2][1] = new Cube(true);
+        gridOne[1][0][1] = new Cube(true);
+        gridOne[1][1][1] = new Cube(true);
+        gridOne[1][2][1] = new Cube(true);
+        gridOne[0][0][2] = new Cube(true);
+        gridOne[0][1][2] = new Cube(true);
+        gridOne[0][2][2] = new Cube(true);
+        gridOne[1][0][2] = new Cube(true);
+        gridOne[1][1][2] = new Cube(true);
+        gridOne[1][2][2] = new Cube(true);
+
+        System.out.println(testCountXZeroPlane(0,1,1, gridOne));
     }
 
 }
