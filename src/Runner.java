@@ -137,7 +137,8 @@ public class Runner {
 
     private static void taskSeventeen() {
         ConwaysCubes cc = new ConwaysCubes();
-        cc.testInnerGrid();
+//        cc.testInnerGrid();
+        cc.testXZeroPlane();
 //        cc.test();
     }
 
