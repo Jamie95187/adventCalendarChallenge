@@ -1383,31 +1383,17 @@ public class ConwaysCubes {
         oneGeneration();
         oneGeneration();
         System.out.println("Number of active cubes = " + countActiveCubes());
-//        System.out.println("After first generation ");
-//        printGrid();
-//        System.out.println("STATE AT 1,3,0 = " + grid[1][3][1].getState());
-//        System.out.println("ALIVE NEIGHBOURS = " + checkNeighboursForInnerCube(1,3,1));
-//        System.out.println("STATE AT 1,5,1 = " + grid[1][5][1].getState());
-//        System.out.println("ALIVE NEIGHBOURS = " + checkNeighboursForInnerCube(1,5,1));
-//        System.out.println("STATE AT 2,2,1 = " + grid[2][2][1].getState());
-//        System.out.println("ALIVE NEIGHBOURS = " + checkNeighboursForInnerCube(2,2,1));
-//        System.out.println("STATE AT 4,3,1 = " + grid[4][3][1].getState());
-//        System.out.println("ALIVE NEIGHBOURS = " + countXMaxPlane(4,3,1));
-//        System.out.println("STATE AT 4,5,1 = " + grid[4][4][1].getState());
-//        System.out.println("ALIVE NEIGHBOURS = " + countXMaxPlane(4,5,1));
-//        System.out.println("After second generation ");
-//        printGrid();
     }
 
     public void testInnerGrid() {
         Cube[][][] gridOne = new Cube[3][3][3];
-        for(int x = 0; x < 3; x++) {
-            for (int y = 0; y < 3; y++) {
-                for (int z = 0; z < 3; z++) {
-                    gridOne[x][y][z] = new Cube(false);
-                }
-            }
-        }
+//        for(int x = 0; x < 3; x++) {
+//            for (int y = 0; y < 3; y++) {
+//                for (int z = 0; z < 3; z++) {
+//                    gridOne[x][y][z] = new Cube(false);
+//                }
+//            }
+//        }
 //        gridOne[0][0][0] = new Cube(true);
 //        gridOne[2][2][2] = new Cube(true);
 //        gridOne[2][2][0] = new Cube(true);
@@ -1454,9 +1440,9 @@ public class ConwaysCubes {
            We expect the method to return 2 when we call on coordinate (1,1,1)
         */
 
-        gridOne[2][1][0] = new Cube(true);
-        gridOne[0][1][1] = new Cube(true);
-        gridOne[2][1][2] = new Cube(true);
+//        gridOne[2][1][0] = new Cube(true);
+//        gridOne[0][1][1] = new Cube(true);
+//        gridOne[2][1][2] = new Cube(true);
 
         /* Test for grid such that
            z = 0
@@ -1476,6 +1462,35 @@ public class ConwaysCubes {
 
            We expect the method to return 3 when we call on coordinate (1,1,1)
         */
+
+        /* Test for grid such that
+           z = 0
+           ###
+           ###
+           ###
+
+           z = 1
+           ###
+           #.#
+           ###
+
+           z = 2
+           ###
+           ###
+           ###
+
+           We expect the method to return 26 when we call on coordinate (1,1,1)
+        */
+
+        for(int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+                for (int z = 0; z < 3; z++) {
+                    gridOne[x][y][z] = new Cube(true);
+                }
+            }
+        }
+
+        gridOne[1][1][1] = new Cube(false);
 
         System.out.println(testCheckNeighboursForInnerCube(1,1,1, gridOne));
     }
