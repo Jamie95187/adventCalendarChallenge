@@ -2114,7 +2114,6 @@ public class ConwaysCubes {
            ...
 
            We expect the method to return 11
-        */
 
            gridOne[1][0][0] = new Cube(true);
            gridOne[2][0][0] = new Cube(true);
@@ -2129,7 +2128,140 @@ public class ConwaysCubes {
            gridOne[2][1][2] = new Cube(true);
 
            System.out.println(testCountXMaxPlane(2,0,1, gridOne));
+        */
 
+        /* Test for grid such that
+           z = 0
+           ...
+           .##
+           .##
+
+           z = 1
+           ...
+           .##
+           .#x
+
+           z = 2
+           ...
+           .##
+           .##
+
+        gridOne[1][1][0] = new Cube(true);
+        gridOne[1][2][0] = new Cube(true);
+        gridOne[2][1][0] = new Cube(true);
+        gridOne[2][2][0] = new Cube(true);
+        gridOne[1][1][1] = new Cube(true);
+        gridOne[1][2][1] = new Cube(true);
+        gridOne[2][1][1] = new Cube(true);
+        gridOne[1][1][2] = new Cube(true);
+        gridOne[1][2][2] = new Cube(true);
+        gridOne[2][1][2] = new Cube(true);
+        gridOne[2][2][2] = new Cube(true);
+
+        System.out.println(testCountXMaxPlane(2,2,1, gridOne));
+
+        */
+
+        /* Test for grid such that
+           z = 0
+           .##
+           .#x
+           .##
+
+           z = 1
+           .##
+           .##
+           .##
+
+           z = 2
+           ...
+           ...
+           ...
+
+        gridOne[2][0][0] = new Cube(true);
+        gridOne[2][2][0] = new Cube(true);
+        gridOne[1][0][0] = new Cube(true);
+        gridOne[1][1][0] = new Cube(true);
+        gridOne[1][2][0] = new Cube(true);
+        gridOne[1][0][1] = new Cube(true);
+        gridOne[1][1][1] = new Cube(true);
+        gridOne[1][2][1] = new Cube(true);
+        gridOne[2][0][1] = new Cube(true);
+        gridOne[2][1][1] = new Cube(true);
+        gridOne[2][2][1] = new Cube(true);
+
+        System.out.println(testCountXMaxPlane(2,1,0, gridOne));
+
+        */
+
+        /* Test for grid such that
+           z = 0
+           ...
+           ...
+           ...
+
+           z = 1
+           .##
+           .##
+           .##
+
+           z = 2
+           .##
+           .#x
+           .##
+
+        gridOne[1][0][1] = new Cube(true);
+        gridOne[1][1][1] = new Cube(true);
+        gridOne[1][2][1] = new Cube(true);
+        gridOne[2][0][1] = new Cube(true);
+        gridOne[2][1][1] = new Cube(true);
+        gridOne[2][2][1] = new Cube(true);
+        gridOne[1][0][2] = new Cube(true);
+        gridOne[1][1][2] = new Cube(true);
+        gridOne[1][2][2] = new Cube(true);
+        gridOne[2][0][2] = new Cube(true);
+        gridOne[2][2][2] = new Cube(true);
+
+        System.out.println(testCountXMaxPlane(2,1,2, gridOne));
+
+        */
+
+         /* Test for grid such that
+           z = 0
+           .##
+           .##
+           .##
+
+           z = 1
+           .##
+           .#x
+           .##
+
+           z = 2
+           .##
+           .##
+           .##
+          */
+
+        gridOne[1][0][0] = new Cube(true);
+        gridOne[1][1][0] = new Cube(true);
+        gridOne[1][2][0] = new Cube(true);
+        gridOne[2][0][0] = new Cube(true);
+        gridOne[2][1][0] = new Cube(true);
+        gridOne[2][2][0] = new Cube(true);
+        gridOne[1][0][1] = new Cube(true);
+        gridOne[1][1][1] = new Cube(true);
+        gridOne[1][2][1] = new Cube(true);
+        gridOne[2][0][1] = new Cube(true);
+        gridOne[2][2][1] = new Cube(true);
+        gridOne[1][0][2] = new Cube(true);
+        gridOne[1][1][2] = new Cube(true);
+        gridOne[1][2][2] = new Cube(true);
+        gridOne[2][0][2] = new Cube(true);
+        gridOne[2][1][2] = new Cube(true);
+        gridOne[2][2][2] = new Cube(true);
+
+        System.out.println(testCountXMaxPlane(2,1,1, gridOne));
     }
 
 }
