@@ -3199,33 +3199,6 @@ public class ConwaysCubes {
 
         /* Test for grid such that
            z = 0
-           .#x
-           .##
-           ...
-
-           z = 1
-           .##
-           .##
-           ...
-
-           z = 2
-           ...
-           ...
-           ...
-        */
-
-//        gridOne[1][0][0] = new Cube(true);
-//        gridOne[1][1][0] = new Cube(true);
-//        gridOne[2][1][0] = new Cube(true);
-//        gridOne[1][0][1] = new Cube(true);
-//        gridOne[2][0][1] = new Cube(true);
-//        gridOne[1][1][1] = new Cube(true);
-//        gridOne[2][1][1] = new Cube(true);
-//
-//        System.out.println(testCountCorners(2,0,0, gridOne));
-
-        /* Test for grid such that
-           z = 0
            ...
            ##.
            x#.
