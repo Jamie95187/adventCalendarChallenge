@@ -142,7 +142,8 @@ public class Runner {
 //        cc.testXMaxPlane();
 //        cc.testYZero();
 //        cc.testYMax();
-        cc.testZZero();
+//        cc.testZZero();
+        cc.testZMax();
 //        cc.test();
     }
 
