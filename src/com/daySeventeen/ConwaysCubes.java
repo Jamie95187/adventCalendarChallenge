@@ -1623,6 +1623,64 @@ public class ConwaysCubes {
         return aliveNeighbours;
     }
 
+    private int testCountZZeroPlane(int x, int y, int z, Cube[][][] grid) {
+        int aliveNeighbours = 0;
+        if (z == 0 && x != 0 && x != xMax && y != 0 && y != yMax) {
+            if (grid[x][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y-1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y-1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y-1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y+1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y+1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+        }
+        return aliveNeighbours;
+    }
+
     private int countZMaxPlane(int x, int y, int z) {
         int aliveNeighbours = 0;
         if (z == zMax && x != 0 && x != xMax && y != 0 && y != yMax) {
@@ -2742,5 +2800,38 @@ public class ConwaysCubes {
         gridOne[2][2][2] = new Cube(true);
 
         System.out.println(testCountYMaxPlane(1,2,1, gridOne));
+    }
+
+    public void testZZero() {
+        Cube[][][] gridOne = new Cube[3][3][3];
+        for(int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+                for (int z = 0; z < 2; z++) {
+                    gridOne[x][y][z] = new Cube(true);
+                }
+                gridOne[x][y][2] = new Cube(false);
+            }
+        }
+        /* Test for grid such that
+           z = 0
+           ###
+           #x#
+           ###
+
+           z = 1
+           ###
+           ###
+           ###
+
+           z = 2
+           ...
+           ...
+           ...
+        */
+
+        gridOne[1][1][0] = new Cube(false);
+
+
+        System.out.println(testCountZZeroPlane(1,1,0, gridOne));
     }
 }
