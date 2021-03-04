@@ -139,7 +139,9 @@ public class Runner {
         ConwaysCubes cc = new ConwaysCubes();
 //        cc.testInnerGrid();
 //        cc.testXZeroPlane();
-        cc.testXMaxPlane();
+//        cc.testXMaxPlane();
+//        cc.testYZero();
+        cc.testYMax();
 //        cc.test();
     }
 
