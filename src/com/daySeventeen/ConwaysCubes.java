@@ -1979,6 +1979,188 @@ public class ConwaysCubes {
         return aliveNeighbours;
     }
 
+    private int testCountCorners(int x, int y, int z, Cube[][][] grid) {
+        int aliveNeighbours = 0;
+        if (x == 0 && y == 0 && z == 0) {
+            if (grid[x][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y+1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+        } else if (x == 0 && y == 0 && z == zMax) {
+            if (grid[x+1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y+1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+        } else if (x == xMax && y == 0 && z == 0) {
+            if (grid[x][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y+1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+        } else if (x == 0 && y == yMax && z == 0) {
+            if (grid[x+1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y-1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y-1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+        } else if (x == 0 && y == yMax && z == zMax) {
+            if (grid[x][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y-1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x+1][y-1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+        } else if (x == xMax && y == 0 && z == zMax) {
+            if (grid[x-1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y+1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y+1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y+1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+        } else if (x == xMax && y == yMax && z == 0) {
+            if (grid[x][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y-1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y-1][z+1].getState()) {
+                aliveNeighbours++;
+            }
+        } else if (x == xMax && y == yMax && z == zMax) {
+            if (grid[x][y][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y-1][z].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x][y-1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+            if (grid[x-1][y-1][z-1].getState()) {
+                aliveNeighbours++;
+            }
+        }
+        return aliveNeighbours;
+    }
+
     public void oneGeneration() {
 
         Cube[][][] copyOfGrid = new Cube[xMax + 1][yMax + 1][zMax + 1];
@@ -2774,7 +2956,6 @@ public class ConwaysCubes {
            ...
            ...
 
-
         gridOne[0][1][0] = new Cube(true);
         gridOne[1][1][0] = new Cube(true);
         gridOne[2][1][0] = new Cube(true);
@@ -2889,7 +3070,6 @@ public class ConwaysCubes {
 
         gridOne[1][1][0] = new Cube(false);
 
-
         System.out.println(testCountZZeroPlane(1,1,0, gridOne));
     }
     public void testZMax() {
@@ -2921,7 +3101,263 @@ public class ConwaysCubes {
 
         gridOne[1][1][2] = new Cube(false);
 
-
         System.out.println(testCountZMaxPlane(1,1,2, gridOne));
+    }
+
+    public void testCorners() {
+        Cube[][][] gridOne = new Cube[3][3][3];
+        for(int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+                for (int z = 0; z < 3; z++) {
+                    gridOne[x][y][z] = new Cube(false);
+                }
+            }
+        }
+
+          /* Test for grid such that
+           z = 0
+           x#.
+           ##.
+           ...
+
+           z = 1
+           ##.
+           ##.
+           ...
+
+           z = 2
+           ...
+           ...
+           ...
+
+        gridOne[1][0][0] = new Cube(true);
+        gridOne[0][1][0] = new Cube(true);
+        gridOne[1][1][0] = new Cube(true);
+        gridOne[0][0][1] = new Cube(true);
+        gridOne[1][0][1] = new Cube(true);
+        gridOne[0][1][1] = new Cube(true);
+        gridOne[1][1][1] = new Cube(true);
+
+        System.out.println(testCountCorners(0,0,0, gridOne));
+
+        */
+
+        /* Test for grid such that
+           z = 0
+           ...
+           ...
+           ...
+
+           z = 1
+           ##.
+           ##.
+           ...
+
+           z = 2
+           x#.
+           ##.
+           ...
+
+        gridOne[1][0][2] = new Cube(true);
+        gridOne[0][1][2] = new Cube(true);
+        gridOne[1][1][2] = new Cube(true);
+        gridOne[0][0][1] = new Cube(true);
+        gridOne[1][0][1] = new Cube(true);
+        gridOne[0][1][1] = new Cube(true);
+        gridOne[1][1][1] = new Cube(true);
+
+        System.out.println(testCountCorners(0,0,2, gridOne));
+
+         */
+
+        /* Test for grid such that
+           z = 0
+           .#x
+           .##
+           ...
+
+           z = 1
+           .##
+           .##
+           ...
+
+           z = 2
+           ...
+           ...
+           ...
+
+        gridOne[1][0][0] = new Cube(true);
+        gridOne[1][1][0] = new Cube(true);
+        gridOne[2][1][0] = new Cube(true);
+        gridOne[1][0][1] = new Cube(true);
+        gridOne[2][0][1] = new Cube(true);
+        gridOne[1][1][1] = new Cube(true);
+        gridOne[2][1][1] = new Cube(true);
+
+        System.out.println(testCountCorners(2,0,0, gridOne));
+        */
+
+        /* Test for grid such that
+           z = 0
+           .#x
+           .##
+           ...
+
+           z = 1
+           .##
+           .##
+           ...
+
+           z = 2
+           ...
+           ...
+           ...
+        */
+
+//        gridOne[1][0][0] = new Cube(true);
+//        gridOne[1][1][0] = new Cube(true);
+//        gridOne[2][1][0] = new Cube(true);
+//        gridOne[1][0][1] = new Cube(true);
+//        gridOne[2][0][1] = new Cube(true);
+//        gridOne[1][1][1] = new Cube(true);
+//        gridOne[2][1][1] = new Cube(true);
+//
+//        System.out.println(testCountCorners(2,0,0, gridOne));
+
+        /* Test for grid such that
+           z = 0
+           ...
+           ##.
+           x#.
+
+           z = 1
+           ...
+           ##.
+           ##.
+
+           z = 2
+           ...
+           ...
+           ...
+        */
+
+//        gridOne[0][1][0] = new Cube(true);
+//        gridOne[1][1][0] = new Cube(true);
+//        gridOne[1][2][0] = new Cube(true);
+//        gridOne[0][1][1] = new Cube(true);
+//        gridOne[0][2][1] = new Cube(true);
+//        gridOne[1][1][1] = new Cube(true);
+//        gridOne[1][2][1] = new Cube(true);
+//
+//        System.out.println(testCountCorners(0,2,0, gridOne));
+
+         /* Test for grid such that
+           z = 0
+           ...
+           ...
+           ...
+
+           z = 1
+           ...
+           ##.
+           ##.
+
+           z = 2
+           ...
+           ##.
+           x#.
+        */
+
+//        gridOne[0][1][2] = new Cube(true);
+//        gridOne[1][1][2] = new Cube(true);
+//        gridOne[1][2][2] = new Cube(true);
+//        gridOne[0][1][1] = new Cube(true);
+//        gridOne[0][2][1] = new Cube(true);
+//        gridOne[1][1][1] = new Cube(true);
+//        gridOne[1][2][1] = new Cube(true);
+//
+//        System.out.println(testCountCorners(0,2,2, gridOne));
+
+        /* Test for grid such that
+           z = 0
+           ...
+           ...
+           ...
+
+           z = 1
+           .##
+           .##
+           ...
+
+           z = 2
+           .#x
+           .##
+           ...
+        */
+
+//        gridOne[1][0][1] = new Cube(true);
+//        gridOne[2][0][1] = new Cube(true);
+//        gridOne[1][1][1] = new Cube(true);
+//        gridOne[2][1][1] = new Cube(true);
+//        gridOne[1][0][2] = new Cube(true);
+//        gridOne[1][1][2] = new Cube(true);
+//        gridOne[2][1][2] = new Cube(true);
+//
+//        System.out.println(testCountCorners(2,0,2, gridOne));
+
+        /* Test for grid such that
+           z = 0
+           ...
+           .##
+           .#x
+
+           z = 1
+           ...
+           .##
+           .##
+
+           z = 2
+           ...
+           ...
+           ...
+        */
+
+//        gridOne[1][1][0] = new Cube(true);
+//        gridOne[1][2][0] = new Cube(true);
+//        gridOne[2][1][0] = new Cube(true);
+//        gridOne[1][1][1] = new Cube(true);
+//        gridOne[2][1][1] = new Cube(true);
+//        gridOne[1][2][1] = new Cube(true);
+//        gridOne[2][2][1] = new Cube(true);
+//
+//        System.out.println(testCountCorners(2,2,0, gridOne));
+
+        /* Test for grid such that
+           z = 0
+           ...
+           ...
+           ...
+
+           z = 1
+           ...
+           .##
+           .##
+
+           z = 2
+           ...
+           .##
+           .#x
+        */
+
+        gridOne[1][1][2] = new Cube(true);
+        gridOne[1][2][2] = new Cube(true);
+        gridOne[2][1][2] = new Cube(true);
+        gridOne[1][1][1] = new Cube(true);
+        gridOne[2][1][1] = new Cube(true);
+        gridOne[1][2][1] = new Cube(true);
+        gridOne[2][2][1] = new Cube(true);
+
+        System.out.println(testCountCorners(2,2,2, gridOne));
+
     }
 }
