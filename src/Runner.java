@@ -144,8 +144,8 @@ public class Runner {
 //        cc.testYMax();
 //        cc.testZZero();
 //        cc.testZMax();
-        cc.testCorners();
-//        cc.test();
+//        cc.testCorners();
+        cc.test();
     }
 
 }

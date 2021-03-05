@@ -9,8 +9,8 @@ public class ConwaysCubes {
     Cube[][][] grid;
 
     // For tests
-    int xMax = 2;
-    int yMax = 2;
+    int xMax = 8;
+    int yMax = 8;
     int zMax = 2;
 
 //    int xMax = 4;
@@ -24,8 +24,8 @@ public class ConwaysCubes {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/initialGrid.txt"
-                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/exampleGrid.txt"
+                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/initialGrid.txt"
+//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/exampleGrid.txt"
             ));
             grid = new Cube[xMax+1][yMax+1][zMax+1];
             for (int i = 0; i <= xMax; i++) {
