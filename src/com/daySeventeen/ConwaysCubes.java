@@ -2238,6 +2238,7 @@ public class ConwaysCubes {
                 newGrid[xMax][y][k] = new Cube(false);
             }
         }
+
         for (int x = 0; x < xMax + 1; x++) {
             for (int z = 0; z < zMax + 1; z++) {
                 newGrid[x][0][z] = new Cube(false);
