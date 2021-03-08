@@ -8,11 +8,9 @@ public class ConwaysCubes {
 
     Cube[][][] grid;
 
-    // For tests
     int xMax = 9;
     int yMax = 9;
     int zMax = 2;
-
 
     // For tests
     //    int xMax = 4;

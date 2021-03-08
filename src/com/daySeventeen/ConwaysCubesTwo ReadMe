@@ -1,0 +1,37 @@
+Second version to tackle the problem
+
+With initial data that only has one z plane of cubes
+After each generation the planes surrounding this initial z plane is symmetrical in value
+
+From the example we can see
+
+Before any cycles:
+
+z=0
+.#.
+..#
+###
+
+After 1 cycle:
+
+z=-1
+#..
+..#
+.#.
+
+z=0
+#.#
+.##
+.#.
+
+z=1
+#..
+..#
+.#.
+
+Note that plane z = -1 and z = 1 are the same.
+
+Store the grids in a 3 dimensional array such that Cube[][][].
+
+After each generation we consider the z = 0 plane separately as it depends on the value of z = 1 plane twice. When x != 0 and x != zMax (z = 0...x...zMax) these planes can x-1 and x+1 to
+find what cubes are active.
