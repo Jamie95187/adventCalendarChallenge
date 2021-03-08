@@ -9,9 +9,9 @@ public class ConwaysCubesTwo {
     Cube[][][] grid;
 
     // For example grid
-    int xMax = 2;
-    int yMax = 2;
-    int zMax = 1;
+    int xMax = 5;
+    int yMax = 5;
+    int zMax = 2;
 
     public void readInitialGrid() {
         BufferedReader reader;
@@ -30,10 +30,10 @@ public class ConwaysCubesTwo {
                 }
             }
             String line = reader.readLine();
-            int yCounter = 0;
+            int yCounter = 1;
             while(line != null) {
                 char[] charArray = line.toCharArray();
-                int xCounter = 0;
+                int xCounter = 1;
                 for (char c : charArray) {
                     if (c == '#') {
                         grid[xCounter][yCounter][0] = new Cube(true);
@@ -480,7 +480,6 @@ public class ConwaysCubesTwo {
     }
 
     public void oneGeneration() {
-
         Cube[][][] newGrid = new Cube[xMax+3][yMax+3][zMax+2];
         for (int x = 0 ; x <= xMax+2; x++) {
             for (int y = 0 ; y <= yMax+2; y++) {
@@ -492,8 +491,8 @@ public class ConwaysCubesTwo {
 
         // z = 0 plane where we consider count z+1 plane twice
 
-        for (int x = 0; x < xMax; x++) {
-            for (int y = 0; y < yMax; y++) {
+        for (int x = 0; x <= xMax; x++) {
+            for (int y = 0; y <= yMax; y++) {
                 if (!grid[x][y][0].getState()) {
                     if (countZPlane(x, y,0) + countZPlusOnePlane(x, y,0) + countZPlusOnePlane(x, y,0) == 3) {
                         newGrid[x+1][y+1][0] = new Cube(true);
@@ -508,12 +507,11 @@ public class ConwaysCubesTwo {
 
         // Where z != 0
 
-        for (int x = 0; x < xMax; x++) {
-            for (int y = 0; y < yMax; y++) {
+        for (int x = 0; x <= xMax; x++) {
+            for (int y = 0; y <= yMax; y++) {
                 for (int z = 1; z < zMax; z++) {
                     if (!grid[x][y][z].getState()) {
                         if (countZPlane(x, y, z) + countZPlusOnePlane(x, y, z) + countZMinusOnePlane(x, y, z) == 3) {
-                            System.out.println("helo");
                             newGrid[x+1][y+1][z] = new Cube(true);
                         }
                     } else {
@@ -527,8 +525,8 @@ public class ConwaysCubesTwo {
 
         grid = newGrid;
 
-        xMax = xMax + 1;
-        yMax = yMax + 1;
+        xMax = xMax + 2;
+        yMax = yMax + 2;
         zMax = zMax + 1;
 
     }
@@ -558,7 +556,24 @@ public class ConwaysCubesTwo {
     public void test() {
         readInitialGrid();
         System.out.println(countActiveCubes());
+//        for (int z = 0; z <= zMax; z++) {
+//            System.out.println("Z plane = " + z);
+//            for (int x = 0; x <= xMax; x++) {
+//                for (int y = 0; y <= yMax; y++) {
+//                    System.out.println("X = " + x + ", Y = " + y + ", STATE = " + grid[x][y][z].getState());
+//                }
+//            }
+//        }
         oneGeneration();
+        oneGeneration();
+//        for (int z = 0; z <= zMax; z++) {
+//            System.out.println("Z plane = " + z);
+//            for (int x = 0; x <= xMax; x++) {
+//                for (int y = 0; y <= yMax; y++) {
+//                    System.out.println("X = " + x + ", Y = " + y + ", STATE = " + grid[x][y][z].getState());
+//                }
+//            }
+//        }
         System.out.println(countActiveCubes());
     }
 }
