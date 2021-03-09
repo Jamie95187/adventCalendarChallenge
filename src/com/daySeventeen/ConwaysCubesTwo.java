@@ -514,8 +514,8 @@ public class ConwaysCubesTwo {
                         if (countZPlane(x, y, z) + countZPlusOnePlane(x, y, z) + countZMinusOnePlane(x, y, z) == 3) {
                             newGrid[x+1][y+1][z] = new Cube(true);
                         }
-                    } else {
-                        if (countZPlane(x, y, z) + countZPlusOnePlane(x, y, z) + countZPlusOnePlane(x, y, z) == 3 || countZPlane(x, y, z) + countZPlusOnePlane(x, y, z) + countZPlusOnePlane(x, y, z) == 2) {
+                    } else if (grid[x][y][z].getState()) {
+                        if (countZPlane(x, y, z) + countZPlusOnePlane(x, y, z) + countZMinusOnePlane(x, y, z) == 3 || countZPlane(x, y, z) + countZPlusOnePlane(x, y, z) + countZMinusOnePlane(x, y, z) == 2) {
                             newGrid[x+1][y+1][z] = new Cube(true);
                         }
                     }
@@ -556,13 +556,25 @@ public class ConwaysCubesTwo {
     public void test() {
         readInitialGrid();
         System.out.println("Before any cycles : \n");
-        printGrid();
+//        printGrid();
         oneGeneration();
         System.out.println("After one cycle : \n");
-        printGrid();
+//        printGrid();
         System.out.println("After second cycle : \n");
         oneGeneration();
-        printGrid();
+//        printGrid();
+        System.out.println(countActiveCubes());
+        oneGeneration();
+        System.out.println("After third cycle : \n");
+        oneGeneration();
+        System.out.println(countActiveCubes());
+        System.out.println("After fourth cycle : \n");
+        oneGeneration();
+        System.out.println(countActiveCubes());
+        System.out.println("After fifth cycle : \n");
+        oneGeneration();
+        System.out.println(countActiveCubes());
+        System.out.println("After sixth cycle : \n");
         System.out.println(countActiveCubes());
     }
 
