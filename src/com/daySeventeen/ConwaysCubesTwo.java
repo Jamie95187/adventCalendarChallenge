@@ -555,25 +555,25 @@ public class ConwaysCubesTwo {
 
     public void test() {
         readInitialGrid();
-        System.out.println(countActiveCubes());
-//        for (int z = 0; z <= zMax; z++) {
-//            System.out.println("Z plane = " + z);
-//            for (int x = 0; x <= xMax; x++) {
-//                for (int y = 0; y <= yMax; y++) {
-//                    System.out.println("X = " + x + ", Y = " + y + ", STATE = " + grid[x][y][z].getState());
-//                }
-//            }
-//        }
+        System.out.println("Before any cycles : \n");
+        printGrid();
         oneGeneration();
+        System.out.println("After one cycle : \n");
+        printGrid();
+        System.out.println("After second cycle : \n");
         oneGeneration();
-//        for (int z = 0; z <= zMax; z++) {
-//            System.out.println("Z plane = " + z);
-//            for (int x = 0; x <= xMax; x++) {
-//                for (int y = 0; y <= yMax; y++) {
-//                    System.out.println("X = " + x + ", Y = " + y + ", STATE = " + grid[x][y][z].getState());
-//                }
-//            }
-//        }
+        printGrid();
         System.out.println(countActiveCubes());
+    }
+
+    public void printGrid() {
+        for (int z = 0; z <= zMax; z++) {
+            System.out.println("Z plane = " + z);
+            for (int x = 0; x <= xMax; x++) {
+                for (int y = 0; y <= yMax; y++) {
+                    System.out.println("X = " + x + ", Y = " + y + ", STATE = " + grid[x][y][z].getState());
+                }
+            }
+        }
     }
 }
