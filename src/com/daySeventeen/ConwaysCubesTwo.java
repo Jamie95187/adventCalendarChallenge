@@ -9,16 +9,20 @@ public class ConwaysCubesTwo {
     Cube[][][] grid;
 
     // For example grid
-    int xMax = 5;
-    int yMax = 5;
+//    int xMax = 5;
+//    int yMax = 5;
+//    int zMax = 2;
+
+    int xMax = 10;
+    int yMax = 10;
     int zMax = 2;
 
     public void readInitialGrid() {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/initialGrid.txt"
-                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/exampleGrid.txt"
+                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/initialGrid.txt"
+//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/exampleGrid.txt"
             ));
             grid = new Cube[xMax+1][yMax+1][zMax+1];
             // Initially fill grid with inactive cubes
@@ -555,26 +559,26 @@ public class ConwaysCubesTwo {
 
     public void test() {
         readInitialGrid();
-        System.out.println("Before any cycles : \n");
-//        printGrid();
+        System.out.println("Before any cycles : ");
         oneGeneration();
-        System.out.println("After one cycle : \n");
-//        printGrid();
-        System.out.println("After second cycle : \n");
-        oneGeneration();
+        System.out.println("After one cycle : ");
 //        printGrid();
         System.out.println(countActiveCubes());
+        System.out.println("After second cycle : ");
         oneGeneration();
-        System.out.println("After third cycle : \n");
+//        printGrid();
+        System.out.println(countActiveCubes());
+        System.out.println("After third cycle : ");
         oneGeneration();
         System.out.println(countActiveCubes());
-        System.out.println("After fourth cycle : \n");
+        System.out.println("After fourth cycle : ");
         oneGeneration();
         System.out.println(countActiveCubes());
-        System.out.println("After fifth cycle : \n");
+        System.out.println("After fifth cycle : ");
         oneGeneration();
         System.out.println(countActiveCubes());
-        System.out.println("After sixth cycle : \n");
+        System.out.println("After sixth cycle : ");
+        oneGeneration();
         System.out.println(countActiveCubes());
     }
 
