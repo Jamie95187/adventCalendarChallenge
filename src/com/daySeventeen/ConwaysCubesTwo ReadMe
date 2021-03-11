@@ -35,3 +35,63 @@ Store the grids in a 3 dimensional array such that Cube[][][].
 
 After each generation we consider the z = 0 plane separately as it depends on the value of z = 1 plane twice. When x != 0 and x != zMax (z = 0...x...zMax) these planes can x-1 and x+1 to
 find what cubes are active.
+
+---- Part Two ----
+
+In the spatial dimension there will be a line of symmetry between the at w = 0. For example w = -1 and w = 1 will have the same number of active hypercubes. See the example
+
+Before any cycles:
+
+z=0, w=0
+.#.
+..#
+###
+
+After 1 cycle:
+
+z=-1, w=-1
+#..
+..#
+.#.
+
+z=0, w=-1
+#..
+..#
+.#.
+
+z=1, w=-1
+#..
+..#
+.#.
+
+z=-1, w=0
+#..
+..#
+.#.
+
+z=0, w=0
+#.#
+.##
+.#.
+
+z=1, w=0
+#..
+..#
+.#.
+
+z=-1, w=1
+#..
+..#
+.#.
+
+z=0, w=1
+#..
+..#
+.#.
+
+z=1, w=1
+#..
+..#
+.#.
+
+We can already find next generation for the space within a wth dimension. The idea is to the integrate the previous methods with new methods that contain the w dimensions.
