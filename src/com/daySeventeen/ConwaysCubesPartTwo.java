@@ -56,9 +56,21 @@ public class ConwaysCubesPartTwo {
         }
     }
 
+    public int countWMinusPlane(int x, int y, int z, int w) {
+        int activeCubes = 0;
+        activeCubes = countWPlane(x,y,z,w-1);
+        return activeCubes;
+    }
+
     public int countWPlane(int x, int y, int z, int w) {
         int activeCubes = 0;
         activeCubes = countZPlane(x,y,z,w) + countZMinusOnePlane(x,y,z,w) + countZPlusOnePlane(x,y,z,w);
+        return activeCubes;
+    }
+
+    public int countWPlusOne(int x, int y, int z, int w) {
+        int activeCubes = 0;
+        activeCubes = countWPlane(x,y,z,w+1);
         return activeCubes;
     }
 
@@ -501,7 +513,9 @@ public class ConwaysCubesPartTwo {
         for (int x = 0 ; x <= xMax+2; x++) {
             for (int y = 0 ; y <= yMax+2; y++) {
                 for (int z = 0; z <= zMax+1; z++) {
-                    newGrid[x][y][z] = new Cube(false);
+                    for (int w = 0; w <= wMax+1; w++) {
+                        newGrid[x][y][z] = new Cube(false);
+                    }
                 }
             }
         }
