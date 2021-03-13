@@ -56,8 +56,19 @@ public class ConwaysCubesPartTwo {
         }
     }
 
+    public int countWPlane(int x, int y, int z, int w) {
+        int activeCubes = 0;
+        activeCubes = countZPlane(x,y,z,w) + countZMinusOnePlane(x,y,z,w) + countZPlusOnePlane(x,y,z,w);
+        return activeCubes;
+    }
+
     public int countZPlane(int x, int y, int z, int w) {
         int activeCubes = 0;
+        if (w != 0) {
+            if (grid[x][y][z][w].getState()) {
+                activeCubes++;
+            }
+        }
         if (x == 0) {
             if (y == 0) {
                 if (grid[x+1][y][z][w].getState()) {
