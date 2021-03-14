@@ -3,6 +3,7 @@ import com.dayFifteen.MemoryGame;
 import com.dayNine.Encoding;
 import com.dayOne.*;
 import com.daySeventeen.ConwaysCubes;
+import com.daySeventeen.ConwaysCubesPartTwo;
 import com.daySeventeen.ConwaysCubesTwo;
 import com.daySixteen.TicketTranslation;
 import com.dayThirteen.ShuttleSearch;
@@ -139,7 +140,9 @@ public class Runner {
     private static void taskSeventeen() {
         ConwaysCubes cc = new ConwaysCubes();
         ConwaysCubesTwo cct = new ConwaysCubesTwo();
-        cct.test();
+        ConwaysCubesPartTwo ccpt = new ConwaysCubesPartTwo();
+//        cct.test();
+        ccpt.test();
 //        cc.testInnerGrid();
 //        cc.testXZeroPlane();
 //        cc.testXMaxPlane();
