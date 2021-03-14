@@ -520,6 +520,16 @@ public class ConwaysCubesPartTwo {
             }
         }
 
+        // w = 0 where we count w+1 twice
+
+        for (int x = 0; x <= xMax; x++) {
+            for (int y = 0; y <= yMax; y++) {
+                for (int z = 0; z <= zMax; y++) {
+
+                }
+            }
+        }
+
         // z = 0 plane where we consider count z+1 plane twice
 
         for (int x = 0; x <= xMax; x++) {
