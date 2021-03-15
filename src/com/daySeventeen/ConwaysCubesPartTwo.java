@@ -630,6 +630,8 @@ public class ConwaysCubesPartTwo {
 
     public void test() {
         readInitialGrid();
+//        printGrid();
+        oneGeneration();
         printGrid();
     }
 
