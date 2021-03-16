@@ -42,7 +42,7 @@ public class ConwaysCubesPartTwo {
                 int xCounter = 1;
                 for (char c : charArray) {
                     if (c == '#') {
-                        grid[xCounter][yCounter][1][0] = new Cube(true);
+                        grid[xCounter][yCounter][0][0] = new Cube(true);
                     }
                     xCounter++;
                 }
@@ -54,24 +54,6 @@ public class ConwaysCubesPartTwo {
                 IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public int countWMinusPlane(int x, int y, int z, int w) {
-        int activeCubes = 0;
-        activeCubes = countWPlane(x,y,z,w-1);
-        return activeCubes;
-    }
-
-    public int countWPlane(int x, int y, int z, int w) {
-        int activeCubes = 0;
-        activeCubes = countZPlane(x,y,z,w) + countZMinusOnePlane(x,y,z,w) + countZPlusOnePlane(x,y,z,w);
-        return activeCubes;
-    }
-
-    public int countWPlusOne(int x, int y, int z, int w) {
-        int activeCubes = 0;
-        activeCubes = countWPlane(x,y,z,w+1);
-        return activeCubes;
     }
 
     public int countZPlane(int x, int y, int z, int w) {
@@ -520,41 +502,32 @@ public class ConwaysCubesPartTwo {
             }
         }
 
-        // w = 0 where we count w+1 twice
+        // w = 0, z = 0 where we count w+1 twice
 
         for (int x = 0; x <= xMax; x++) {
             for (int y = 0; y <= yMax; y++) {
-                for (int z = 0; z <= zMax; y++) {
-                    if (!grid[x][y][z][0].getState()) {
-                        if (countWPlane(x,y,z,0) + countWPlusOne(x,y,z,0) + countWPlusOne(x,y,z,0) == 3) {
-                            newGrid[x+1][y+1][z+1][0] = new Cube(true);
+                if (!grid[x][y][0][0].getState()) {
+                    if (grid[x][y][0][1].getState()) {
+                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 2) {
+                            newGrid[x+1][y+1][0][0] = new Cube(true);
                         }
                     } else {
-                        if (countWPlane(x,y,z,0) + countWPlusOne(x,y,z,0) + countWPlusOne(x,y,z,0) == 3 || countWPlane(x,y,z,0) + countWPlusOne(x,y,z,0) + countWPlusOne(x,y,z,0) == 2) {
-                            newGrid[x+1][y+1][z+1][0] = new Cube(true);
+                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 3) {
+                            newGrid[x+1][y+1][0][0] = new Cube(true);
                         }
                     }
-                }
-            }
-        }
-
-        // Where w != 0
-
-        for (int x = 0; x <= xMax; x++) {
-            for (int y = 0; y <= yMax; y++) {
-                for (int z = 0; z <= zMax; z++) {
-                    for (int w = 1; w < wMax; w++) {
-                        if (!grid[x][y][z][w].getState()) {
-                            if (countWPlane(x, y, z, w) + countWPlusOne(x, y, z, w) + countWPlusOne(x, y, z, w) == 3) {
-                                newGrid[x+1][y+1][z+1][w] = new Cube(true);
-                            }
-                        } else if (grid[x][y][z][w].getState()) {
-                            if (countWPlane(x, y, z, w) + countWPlusOne(x, y, z, w) + countWMinusPlane(x, y, z, w) == 3 || countWPlane(x, y, z, w) + countWPlusOne(x, y, z, w) + countWMinusPlane(x, y, z, w) == 2) {
-                                newGrid[x+1][y+1][z+1][w] = new Cube(true);
-                            }
+                } else if (grid[x][y][0][0].getState()) {
+                    if (grid[x][y][0][1].getState()) {
+                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 2 ||
+                            countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 1) {
+                            newGrid[x+1][y+1][0][0] = new Cube(true);
+                        }
+                    } else {
+                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 3 ||
+                            countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 2) {
+                            newGrid[x+1][y+1][0][0] = new Cube(true);
                         }
                     }
-
                 }
             }
         }
