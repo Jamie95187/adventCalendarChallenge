@@ -508,23 +508,23 @@ public class ConwaysCubesPartTwo {
             for (int y = 0; y <= yMax; y++) {
                 if (!grid[x][y][0][0].getState()) {
                     if (grid[x][y][0][1].getState()) {
-                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 2) {
+                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 2) {
                             newGrid[x+1][y+1][0][0] = new Cube(true);
                         }
                     } else {
-                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 3) {
+                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 3) {
                             newGrid[x+1][y+1][0][0] = new Cube(true);
                         }
                     }
                 } else if (grid[x][y][0][0].getState()) {
                     if (grid[x][y][0][1].getState()) {
-                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 2 ||
-                            countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 1) {
+                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 2 ||
+                            countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 1) {
                             newGrid[x+1][y+1][0][0] = new Cube(true);
                         }
                     } else {
-                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 3 ||
-                            countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 2) {
+                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 3 ||
+                            countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 2) {
                             newGrid[x+1][y+1][0][0] = new Cube(true);
                         }
                     }
@@ -603,7 +603,7 @@ public class ConwaysCubesPartTwo {
 
     public void test() {
         readInitialGrid();
-//        printGrid();
+        printGrid();
         oneGeneration();
         printGrid();
     }
