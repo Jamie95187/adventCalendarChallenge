@@ -682,23 +682,23 @@ public class ConwaysCubesPartTwo {
                         if (z == 0) {
                             if (!grid[x][y][z][w].getState()) {
                                 if (activeNeighbours + countZPlusOnePlane(x,y,z,w) + countZPlusOnePlane(x,y,z,w-1) + countZPlusOnePlane(x,y,z,w+1) == 3) {
-                                    newGrid[x+1][y+1][z][0] = new Cube(true);
+                                    newGrid[x+1][y+1][z][w] = new Cube(true);
                                 }
                             } else if (grid[x][y][z][w].getState()) {
                                 if (activeNeighbours + countZPlusOnePlane(x,y,z,w) + countZPlusOnePlane(x,y,z,w-1) + countZPlusOnePlane(x,y,z,w+1) == 3 ||
                                         activeNeighbours + countZPlusOnePlane(x,y,z,w) + countZPlusOnePlane(x,y,z,w-1) + countZPlusOnePlane(x,y,z,w+1) == 2) {
-                                    newGrid[x+1][y+1][z][0] = new Cube(true);
+                                    newGrid[x+1][y+1][z][w] = new Cube(true);
                                 }
                             }
                         } else if (z != 0) {
                             if (!grid[x][y][z][w].getState()) {
                                 if (activeNeighbours + countZMinusOnePlane(x,y,z,w) + countZMinusOnePlane(x,y,z,w-1) + countZMinusOnePlane(x,y,z,w+1) == 3) {
-                                    newGrid[x+1][y+1][z][0] = new Cube(true);
+                                    newGrid[x+1][y+1][z][w] = new Cube(true);
                                 }
                             } else if (grid[x][y][z][w].getState()) {
                                 if (activeNeighbours + countZMinusOnePlane(x,y,z,w) + countZMinusOnePlane(x,y,z,w-1) + countZMinusOnePlane(x,y,z,w+1) == 3 ||
                                         activeNeighbours + countZMinusOnePlane(x,y,z,w) + countZMinusOnePlane(x,y,z,w-1) + countZMinusOnePlane(x,y,z,w+1) == 2) {
-                                    newGrid[x+1][y+1][z][0] = new Cube(true);
+                                    newGrid[x+1][y+1][z][w] = new Cube(true);
                                 }
                             }
                         }
@@ -706,40 +706,6 @@ public class ConwaysCubesPartTwo {
                 }
             }
         }
-
-        // z = 0 plane where we consider count z+1 plane twice
-
-//        for (int x = 0; x <= xMax; x++) {
-//            for (int y = 0; y <= yMax; y++) {
-//                if (!grid[x][y][0].getState()) {
-//                    if (countZPlane(x, y,0) + countZPlusOnePlane(x, y,0) + countZPlusOnePlane(x, y,0) == 3) {
-//                        newGrid[x+1][y+1][0] = new Cube(true);
-//                    }
-//                } else {
-//                    if (countZPlane(x, y,0) + countZPlusOnePlane(x, y,0) + countZPlusOnePlane(x, y,0) == 3 || countZPlane(x, y,0) + countZPlusOnePlane(x, y,0) + countZPlusOnePlane(x, y,0) == 2) {
-//                        newGrid[x+1][y+1][0] = new Cube(true);
-//                    }
-//                }
-//            }
-//        }
-
-        // Where z != 0
-
-//        for (int x = 0; x <= xMax; x++) {
-//            for (int y = 0; y <= yMax; y++) {
-//                for (int z = 1; z < zMax; z++) {
-//                    if (!grid[x][y][z].getState()) {
-//                        if (countZPlane(x, y, z) + countZPlusOnePlane(x, y, z) + countZMinusOnePlane(x, y, z) == 3) {
-//                            newGrid[x+1][y+1][z] = new Cube(true);
-//                        }
-//                    } else if (grid[x][y][z].getState()) {
-//                        if (countZPlane(x, y, z) + countZPlusOnePlane(x, y, z) + countZMinusOnePlane(x, y, z) == 3 || countZPlane(x, y, z) + countZPlusOnePlane(x, y, z) + countZMinusOnePlane(x, y, z) == 2) {
-//                            newGrid[x+1][y+1][z] = new Cube(true);
-//                        }
-//                    }
-//                }
-//            }
-//        }
 
         grid = newGrid;
 
@@ -777,8 +743,13 @@ public class ConwaysCubesPartTwo {
         readInitialGrid();
         System.out.println("BEFORE ANY GEN " + countActiveCubes());
 //        printGrid();
+//        System.out.println("Number of NEIGHBOURS AT 2,3,0,1 : ");
+//        System.out.println(countZPlaneNotInWPlane(2,3,0,1));
+//        System.out.println(countZPlusOnePlane(2,3,0,1));
         oneGeneration();
         System.out.println("AFTER ONE GEN " + countActiveCubes());
+        oneGeneration();
+        System.out.println("AFTER TWO GEN " + countActiveCubes());
 //        printGrid();
     }
 
