@@ -56,13 +56,152 @@ public class ConwaysCubesPartTwo {
         }
     }
 
-    public int countZPlane(int x, int y, int z, int w) {
+    public int countZPlaneNotInWPlane(int x, int y, int z, int w) {
         int activeCubes = 0;
-        if (w != 0) {
-            if (grid[x][y][z][w].getState()) {
-                activeCubes++;
+        if (grid[x][y][z][w].getState()) {
+            activeCubes++;
+        }
+        if (x == 0) {
+            if (y == 0) {
+                if (grid[x+1][y][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x+1][y+1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x][y+1][z][w].getState()) {
+                    activeCubes++;
+                }
+            } else if (y != 0 && y != yMax) {
+                if (grid[x][y-1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x+1][y-1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x+1][y][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x][y+1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x+1][y+1][z][w].getState()) {
+                    activeCubes++;
+                }
+            } else if (y == yMax){
+                if (grid[x+1][y][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x+1][y-1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x][y-1][z][w].getState()) {
+                    activeCubes++;
+                }
+            }
+        } else if (x != 0 && x != xMax) {
+            if (y == 0) {
+                if (grid[x-1][y][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x-1][y+1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x][y+1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x+1][y][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x+1][y+1][z][w].getState()) {
+                    activeCubes++;
+                }
+            } else if (y != 0 && y != yMax) {
+                if (grid[x-1][y-1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x][y-1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x+1][y-1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x-1][y][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x-1][y+1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x][y+1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x+1][y][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x+1][y+1][z][w].getState()) {
+                    activeCubes++;
+                }
+            } else if (y == yMax){
+                if (grid[x-1][y-1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x][y-1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x+1][y-1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x+1][y][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x-1][y][z][w].getState()) {
+                    activeCubes++;
+                }
+            }
+        } else if (x == xMax){
+            if (y == 0) {
+                if (grid[x-1][y][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x-1][y+1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x][y+1][z][w].getState()) {
+                    activeCubes++;
+                }
+            } else if (y != 0 && y != yMax) {
+                if (grid[x-1][y-1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x][y-1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x-1][y][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x-1][y+1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x][y+1][z][w].getState()) {
+                    activeCubes++;
+                }
+            } else if (y == yMax) {
+                if (grid[x-1][y-1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x][y-1][z][w].getState()) {
+                    activeCubes++;
+                }
+                if (grid[x-1][y][z][w].getState()) {
+                    activeCubes++;
+                }
             }
         }
+        return activeCubes;
+    }
+
+    public int countZPlane(int x, int y, int z, int w) {
+        int activeCubes = 0;
         if (x == 0) {
             if (y == 0) {
                 if (grid[x+1][y][z][w].getState()) {
@@ -502,30 +641,66 @@ public class ConwaysCubesPartTwo {
             }
         }
 
-        // w = 0, z = 0 where we count w+1 twice
+        // w = 0 where we count w+1 twice
 
         for (int x = 0; x <= xMax; x++) {
             for (int y = 0; y <= yMax; y++) {
-                if (!grid[x][y][0][0].getState()) {
-                    if (grid[x][y][0][1].getState()) {
-                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 2) {
-                            newGrid[x+1][y+1][0][0] = new Cube(true);
+                for (int z = 0; z < zMax; z++) {
+                    int activeNeighbours = countZPlane(x,y,z,0) + countZPlusOnePlane(x,y,z,0) + (2 * countZPlaneNotInWPlane(x,y,z,1) ) + (2 * countZPlusOnePlane(x,y,z,1) );
+                    if (z == 0) {
+                        if (!grid[x][y][z][0].getState()) {
+                            if (activeNeighbours + countZPlusOnePlane(x,y,z,0) + (2 * countZPlusOnePlane(x,y,z,1) ) == 3) {
+                                newGrid[x+1][y+1][z][0] = new Cube(true);
+                            }
+                        } else if (grid[x][y][z][0].getState()) {
+                            if (activeNeighbours + countZPlusOnePlane(x,y,z,0) + (2 *countZPlusOnePlane(x,y,z,1) ) == 3 ||
+                                    activeNeighbours + countZPlusOnePlane(x,y,z,0) + (2 * countZPlusOnePlane(x,y,z,1) )== 2) {
+                                newGrid[x+1][y+1][z][0] = new Cube(true);
+                            }
                         }
                     } else {
-                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 3) {
-                            newGrid[x+1][y+1][0][0] = new Cube(true);
+                        if (!grid[x][y][z][0].getState()) {
+                            if (activeNeighbours + countZMinusOnePlane(x,y,z,0) + (2 * countZMinusOnePlane(x,y,z,1) ) == 3) {
+                                newGrid[x+1][y+1][0][0] = new Cube(true);
+                            }
+                        } else if (grid[x][y][z][0].getState()) {
+                            if (activeNeighbours + countZMinusOnePlane(x,y,z,0) + (2 * countZMinusOnePlane(x,y,z,1) ) == 3 ||
+                                    activeNeighbours + countZMinusOnePlane(x,y,z,0) + (2 * countZMinusOnePlane(x,y,z,1) ) == 2) {
+                                newGrid[x+1][y+1][z][0] = new Cube(true);
+                            }
                         }
                     }
-                } else if (grid[x][y][0][0].getState()) {
-                    if (grid[x][y][0][1].getState()) {
-                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 2 ||
-                            countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 1) {
-                            newGrid[x+1][y+1][0][0] = new Cube(true);
-                        }
-                    } else {
-                        if (countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 3 ||
-                            countZPlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlusOnePlane(x,y,0,0) + countZPlane(x,y,0,1) + countZPlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) + countZPlusOnePlane(x,y,0,1) == 2) {
-                            newGrid[x+1][y+1][0][0] = new Cube(true);
+                }
+            }
+        }
+
+        for (int x = 0; x <= xMax; x++) {
+            for (int y = 0; y <= yMax; y++) {
+                for (int z = 0; z < zMax; z++) {
+                    for (int w = 1; w < wMax; w++) {
+                        int activeNeighbours = countZPlane(x,y,z,w) + countZPlusOnePlane(x,y,z,w) + countZPlaneNotInWPlane(x,y,z,w-1) + countZPlusOnePlane(x,y,z,w-1) + countZPlaneNotInWPlane(x,y,z,w+1) + countZPlusOnePlane(x,y,z,w+1);
+                        if (z == 0) {
+                            if (!grid[x][y][z][w].getState()) {
+                                if (activeNeighbours + countZPlusOnePlane(x,y,z,w) + countZPlusOnePlane(x,y,z,w-1) + countZPlusOnePlane(x,y,z,w+1) == 3) {
+                                    newGrid[x+1][y+1][z][0] = new Cube(true);
+                                }
+                            } else if (grid[x][y][z][w].getState()) {
+                                if (activeNeighbours + countZPlusOnePlane(x,y,z,w) + countZPlusOnePlane(x,y,z,w-1) + countZPlusOnePlane(x,y,z,w+1) == 3 ||
+                                        activeNeighbours + countZPlusOnePlane(x,y,z,w) + countZPlusOnePlane(x,y,z,w-1) + countZPlusOnePlane(x,y,z,w+1) == 2) {
+                                    newGrid[x+1][y+1][z][0] = new Cube(true);
+                                }
+                            }
+                        } else if (z != 0) {
+                            if (!grid[x][y][z][w].getState()) {
+                                if (activeNeighbours + countZMinusOnePlane(x,y,z,w) + countZMinusOnePlane(x,y,z,w-1) + countZMinusOnePlane(x,y,z,w+1) == 3) {
+                                    newGrid[x+1][y+1][z][0] = new Cube(true);
+                                }
+                            } else if (grid[x][y][z][w].getState()) {
+                                if (activeNeighbours + countZMinusOnePlane(x,y,z,w) + countZMinusOnePlane(x,y,z,w-1) + countZMinusOnePlane(x,y,z,w+1) == 3 ||
+                                        activeNeighbours + countZMinusOnePlane(x,y,z,w) + countZMinusOnePlane(x,y,z,w-1) + countZMinusOnePlane(x,y,z,w+1) == 2) {
+                                    newGrid[x+1][y+1][z][0] = new Cube(true);
+                                }
+                            }
                         }
                     }
                 }
@@ -576,23 +751,20 @@ public class ConwaysCubesPartTwo {
     }
 
     private int countActiveCubes() {
+        // Works after one generation (does not work with initial grid)
         int activeCubes = 0;
         for (int x = 0; x <= xMax; x++) {
             for (int y = 0; y <= yMax; y++) {
                 for (int z = 0; z <= zMax; z++) {
-                    if (grid[x][y][z][0].getState()) {
-                        activeCubes++;
-                    }
-                }
-            }
-        }
-        for (int x = 0; x <= xMax; x++) {
-            for (int y = 0; y <= yMax; y++) {
-                for (int z = 0; z <= zMax; z++) {
-                    for (int w = 1; w < wMax; w++) {
+                    for (int w = 0; w <= wMax; w++) {
                         if (grid[x][y][z][w].getState()) {
-                            activeCubes++;
-                            activeCubes++;
+                            if (z == 0 && w == 0) {
+                                activeCubes = activeCubes + 4;
+                            } else if (z == 0 || w == 0) {
+                                activeCubes = activeCubes + 2;
+                            } else if (z != 0 && w != 0) {
+                                activeCubes++;
+                            }
                         }
                     }
                 }
@@ -603,9 +775,11 @@ public class ConwaysCubesPartTwo {
 
     public void test() {
         readInitialGrid();
-        printGrid();
+        System.out.println("BEFORE ANY GEN " + countActiveCubes());
+//        printGrid();
         oneGeneration();
-        printGrid();
+        System.out.println("AFTER ONE GEN " + countActiveCubes());
+//        printGrid();
     }
 
     public void printGrid() {
