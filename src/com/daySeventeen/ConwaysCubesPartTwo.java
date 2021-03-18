@@ -661,7 +661,7 @@ public class ConwaysCubesPartTwo {
                     } else {
                         if (!grid[x][y][z][0].getState()) {
                             if (activeNeighbours + countZMinusOnePlane(x,y,z,0) + (2 * countZMinusOnePlane(x,y,z,1) ) == 3) {
-                                newGrid[x+1][y+1][0][0] = new Cube(true);
+                                newGrid[x+1][y+1][z][0] = new Cube(true);
                             }
                         } else if (grid[x][y][z][0].getState()) {
                             if (activeNeighbours + countZMinusOnePlane(x,y,z,0) + (2 * countZMinusOnePlane(x,y,z,1) ) == 3 ||
@@ -717,19 +717,36 @@ public class ConwaysCubesPartTwo {
     }
 
     private int countActiveCubes() {
-        // Works after one generation (does not work with initial grid)
         int activeCubes = 0;
         for (int x = 0; x <= xMax; x++) {
             for (int y = 0; y <= yMax; y++) {
-                for (int z = 0; z <= zMax; z++) {
-                    for (int w = 0; w <= wMax; w++) {
-                        if (grid[x][y][z][w].getState()) {
-                            if (z == 0 && w == 0) {
-                                activeCubes = activeCubes + 4;
-                            } else if (z == 0 || w == 0) {
-                                activeCubes = activeCubes + 2;
-                            } else if (z != 0 && w != 0) {
-                                activeCubes++;
+                for (int w = 0; w <= wMax; w++) {
+                    for (int z = 0; z <= wMax; z++) {
+                        int currentCountInWPlane = 0;
+                        if (w == 0) {
+                            if (z == 0) {
+                                if (grid[x][y][z][w].getState()) {
+                                    activeCubes++;
+                                }
+                            } else {
+                                if (grid[x][y][z][w].getState()) {
+                                    activeCubes++;
+                                    activeCubes++;
+                                }
+                            }
+                        } else if (w != 0) {
+                            if (z == 0) {
+                                if (grid[x][y][z][w].getState()) {
+                                    activeCubes++;
+                                    activeCubes++;
+                                }
+                            } else {
+                                if (grid[x][y][z][w].getState()) {
+                                    activeCubes++;
+                                    activeCubes++;
+                                    activeCubes++;
+                                    activeCubes++;
+                                }
                             }
                         }
                     }
@@ -742,14 +759,24 @@ public class ConwaysCubesPartTwo {
     public void test() {
         readInitialGrid();
         System.out.println("BEFORE ANY GEN " + countActiveCubes());
+//        System.out.println("Number of NEIGHBOURS AT 1,2,1,0 : ");
+//        System.out.println(countZMinusOnePlane(1,2,1,0));
+//        System.out.println(countZPlane(1,2,1,0) + countZPlusOnePlane(1,2,1,0) + (2 * countZPlaneNotInWPlane(1,2,1,1) ) + (2 * countZPlusOnePlane(1,2,1,1)  + countZMinusOnePlane(1,2,1,0) + (2 * countZMinusOnePlane(1,2,1,1) )));
+//        countZPlane(x,y,z,0) + countZPlusOnePlane(x,y,z,0) + (2 * countZPlaneNotInWPlane(x,y,z,1) ) + (2 * countZPlusOnePlane(x,y,z,1)
 //        printGrid();
 //        System.out.println("Number of NEIGHBOURS AT 2,3,0,1 : ");
 //        System.out.println(countZPlaneNotInWPlane(2,3,0,1));
 //        System.out.println(countZPlusOnePlane(2,3,0,1));
         oneGeneration();
         System.out.println("AFTER ONE GEN " + countActiveCubes());
+//        printGrid();
         oneGeneration();
         System.out.println("AFTER TWO GEN " + countActiveCubes());
+        oneGeneration();
+        oneGeneration();
+        oneGeneration();
+        oneGeneration();
+        System.out.println("AFTER SIX GEN " + countActiveCubes());
 //        printGrid();
     }
 
