@@ -8,21 +8,22 @@ public class ConwaysCubesPartTwo {
     Cube[][][][] grid;
 
 //     For example grid
-    int xMax = 4;
-    int yMax = 4;
+//    int xMax = 4;
+//    int yMax = 4;
+//    int zMax = 2;
+//    int wMax = 2;
+
+    int xMax = 10;
+    int yMax = 10;
     int zMax = 2;
     int wMax = 2;
-
-//    int xMax = 10;
-//    int yMax = 10;
-//    int zMax = 2;
 
     public void readInitialGrid() {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/initialGrid.txt"
-                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/exampleGrid.txt"
+                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/initialGrid.txt"
+//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/daySeventeen/exampleGrid.txt"
             ));
             grid = new Cube[xMax+1][yMax+1][zMax+1][wMax+1];
             // Initially fill grid with inactive cubes
