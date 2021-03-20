@@ -1,3 +1,4 @@
+import com.dayEighteen.OperationOperator;
 import com.dayEleven.SeatingSystem;
 import com.dayFifteen.MemoryGame;
 import com.dayNine.Encoding;
@@ -16,13 +17,15 @@ import com.daySix.*;
 import com.daySeven.*;
 import com.dayEight.*;
 import com.dayTen.Adapter;
+import jdk.dynalink.Operation;
 
+import javax.script.ScriptException;
 import java.io.IOException;
 
 public class Runner {
 
-    public static void main(String[] args) throws IOException {
-        taskSeventeen();
+    public static void main(String[] args) throws IOException, ScriptException {
+        taskEighteen();
     }
 
     private static void taskOne() {
@@ -141,17 +144,11 @@ public class Runner {
         ConwaysCubes cc = new ConwaysCubes();
         ConwaysCubesTwo cct = new ConwaysCubesTwo();
         ConwaysCubesPartTwo ccpt = new ConwaysCubesPartTwo();
-//        cct.test();
         ccpt.test();
-//        cc.testInnerGrid();
-//        cc.testXZeroPlane();
-//        cc.testXMaxPlane();
-//        cc.testYZero();
-//        cc.testYMax();
-//        cc.testZZero();
-//        cc.testZMax();
-//        cc.testCorners();
-//        cc.test();
     }
 
+    private static void taskEighteen() throws ScriptException {
+        OperationOperator oo = new OperationOperator();
+        oo.test();
+    }
 }
