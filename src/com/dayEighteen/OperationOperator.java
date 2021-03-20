@@ -15,6 +15,7 @@ public class OperationOperator {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
+                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayEighteen/exampleOperations.txt"
                     "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayEighteen/operations.txt"
             ));
             String line = reader.readLine();
