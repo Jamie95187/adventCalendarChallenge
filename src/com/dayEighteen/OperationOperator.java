@@ -43,6 +43,9 @@ public class OperationOperator {
     }
 
     public void test() throws ScriptException {
+        // Should print 26
         System.out.println(equateOperation("2 * 3 + (4 * 5)"));
+        // Should print 437
+        System.out.println(equateOperation("5 + (8 * 3 + 9 + 3 * 4 * 3)"));
     }
 }
