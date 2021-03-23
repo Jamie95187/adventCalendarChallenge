@@ -36,6 +36,9 @@ public class OperationOperator {
 
     private int equateOperation(String operation) throws ScriptException {
         int answer = 0;
+        if (operation.contains("(")) {
+            
+        }
         String[] values = operation.split(" ");
         ScriptEngineManager mgr = new ScriptEngineManager();
         ScriptEngine engine = mgr.getEngineByName("JavaScript");
@@ -49,8 +52,8 @@ public class OperationOperator {
         // Should print 26
         System.out.println(equateOperation(eq_1));
         // Should print 437
-        System.out.println(sumEquations(splitEquationIntoArray(eq_2)));
-//        System.out.println(Arrays.toString(splitEquationIntoArray(eq_2)));
+//        System.out.println(sumEquations(splitEquationIntoArray(eq_2)));
+        System.out.println(Arrays.toString(splitEquationIntoArray(eq_2)));
     }
 
     private String[] splitEquationIntoArray(String equation) {
