@@ -36,13 +36,23 @@ public class OperationOperator {
 
     private int equateOperation(String operation) throws ScriptException {
         int answer = 0;
+        System.out.println(operation);
         if (operation.contains("(")) {
-            
+            String[] values = operation.substring(1, operation.length()-1).split(" ");
+            int currentTotal = Integer.parseInt(values[0]);
+            for (int i = 1; i < values.length ; i = i+2) {
+                if (values[i].contains("*")) {
+                    currentTotal = currentTotal * Integer.parseInt(values[i+1]);
+                } else if (values[i].contains("+")) {
+                    currentTotal = currentTotal + Integer.parseInt(values[i+1]);
+                }
+            }
+            answer = currentTotal;
         }
-        String[] values = operation.split(" ");
-        ScriptEngineManager mgr = new ScriptEngineManager();
-        ScriptEngine engine = mgr.getEngineByName("JavaScript");
-        answer = (int)(engine.eval(operation));
+//        String[] values = operation.split(" ");
+//        ScriptEngineManager mgr = new ScriptEngineManager();
+//        ScriptEngine engine = mgr.getEngineByName("JavaScript");
+//        answer = (int)(engine.eval(operation));
         return answer;
     }
 
@@ -50,10 +60,11 @@ public class OperationOperator {
         String eq_1 = "2 * 3 + (4 * 5)";
         String eq_2 = "5 + (8 * 3 + 9 + 3 * 4 * 3)";
         // Should print 26
-        System.out.println(equateOperation(eq_1));
+//        System.out.println(equateOperation(eq_1));
         // Should print 437
 //        System.out.println(sumEquations(splitEquationIntoArray(eq_2)));
-        System.out.println(Arrays.toString(splitEquationIntoArray(eq_2)));
+//        System.out.println(Arrays.toString(splitEquationIntoArray(eq_2)));
+        System.out.println(sumEquations(splitEquationIntoArray(eq_2)));
     }
 
     private String[] splitEquationIntoArray(String equation) {
@@ -63,9 +74,12 @@ public class OperationOperator {
 
     private int sumEquations(String[] equationSplitIntoArray) throws ScriptException {
         int answer = 0;
-        for (int i = 0; i <= equationSplitIntoArray.length; i++) {
-            answer += equateOperation(equationSplitIntoArray[i]);
-        }
+//        for (int i = 0; i < equationSplitIntoArray.length; i++) {
+            if (equationSplitIntoArray[0].contains("+")) {
+                answer = Integer.parseInt(equationSplitIntoArray[0].split(" ")[0]) + equateOperation(equationSplitIntoArray[1]);
+            }
+//            answer += equateOperation(equationSplitIntoArray[i]);
+//        }
         return answer;
     }
 }
