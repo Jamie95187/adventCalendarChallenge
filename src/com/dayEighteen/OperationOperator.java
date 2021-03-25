@@ -36,7 +36,6 @@ public class OperationOperator {
 
     private int equateOperation(String operation) throws ScriptException {
         int answer = 0;
-        System.out.println(operation);
         if (operation.contains("(")) {
             String[] values = operation.substring(1, operation.length()-1).split(" ");
             int currentTotal = Integer.parseInt(values[0]);
@@ -60,10 +59,12 @@ public class OperationOperator {
         String eq_1 = "2 * 3 + (4 * 5)";
         String eq_2 = "5 + (8 * 3 + 9 + 3 * 4 * 3)";
         // Should print 26
-//        System.out.println(equateOperation(eq_1));
-        // Should print 437
+        System.out.println(Arrays.toString(splitEquationIntoArray(eq_1)));
+        System.out.println(sumEquations(splitEquationIntoArray(eq_1)));
+//         Should print 437
 //        System.out.println(sumEquations(splitEquationIntoArray(eq_2)));
 //        System.out.println(Arrays.toString(splitEquationIntoArray(eq_2)));
+        System.out.println(Arrays.toString(splitEquationIntoArray(eq_2)));
         System.out.println(sumEquations(splitEquationIntoArray(eq_2)));
     }
 
@@ -74,12 +75,21 @@ public class OperationOperator {
 
     private int sumEquations(String[] equationSplitIntoArray) throws ScriptException {
         int answer = 0;
-//        for (int i = 0; i < equationSplitIntoArray.length; i++) {
-            if (equationSplitIntoArray[0].contains("+")) {
-                answer = Integer.parseInt(equationSplitIntoArray[0].split(" ")[0]) + equateOperation(equationSplitIntoArray[1]);
+        for (int i = 0; i < equationSplitIntoArray.length - 1; i++) {
+            if (i == 0) {
+                if (equationSplitIntoArray[i].contains("+") && !equationSplitIntoArray[i].contains("(")) {
+                    answer = Integer.parseInt(equationSplitIntoArray[0].split(" ")[0]) + equateOperation(equationSplitIntoArray[1]);
+                } else if (equationSplitIntoArray[i].contains("*") && !equationSplitIntoArray[i].contains("(")) {
+                    answer = Integer.parseInt(equationSplitIntoArray[0].split(" ")[0]) * Integer.parseInt(equationSplitIntoArray[1].split(" ")[0]);
+                }
+            } else if (i != 0) {
+                if (equationSplitIntoArray[i].contains("+") && !equationSplitIntoArray[i].contains("(")) {
+
+                }
             }
-//            answer += equateOperation(equationSplitIntoArray[i]);
-//        }
+
+            answer += equateOperation(equationSplitIntoArray[i]);
+        }
         return answer;
     }
 }
