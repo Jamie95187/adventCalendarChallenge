@@ -58,17 +58,20 @@ public class OperationOperator {
     public void test() throws ScriptException {
         String eq_1 = "2 * 3 + (4 * 5)";
         String eq_2 = "5 + (8 * 3 + 9 + 3 * 4 * 3)";
+        String eq_3 = "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))";
         // Should print 26
         System.out.println(Arrays.toString(splitEquationIntoArray(eq_1)));
         System.out.println(sumEquations(splitEquationIntoArray(eq_1)));
 //         Should print 437
-//        System.out.println(sumEquations(splitEquationIntoArray(eq_2)));
-//        System.out.println(Arrays.toString(splitEquationIntoArray(eq_2)));
         System.out.println(Arrays.toString(splitEquationIntoArray(eq_2)));
         System.out.println(sumEquations(splitEquationIntoArray(eq_2)));
+        // Should print 12240
+        System.out.println(Arrays.toString(splitEquationIntoArray(eq_3)));
+        System.out.println(sumEquations(splitEquationIntoArray(eq_3)));
     }
 
     private String[] splitEquationIntoArray(String equation) {
+        "(\\d+\s\\+)|(\\d+\s\\*)|(?=\\d+\s\\\d+)?"
         String[] splitEquation = equation.split("(?=[0-9]+(?![^(]*\\)))|(?=\\()|(?<=\\))");
         return splitEquation;
     }
@@ -77,14 +80,24 @@ public class OperationOperator {
         int answer = 0;
         for (int i = 0; i < equationSplitIntoArray.length - 1; i++) {
             if (i == 0) {
-                if (equationSplitIntoArray[i].contains("+") && !equationSplitIntoArray[i].contains("(")) {
-                    answer = Integer.parseInt(equationSplitIntoArray[0].split(" ")[0]) + equateOperation(equationSplitIntoArray[1]);
-                } else if (equationSplitIntoArray[i].contains("*") && !equationSplitIntoArray[i].contains("(")) {
+                if (equationSplitIntoArray[i].contains("+") && !equationSplitIntoArray[i+1].contains("(")) {
+                    answer = Integer.parseInt(equationSplitIntoArray[0].split(" ")[0]) + Integer.parseInt(equationSplitIntoArray[1].split(" ")[0]);
+                } else if (equationSplitIntoArray[i].contains("*") && !equationSplitIntoArray[i+1].contains("(")) {
                     answer = Integer.parseInt(equationSplitIntoArray[0].split(" ")[0]) * Integer.parseInt(equationSplitIntoArray[1].split(" ")[0]);
+                } else if (equationSplitIntoArray[i].contains("+") && equationSplitIntoArray[i+1].contains("(")){
+                    answer = Integer.parseInt(equationSplitIntoArray[0].split(" ")[0]) + equateOperation(equationSplitIntoArray[1]);
+                } else if (equationSplitIntoArray[i].contains("*") && equationSplitIntoArray[i+1].contains("(")) {
+                    answer = Integer.parseInt(equationSplitIntoArray[0].split(" ")[0]) * equateOperation(equationSplitIntoArray[1]);
                 }
             } else if (i != 0) {
-                if (equationSplitIntoArray[i].contains("+") && !equationSplitIntoArray[i].contains("(")) {
-
+                if (equationSplitIntoArray[i].contains("+") && !equationSplitIntoArray[i+1].contains("(")) {
+                    answer = answer + Integer.parseInt(equationSplitIntoArray[i+1].split(" ")[0]);
+                } else if (equationSplitIntoArray[i].contains("*") && !equationSplitIntoArray[i+1].contains("(")) {
+                    answer = answer * Integer.parseInt(equationSplitIntoArray[i+1].split(" ")[0]);
+                } else if (equationSplitIntoArray[i].contains("+") && equationSplitIntoArray[i+1].contains("(")){
+                    answer = answer + equateOperation(equationSplitIntoArray[i+1]);
+                } else if (equationSplitIntoArray[i].contains("*") && equationSplitIntoArray[i+1].contains("(")){
+                    answer = answer * equateOperation(equationSplitIntoArray[i+1]);
                 }
             }
 
