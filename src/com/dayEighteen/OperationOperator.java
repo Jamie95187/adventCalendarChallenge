@@ -71,8 +71,17 @@ public class OperationOperator {
     }
 
     private String[] splitEquationIntoArray(String equation) {
-        "(\\d+\s\\+)|(\\d+\s\\*)|(?=\\d+\s\\\d+)?"
         String[] splitEquation = equation.split("(?=[0-9]+(?![^(]*\\)))|(?=\\()|(?<=\\))");
+        for (int i = 0; i < equation.length(); i++) {
+            int opBr = 0;
+            String operation = "";
+            char character = equation.charAt(i);
+            if (character == '(') {
+                opBr = i;
+            } else if (character == ')') {
+                
+            }
+        }
         return splitEquation;
     }
 
