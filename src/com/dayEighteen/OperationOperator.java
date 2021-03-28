@@ -109,13 +109,21 @@ public class OperationOperator {
     }
 
     private String equateOperation(String operation) {
-        int answer = 0;
+        int answer = Integer.parseInt(operation.substring(1,2));
         String[] stringArray = operation.substring(1, operation.length()).split(" ");
         for (int i = 1; i < stringArray.length - 1; i+=2) {
             if (stringArray[i].contains("+")) {
-                answer += Integer.parseInt(stringArray[i+1]);
+                if(stringArray[i+1].contains(")")) {
+                    answer += Integer.parseInt(stringArray[i+1].substring(0,1));
+                } else {
+                    answer += Integer.parseInt(stringArray[i+1]);
+                }
             } else if (stringArray[i].contains("*")) {
-                answer = answer * Integer.parseInt(stringArray[i+1]);
+                if(stringArray[i+1].contains(")")) {
+                    answer = answer * Integer.parseInt(stringArray[i+1].substring(0,1));
+                } else {
+                    answer = answer * Integer.parseInt(stringArray[i+1]);
+                }
             }
         }
         return String.valueOf(answer);
@@ -129,14 +137,13 @@ public class OperationOperator {
         }
         for (int i = 0; i < equationSplitIntoList.size(); i++) {
             if (equationSplitIntoList.get(i).contains("(")) {
-                copyOfEquationList.add(equationSplitIntoList.get(i));
+                copyOfEquationList.set(i, equateOperation(equationSplitIntoList.get(i)));
             }
         }
-        equation = copyOfEquationList.toString();
-//        for (int i = 0; i < copyOfEquationList.size(); i++) {
-//            equation += " " + copyOfEquationList.get(i);
-//        }
-        System.out.println(equation);
+        for (int i = 0; i < copyOfEquationList.size(); i++) {
+            equation += " " + copyOfEquationList.get(i);
+        }
+        equation = equation.trim();
         String[] stringArray = equation.split(" ");
         int answer = Integer.parseInt(stringArray[0]);
         for (int i = 1; i < stringArray.length - 1; i+=2) {
