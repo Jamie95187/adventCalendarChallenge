@@ -8,6 +8,7 @@ import javax.script.ScriptException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,83 +35,116 @@ public class OperationOperator {
         }
     }
 
-    private int equateOperation(String operation) throws ScriptException {
-        int answer = 0;
-        if (operation.contains("(")) {
-            String[] values = operation.substring(1, operation.length()-1).split(" ");
-            int currentTotal = Integer.parseInt(values[0]);
-            for (int i = 1; i < values.length ; i = i+2) {
-                if (values[i].contains("*")) {
-                    currentTotal = currentTotal * Integer.parseInt(values[i+1]);
-                } else if (values[i].contains("+")) {
-                    currentTotal = currentTotal + Integer.parseInt(values[i+1]);
-                }
-            }
-            answer = currentTotal;
-        }
-//        String[] values = operation.split(" ");
-//        ScriptEngineManager mgr = new ScriptEngineManager();
-//        ScriptEngine engine = mgr.getEngineByName("JavaScript");
-//        answer = (int)(engine.eval(operation));
-        return answer;
-    }
+//    private int equateOperation(String operation) throws ScriptException {
+//        int answer = 0;
+//        if (operation.contains("(")) {
+//            String[] values = operation.substring(1, operation.length()-1).split(" ");
+//            int currentTotal = Integer.parseInt(values[0]);
+//            for (int i = 1; i < values.length ; i = i+2) {
+//                if (values[i].contains("*")) {
+//                    currentTotal = currentTotal * Integer.parseInt(values[i+1]);
+//                } else if (values[i].contains("+")) {
+//                    currentTotal = currentTotal + Integer.parseInt(values[i+1]);
+//                }
+//            }
+//            answer = currentTotal;
+//        }
+////        String[] values = operation.split(" ");
+////        ScriptEngineManager mgr = new ScriptEngineManager();
+////        ScriptEngine engine = mgr.getEngineByName("JavaScript");
+////        answer = (int)(engine.eval(operation));
+//        return answer;
+//    }
 
     public void test() throws ScriptException {
         String eq_1 = "2 * 3 + (4 * 5)";
         String eq_2 = "5 + (8 * 3 + 9 + 3 * 4 * 3)";
         String eq_3 = "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))";
         // Should print 26
-        System.out.println(Arrays.toString(splitEquationIntoArray(eq_1)));
-        System.out.println(sumEquations(splitEquationIntoArray(eq_1)));
+        ArrayList<String> listOfOp = new ArrayList<>();
+        listOfOp = splitEquationIntoList(eq_1);
+//        System.out.println(eq_1.substring(0,3));
+        for (String s : listOfOp) {
+            System.out.println(s);
+        }
+        System.out.println(sumEquations(listOfOp));
 //         Should print 437
-        System.out.println(Arrays.toString(splitEquationIntoArray(eq_2)));
-        System.out.println(sumEquations(splitEquationIntoArray(eq_2)));
+//        System.out.println(Arrays.toString(splitEquationIntoArray(eq_2)));
+//        System.out.println(sumEquations(splitEquationIntoArray(eq_2)));
         // Should print 12240
-        System.out.println(Arrays.toString(splitEquationIntoArray(eq_3)));
-        System.out.println(sumEquations(splitEquationIntoArray(eq_3)));
+//        System.out.println(Arrays.toString(splitEquationIntoArray(eq_3)));
+//        System.out.println(sumEquations(splitEquationIntoArray(eq_3)));
     }
 
-    private String[] splitEquationIntoArray(String equation) {
-        String[] splitEquation = equation.split("(?=[0-9]+(?![^(]*\\)))|(?=\\()|(?<=\\))");
+    private ArrayList<String> splitEquationIntoList(String equation) {
+        ArrayList<String> listOfOperations = new ArrayList<>();
+        int opBr = 0;
+        int indexOpBr = 0;
+        int startOpIndex = 0;
+        boolean inOp = false;
+        String operation = "";
         for (int i = 0; i < equation.length(); i++) {
-            int opBr = 0;
-            String operation = "";
             char character = equation.charAt(i);
             if (character == '(') {
-                opBr = i;
+                if (opBr == 0) {
+                    indexOpBr = i;
+                }
+                opBr += 1;
             } else if (character == ')') {
-                
+                opBr--;
+                if (opBr == 0) {
+                    operation = equation.substring(indexOpBr, i+1);
+                    listOfOperations.add(operation);
+                }
+            } else if (character != ' ' && opBr == 0) {
+                if (character == '*' || character == '+') {
+                    operation = equation.substring(startOpIndex, i+1);
+                    listOfOperations.add(operation);
+                } else {
+                    startOpIndex = i;
+                }
             }
         }
-        return splitEquation;
+        return listOfOperations;
     }
 
-    private int sumEquations(String[] equationSplitIntoArray) throws ScriptException {
+    private String equateOperation(String operation) {
         int answer = 0;
-        for (int i = 0; i < equationSplitIntoArray.length - 1; i++) {
-            if (i == 0) {
-                if (equationSplitIntoArray[i].contains("+") && !equationSplitIntoArray[i+1].contains("(")) {
-                    answer = Integer.parseInt(equationSplitIntoArray[0].split(" ")[0]) + Integer.parseInt(equationSplitIntoArray[1].split(" ")[0]);
-                } else if (equationSplitIntoArray[i].contains("*") && !equationSplitIntoArray[i+1].contains("(")) {
-                    answer = Integer.parseInt(equationSplitIntoArray[0].split(" ")[0]) * Integer.parseInt(equationSplitIntoArray[1].split(" ")[0]);
-                } else if (equationSplitIntoArray[i].contains("+") && equationSplitIntoArray[i+1].contains("(")){
-                    answer = Integer.parseInt(equationSplitIntoArray[0].split(" ")[0]) + equateOperation(equationSplitIntoArray[1]);
-                } else if (equationSplitIntoArray[i].contains("*") && equationSplitIntoArray[i+1].contains("(")) {
-                    answer = Integer.parseInt(equationSplitIntoArray[0].split(" ")[0]) * equateOperation(equationSplitIntoArray[1]);
-                }
-            } else if (i != 0) {
-                if (equationSplitIntoArray[i].contains("+") && !equationSplitIntoArray[i+1].contains("(")) {
-                    answer = answer + Integer.parseInt(equationSplitIntoArray[i+1].split(" ")[0]);
-                } else if (equationSplitIntoArray[i].contains("*") && !equationSplitIntoArray[i+1].contains("(")) {
-                    answer = answer * Integer.parseInt(equationSplitIntoArray[i+1].split(" ")[0]);
-                } else if (equationSplitIntoArray[i].contains("+") && equationSplitIntoArray[i+1].contains("(")){
-                    answer = answer + equateOperation(equationSplitIntoArray[i+1]);
-                } else if (equationSplitIntoArray[i].contains("*") && equationSplitIntoArray[i+1].contains("(")){
-                    answer = answer * equateOperation(equationSplitIntoArray[i+1]);
-                }
+        String[] stringArray = operation.substring(1, operation.length()).split(" ");
+        for (int i = 1; i < stringArray.length - 1; i+=2) {
+            if (stringArray[i].contains("+")) {
+                answer += Integer.parseInt(stringArray[i+1]);
+            } else if (stringArray[i].contains("*")) {
+                answer = answer * Integer.parseInt(stringArray[i+1]);
             }
+        }
+        return String.valueOf(answer);
+    }
 
-            answer += equateOperation(equationSplitIntoArray[i]);
+    private int sumEquations(ArrayList<String> equationSplitIntoList) {
+        String equation = "";
+        ArrayList<String> copyOfEquationList = new ArrayList<>(equationSplitIntoList.size());
+        for (int i = 0; i < equationSplitIntoList.size(); i++) {
+            copyOfEquationList.add(equationSplitIntoList.get(i));
+        }
+        for (int i = 0; i < equationSplitIntoList.size(); i++) {
+            if (equationSplitIntoList.get(i).contains("(")) {
+                copyOfEquationList.add(equationSplitIntoList.get(i));
+            }
+        }
+        equation = copyOfEquationList.toString();
+//        for (int i = 0; i < copyOfEquationList.size(); i++) {
+//            equation += " " + copyOfEquationList.get(i);
+//        }
+        System.out.println(equation);
+        String[] stringArray = equation.split(" ");
+        int answer = Integer.parseInt(stringArray[0]);
+        for (int i = 1; i < stringArray.length - 1; i+=2) {
+            if (stringArray[i].contains("+")) {
+                answer += Integer.parseInt(stringArray[i+1]);
+            } else if (stringArray[i].contains("*")) {
+                answer = answer * Integer.parseInt(stringArray[i+1]);
+            }
         }
         return answer;
     }
