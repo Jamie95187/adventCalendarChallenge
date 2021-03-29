@@ -60,20 +60,23 @@ public class OperationOperator {
         String eq_1 = "2 * 3 + (4 * 5)";
         String eq_2 = "5 + (8 * 3 + 9 + 3 * 4 * 3)";
         String eq_3 = "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))";
-        // Should print 26
         ArrayList<String> listOfOp = new ArrayList<>();
+        // Should print 26
         listOfOp = splitEquationIntoList(eq_1);
-//        System.out.println(eq_1.substring(0,3));
         for (String s : listOfOp) {
             System.out.println(s);
         }
         System.out.println(sumEquations(listOfOp));
-//         Should print 437
-//        System.out.println(Arrays.toString(splitEquationIntoArray(eq_2)));
-//        System.out.println(sumEquations(splitEquationIntoArray(eq_2)));
+        // Should print 437
+        listOfOp = splitEquationIntoList(eq_2);
+        for (String s : listOfOp) {
+            System.out.println(s);
+        }
+        System.out.println(sumEquations(listOfOp));
+        
         // Should print 12240
-//        System.out.println(Arrays.toString(splitEquationIntoArray(eq_3)));
-//        System.out.println(sumEquations(splitEquationIntoArray(eq_3)));
+        listOfOp = splitEquationIntoList(eq_3);
+        System.out.println(sumEquations(listOfOp));
     }
 
     private ArrayList<String> splitEquationIntoList(String equation) {
