@@ -8,9 +8,7 @@ import javax.script.ScriptException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class OperationOperator {
 
@@ -63,19 +61,19 @@ public class OperationOperator {
         ArrayList<String> listOfOp = new ArrayList<>();
         // Should print 26
         listOfOp = splitEquationIntoList(eq_1);
-        for (String s : listOfOp) {
-            System.out.println(s);
-        }
+//        for (String s : listOfOp) {
+//            System.out.println(s);
+//        }
         System.out.println(sumEquations(listOfOp));
         // Should print 437
         listOfOp = splitEquationIntoList(eq_2);
+        System.out.println(sumEquations(listOfOp));
+
+        // Should print 12240
+        listOfOp = splitEquationIntoList(eq_3);
         for (String s : listOfOp) {
             System.out.println(s);
         }
-        System.out.println(sumEquations(listOfOp));
-        
-        // Should print 12240
-        listOfOp = splitEquationIntoList(eq_3);
         System.out.println(sumEquations(listOfOp));
     }
 
@@ -84,8 +82,10 @@ public class OperationOperator {
         int opBr = 0;
         int indexOpBr = 0;
         int startOpIndex = 0;
+        int mostRecentOpBr = 0;
         boolean inOp = false;
-        String operation = "";
+        String operation = " ";
+        LinkedList<Integer> openBrQueue = new LinkedList<>();
         for (int i = 0; i < equation.length(); i++) {
             char character = equation.charAt(i);
             if (character == '(') {
@@ -93,8 +93,10 @@ public class OperationOperator {
                     indexOpBr = i;
                 }
                 opBr += 1;
+                openBrQueue.add(i);
             } else if (character == ')') {
                 opBr--;
+                String tempOperation = equateOperation(equation.substring())
                 if (opBr == 0) {
                     operation = equation.substring(indexOpBr, i+1);
                     listOfOperations.add(operation);
