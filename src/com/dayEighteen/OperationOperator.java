@@ -1,9 +1,5 @@
 package com.dayEighteen;
 
-import com.daySeventeen.Cube;
-
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -33,72 +29,43 @@ public class OperationOperator {
         }
     }
 
-//    private int equateOperation(String operation) throws ScriptException {
-//        int answer = 0;
-//        if (operation.contains("(")) {
-//            String[] values = operation.substring(1, operation.length()-1).split(" ");
-//            int currentTotal = Integer.parseInt(values[0]);
-//            for (int i = 1; i < values.length ; i = i+2) {
-//                if (values[i].contains("*")) {
-//                    currentTotal = currentTotal * Integer.parseInt(values[i+1]);
-//                } else if (values[i].contains("+")) {
-//                    currentTotal = currentTotal + Integer.parseInt(values[i+1]);
-//                }
-//            }
-//            answer = currentTotal;
-//        }
-////        String[] values = operation.split(" ");
-////        ScriptEngineManager mgr = new ScriptEngineManager();
-////        ScriptEngine engine = mgr.getEngineByName("JavaScript");
-////        answer = (int)(engine.eval(operation));
-//        return answer;
-//    }
-
-    public void test() throws ScriptException {
+    public void test() {
         String eq_1 = "2 * 3 + (4 * 5)";
         String eq_2 = "5 + (8 * 3 + 9 + 3 * 4 * 3)";
         String eq_3 = "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))";
         ArrayList<String> listOfOp = new ArrayList<>();
+
         // Should print 26
         listOfOp = splitEquationIntoList(eq_1);
-//        for (String s : listOfOp) {
-//            System.out.println(s);
-//        }
         System.out.println(sumEquations(listOfOp));
+
         // Should print 437
         listOfOp = splitEquationIntoList(eq_2);
         System.out.println(sumEquations(listOfOp));
 
         // Should print 12240
         listOfOp = splitEquationIntoList(eq_3);
-        for (String s : listOfOp) {
-            System.out.println(s);
-        }
         System.out.println(sumEquations(listOfOp));
+
     }
 
     private ArrayList<String> splitEquationIntoList(String equation) {
         ArrayList<String> listOfOperations = new ArrayList<>();
         int opBr = 0;
-        int indexOpBr = 0;
         int startOpIndex = 0;
-        int mostRecentOpBr = 0;
-        boolean inOp = false;
+        int startOpBrIndex = 0;
         String operation = " ";
-        LinkedList<Integer> openBrQueue = new LinkedList<>();
         for (int i = 0; i < equation.length(); i++) {
             char character = equation.charAt(i);
             if (character == '(') {
                 if (opBr == 0) {
-                    indexOpBr = i;
+                    startOpBrIndex = i;
                 }
-                opBr += 1;
-                openBrQueue.add(i);
+                opBr ++;
             } else if (character == ')') {
                 opBr--;
-                String tempOperation = equateOperation(equation.substring())
                 if (opBr == 0) {
-                    operation = equation.substring(indexOpBr, i+1);
+                    operation = equation.substring(startOpBrIndex, i+1);
                     listOfOperations.add(operation);
                 }
             } else if (character != ' ' && opBr == 0) {
@@ -114,24 +81,45 @@ public class OperationOperator {
     }
 
     private String equateOperation(String operation) {
-        int answer = Integer.parseInt(operation.substring(1,2));
-        String[] stringArray = operation.substring(1, operation.length()).split(" ");
+        int answer = 0;
+        if (operation.contains("(")) {
+            operation = operation.substring(1, operation.length() - 1);
+        }
+        String[] stringArray = operation.split(" ");
+        answer = Integer.parseInt(stringArray[0]);
         for (int i = 1; i < stringArray.length - 1; i+=2) {
             if (stringArray[i].contains("+")) {
-                if(stringArray[i+1].contains(")")) {
-                    answer += Integer.parseInt(stringArray[i+1].substring(0,1));
-                } else {
-                    answer += Integer.parseInt(stringArray[i+1]);
-                }
+                answer += Integer.parseInt(stringArray[i+1]);
             } else if (stringArray[i].contains("*")) {
-                if(stringArray[i+1].contains(")")) {
-                    answer = answer * Integer.parseInt(stringArray[i+1].substring(0,1));
-                } else {
-                    answer = answer * Integer.parseInt(stringArray[i+1]);
-                }
+                answer = answer * Integer.parseInt(stringArray[i+1]);
             }
         }
         return String.valueOf(answer);
+    }
+
+    private String equateNestedParentheses(String equation) {
+        while (5 > 1) {
+            int opBr = 0;
+            String value = "test";
+            String operation = "";
+            LinkedList<Integer> openBrQueue = new LinkedList<>();
+            for (int i = 0; i < equation.length(); i++) {
+                char character = equation.charAt(i);
+                if (character == '(') {
+                    opBr++;
+                    openBrQueue.add(i);
+                } else if (character == ')') {
+                    operation = equation.substring(openBrQueue.pollLast(), i + 1);
+                    value = equateOperation(operation);
+                    opBr--;
+                    break;
+                }
+            }
+            equation = equation.replace(operation, value);
+            if (opBr == 0) {
+                return equation;
+            }
+        }
     }
 
     private int sumEquations(ArrayList<String> equationSplitIntoList) {
@@ -142,22 +130,15 @@ public class OperationOperator {
         }
         for (int i = 0; i < equationSplitIntoList.size(); i++) {
             if (equationSplitIntoList.get(i).contains("(")) {
-                copyOfEquationList.set(i, equateOperation(equationSplitIntoList.get(i)));
+                copyOfEquationList.set(i, equateNestedParentheses(equationSplitIntoList.get(i)));
             }
         }
         for (int i = 0; i < copyOfEquationList.size(); i++) {
             equation += " " + copyOfEquationList.get(i);
         }
         equation = equation.trim();
-        String[] stringArray = equation.split(" ");
-        int answer = Integer.parseInt(stringArray[0]);
-        for (int i = 1; i < stringArray.length - 1; i+=2) {
-            if (stringArray[i].contains("+")) {
-                answer += Integer.parseInt(stringArray[i+1]);
-            } else if (stringArray[i].contains("*")) {
-                answer = answer * Integer.parseInt(stringArray[i+1]);
-            }
-        }
+        int answer = Integer.parseInt(equateOperation(equation));
         return answer;
     }
+
 }
