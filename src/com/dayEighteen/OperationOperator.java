@@ -8,19 +8,20 @@ import java.util.*;
 
 public class OperationOperator {
 
-    List<String> operations;
+    ArrayList<String> operations = new ArrayList<>();
 
     public void readInitialGrid() {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayEighteen/exampleOperations.txt"
                     "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayEighteen/operations.txt"
             ));
+            int counter = 0;
             String line = reader.readLine();
             while (line != null) {
                 operations.add(line);
                 line = reader.readLine();
+                counter++;
             }
             reader.close();
         } catch (
@@ -30,11 +31,11 @@ public class OperationOperator {
     }
 
     public void test() {
-        String eq_1 = "2 * 3 + (4 * 5)";
-        String eq_2 = "5 + (8 * 3 + 9 + 3 * 4 * 3)";
-        String eq_3 = "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))";
-        String eq_4 = "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2";
-        String test_1 = "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6)";
+//        String eq_1 = "2 * 3 + (4 * 5)";
+//        String eq_2 = "5 + (8 * 3 + 9 + 3 * 4 * 3)";
+//        String eq_3 = "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))";
+//        String eq_4 = "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2";
+        String test_1 = "8 + 3 * ((3 * 7 * 3 + 4 * 5) * (6 + 8 + 9 * 7 + 6) * 9 + 5 * (5 + 4 + 4 + 4))";
         ArrayList<String> listOfOp = new ArrayList<>();
 
         // Should print 26
@@ -50,12 +51,25 @@ public class OperationOperator {
 //        System.out.println(sumEquations(listOfOp));
 
         // Should print 13632
-        listOfOp = splitEquationIntoList(eq_4);
-//        for (int i = 0; i < listOfOp.size(); i++) {
-//            System.out.println(listOfOp.get(i));
-//        }
+//        listOfOp = splitEquationIntoList(eq_4);
+//        System.out.println(sumEquations(listOfOp));
+
+        listOfOp = splitEquationIntoList(test_1);
+        for (int i = 0; i < listOfOp.size(); i++) {
+            System.out.println(listOfOp.get(i));
+        }
         System.out.println(sumEquations(listOfOp));
-//        System.out.println(equateNestedParentheses(test_1));
+    }
+
+    public void solver() {
+        long sumOfEquations = 0;
+        readInitialGrid();
+        ArrayList<String> listOfOp = new ArrayList<>();
+        for (int i = 0; i < operations.size(); i++) {
+            listOfOp = splitEquationIntoList(operations.get(i));
+            sumOfEquations += sumEquations(listOfOp);
+        }
+        System.out.println(sumOfEquations);
     }
 
     private ArrayList<String> splitEquationIntoList(String equation) {
@@ -76,7 +90,7 @@ public class OperationOperator {
             } else if (character == ')') {
                 opBr--;
                 if (opBr == 0) {
-                    if (i == equation.length()) {
+                    if (i == equation.length() - 1) {
                         operation = equation.substring(startOpBrIndex, i+1);
                     } else {
                         operation = equation.substring(startOpBrIndex, i+3);
@@ -101,7 +115,7 @@ public class OperationOperator {
     }
 
     private String equateOperation(String operation) {
-        int answer = 0;
+        long answer = 0;
         if (operation.contains("(")) {
             operation = operation.substring(1, operation.length() - 1);
         }
@@ -109,9 +123,9 @@ public class OperationOperator {
         answer = Integer.parseInt(stringArray[0]);
         for (int i = 1; i < stringArray.length - 1; i+=2) {
             if (stringArray[i].contains("+")) {
-                answer += Integer.parseInt(stringArray[i+1]);
+                answer += Long.parseLong(stringArray[i+1]);
             } else if (stringArray[i].contains("*")) {
-                answer = answer * Integer.parseInt(stringArray[i+1]);
+                answer = answer * Long.parseLong(stringArray[i+1]);
             }
         }
         return String.valueOf(answer);
@@ -142,7 +156,7 @@ public class OperationOperator {
         }
     }
 
-    private int sumEquations(ArrayList<String> equationSplitIntoList) {
+    private long sumEquations(ArrayList<String> equationSplitIntoList) {
         String equation = "";
         ArrayList<String> copyOfEquationList = new ArrayList<>(equationSplitIntoList.size());
         for (int i = 0; i < equationSplitIntoList.size(); i++) {
@@ -157,8 +171,7 @@ public class OperationOperator {
             equation += " " + copyOfEquationList.get(i);
         }
         equation = equation.trim();
-        int answer = Integer.parseInt(equateOperation(equation));
-        return answer;
+        return Long.parseLong(equateOperation(equation));
     }
 
 }
