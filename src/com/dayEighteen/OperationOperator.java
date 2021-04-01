@@ -33,20 +33,29 @@ public class OperationOperator {
         String eq_1 = "2 * 3 + (4 * 5)";
         String eq_2 = "5 + (8 * 3 + 9 + 3 * 4 * 3)";
         String eq_3 = "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))";
+        String eq_4 = "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2";
+        String test_1 = "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6)";
         ArrayList<String> listOfOp = new ArrayList<>();
 
         // Should print 26
-        listOfOp = splitEquationIntoList(eq_1);
-        System.out.println(sumEquations(listOfOp));
+//        listOfOp = splitEquationIntoList(eq_1);
+//        System.out.println(sumEquations(listOfOp));
 
         // Should print 437
-        listOfOp = splitEquationIntoList(eq_2);
-        System.out.println(sumEquations(listOfOp));
+//        listOfOp = splitEquationIntoList(eq_2);
+//        System.out.println(sumEquations(listOfOp));
 
         // Should print 12240
-        listOfOp = splitEquationIntoList(eq_3);
-        System.out.println(sumEquations(listOfOp));
+//        listOfOp = splitEquationIntoList(eq_3);
+//        System.out.println(sumEquations(listOfOp));
 
+        // Should print 13632
+        listOfOp = splitEquationIntoList(eq_4);
+//        for (int i = 0; i < listOfOp.size(); i++) {
+//            System.out.println(listOfOp.get(i));
+//        }
+        System.out.println(sumEquations(listOfOp));
+//        System.out.println(equateNestedParentheses(test_1));
     }
 
     private ArrayList<String> splitEquationIntoList(String equation) {
@@ -55,26 +64,37 @@ public class OperationOperator {
         int startOpIndex = 0;
         int startOpBrIndex = 0;
         String operation = " ";
+        boolean inBr = false;
         for (int i = 0; i < equation.length(); i++) {
             char character = equation.charAt(i);
             if (character == '(') {
                 if (opBr == 0) {
                     startOpBrIndex = i;
                 }
+                inBr = true;
                 opBr ++;
             } else if (character == ')') {
                 opBr--;
                 if (opBr == 0) {
-                    operation = equation.substring(startOpBrIndex, i+1);
+                    if (i == equation.length()) {
+                        operation = equation.substring(startOpBrIndex, i+1);
+                    } else {
+                        operation = equation.substring(startOpBrIndex, i+3);
+                        i = i + 2;
+                    }
+                    inBr = false;
                     listOfOperations.add(operation);
                 }
-            } else if (character != ' ' && opBr == 0) {
+            } else if (character != ' ' && opBr == 0 && !inBr) {
                 if (character == '*' || character == '+') {
                     operation = equation.substring(startOpIndex, i+1);
                     listOfOperations.add(operation);
                 } else {
                     startOpIndex = i;
                 }
+            }
+            if (i == equation.length()-1 && character != ')') {
+                listOfOperations.add(equation.substring(startOpIndex));
             }
         }
         return listOfOperations;
@@ -98,7 +118,7 @@ public class OperationOperator {
     }
 
     private String equateNestedParentheses(String equation) {
-        while (5 > 1) {
+        while (2 > 1) {
             int opBr = 0;
             String value = "test";
             String operation = "";
