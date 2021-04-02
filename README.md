@@ -1836,10 +1836,10 @@ Parentheses can override this order; for example, here is what happens if parent
 ```
 Here are a few more examples:
 
-    2 * 3 + (4 * 5) becomes 26.
-    5 + (8 * 3 + 9 + 3 * 4 * 3) becomes 437.
-    5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4)) becomes 12240.
-    ((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2 becomes 13632.
+- `2 * 3 + (4 * 5)` becomes `26`.
+- `5 + (8 * 3 + 9 + 3 * 4 * 3)` becomes `437`.
+- `5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))` becomes `12240`.
+- `((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2` becomes `13632`.
 
 Before you can help with the homework, you need to understand it yourself. Evaluate the expression on each line of the homework; what is the sum of the resulting values?
 
@@ -1859,13 +1859,12 @@ For example, the steps to evaluate the expression `1 + 2 * 3 + 4 * 5 + 6` are no
 231
 ```
 Here are the other examples from above:
-```
-    1 + (2 * 3) + (4 * (5 + 6)) still becomes 51.
-    2 * 3 + (4 * 5) becomes 46.
-    5 + (8 * 3 + 9 + 3 * 4 * 3) becomes 1445.
-    5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4)) becomes 669060.
-    ((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2 becomes 23340.
-```
+
+- `1 + (2 * 3) + (4 * (5 + 6))` still becomes `51`.
+- `2 * 3 + (4 * 5)` becomes `46`.
+- `5 + (8 * 3 + 9 + 3 * 4 * 3)` becomes `1445`.
+- `5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))` becomes `669060`.
+- `((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2` becomes `23340`.
 
 What do you get if you add up the results of evaluating the homework problems using these new rules?
 

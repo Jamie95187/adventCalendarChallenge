@@ -35,7 +35,9 @@ public class OperationOperator {
 //        String eq_2 = "5 + (8 * 3 + 9 + 3 * 4 * 3)";
 //        String eq_3 = "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))";
 //        String eq_4 = "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2";
-        String test_1 = "8 + 3 * ((3 * 7 * 3 + 4 * 5) * (6 + 8 + 9 * 7 + 6) * 9 + 5 * (5 + 4 + 4 + 4))";
+//        String test_1 = "8 + 3 * ((3 * 7 * 3 + 4 * 5) * (6 + 8 + 9 * 7 + 6) * 9 + 5 * (5 + 4 + 4 + 4))";
+//        String test_2 = "(8 * 3 + 9 + 3 * 4 * 3)";
+        String eq_5 = "1 + (2 * 3) + (4 * (5 + 6))";
         ArrayList<String> listOfOp = new ArrayList<>();
 
         // Should print 26
@@ -54,17 +56,26 @@ public class OperationOperator {
 //        listOfOp = splitEquationIntoList(eq_4);
 //        System.out.println(sumEquations(listOfOp));
 
-        listOfOp = splitEquationIntoList(test_1);
-        for (int i = 0; i < listOfOp.size(); i++) {
-            System.out.println(listOfOp.get(i));
-        }
+//        listOfOp = splitEquationIntoList(test_1);
+//        for (int i = 0; i < listOfOp.size(); i++) {
+//            System.out.println(listOfOp.get(i));
+//        }
+//        System.out.println(sumEquations(listOfOp));
+
+//        equateOperation(test_2);
+
+        // Should print 51
+        listOfOp = splitEquationIntoList(eq_5);
+//        for (int i = 0; i < listOfOp.size(); i++) {
+//            System.out.println(listOfOp.get(i));
+//        }
         System.out.println(sumEquations(listOfOp));
     }
 
     public void solver() {
         long sumOfEquations = 0;
         readInitialGrid();
-        ArrayList<String> listOfOp = new ArrayList<>();
+        ArrayList<String> listOfOp;
         for (int i = 0; i < operations.size(); i++) {
             listOfOp = splitEquationIntoList(operations.get(i));
             sumOfEquations += sumEquations(listOfOp);
@@ -115,18 +126,52 @@ public class OperationOperator {
     }
 
     private String equateOperation(String operation) {
-        long answer = 0;
+        long answer = 1;
         if (operation.contains("(")) {
             operation = operation.substring(1, operation.length() - 1);
         }
         String[] stringArray = operation.split(" ");
-        answer = Integer.parseInt(stringArray[0]);
-        for (int i = 1; i < stringArray.length - 1; i+=2) {
+
+        // Part One
+//        answer = Integer.parseInt(stringArray[0]);
+//        for (int i = 1; i < stringArray.length - 1; i+=2) {
+//            if (stringArray[i].contains("+")) {
+//                answer += Long.parseLong(stringArray[i+1]);
+//            } else if (stringArray[i].contains("*")) {
+//                answer = answer * Long.parseLong(stringArray[i+1]);
+//            }
+//        }
+
+        // Part Two
+        String operationForPartTwo = "";
+        String[] copyOfArr = new String[stringArray.length];
+        long currentTotal = Long.parseLong(stringArray[0]) ;
+        for (int i = 1; i < stringArray.length - 1; i = i+2) {
             if (stringArray[i].contains("+")) {
-                answer += Long.parseLong(stringArray[i+1]);
-            } else if (stringArray[i].contains("*")) {
-                answer = answer * Long.parseLong(stringArray[i+1]);
+                currentTotal += Long.parseLong(stringArray[i+1]);
+                if (i == stringArray.length-2) {
+                    copyOfArr[i+1] = String.valueOf(currentTotal);
+                }
+            } else {
+                if (i == stringArray.length-2) {
+                    copyOfArr[i+1] = stringArray[i+1];
+                }
+                copyOfArr[i] = stringArray[i];
+                copyOfArr[i-1] = String.valueOf(currentTotal);
+                currentTotal = Long.parseLong(stringArray[i+1]);
             }
+        }
+
+        for (int i = 0; i < copyOfArr.length; i++) {
+            if (copyOfArr[i] != null) {
+                operationForPartTwo += copyOfArr[i] + " ";
+            }
+        }
+
+        operationForPartTwo = operationForPartTwo.trim();
+        String[] arrayWithOnlyMultipliers = operationForPartTwo.split(" ");
+        for (int i = 0; i < arrayWithOnlyMultipliers.length; i = i+2 ) {
+            answer = answer * Long.parseLong(arrayWithOnlyMultipliers[i]);
         }
         return String.valueOf(answer);
     }

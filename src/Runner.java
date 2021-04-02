@@ -149,7 +149,7 @@ public class Runner {
 
     private static void taskEighteen() throws ScriptException {
         OperationOperator oo = new OperationOperator();
-//        oo.test();
-        oo.solver();
+        oo.test();
+//        oo.solver();
     }
 }
