@@ -38,6 +38,7 @@ public class OperationOperator {
 //        String test_1 = "8 + 3 * ((3 * 7 * 3 + 4 * 5) * (6 + 8 + 9 * 7 + 6) * 9 + 5 * (5 + 4 + 4 + 4))";
 //        String test_2 = "(8 * 3 + 9 + 3 * 4 * 3)";
         String eq_5 = "1 + (2 * 3) + (4 * (5 + 6))";
+        String eq_6 = "2 * 3 + (4 * 5)";
         ArrayList<String> listOfOp = new ArrayList<>();
 
         // Should print 26
@@ -69,6 +70,10 @@ public class OperationOperator {
 //        for (int i = 0; i < listOfOp.size(); i++) {
 //            System.out.println(listOfOp.get(i));
 //        }
+        System.out.println(sumEquations(listOfOp));
+
+        // Should print 46
+        listOfOp = splitEquationIntoList(eq_6);
         System.out.println(sumEquations(listOfOp));
     }
 
