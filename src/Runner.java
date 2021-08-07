@@ -2,6 +2,7 @@ import com.dayEighteen.OperationOperator;
 import com.dayEleven.SeatingSystem;
 import com.dayFifteen.MemoryGame;
 import com.dayNine.Encoding;
+import com.dayNineteen.MonsterMessage;
 import com.dayOne.*;
 import com.daySeventeen.ConwaysCubes;
 import com.daySeventeen.ConwaysCubesPartTwo;
@@ -25,7 +26,7 @@ import java.io.IOException;
 public class Runner {
 
     public static void main(String[] args) throws IOException, ScriptException {
-        taskEighteen();
+        taskNineteen();
     }
 
     private static void taskOne() {
@@ -151,5 +152,10 @@ public class Runner {
         OperationOperator oo = new OperationOperator();
 //        oo.test();
         oo.solver();
+    }
+
+    private static void taskNineteen() {
+        MonsterMessage mm = new MonsterMessage();
+        System.out.println(mm.solver());
     }
 }
