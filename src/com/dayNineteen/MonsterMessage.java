@@ -25,14 +25,13 @@ public class MonsterMessage {
         }
     }
 
-    public String solver() {
+    public int solver() {
         HashMap<Integer, String> hmap = new HashMap<>();
-        hmap.put(0, "1");
-        hmap.put(1, "3");
-        hmap.put(2, "4");
-        hmap.put(3, "a");
-        hmap.put(4, "b");
-        return hmap.get(Integer.parseInt(hmap.get(Integer.parseInt(hmap.get(0)))));
+        hmap.put(0, "1 2");
+        hmap.put(1, "a");
+        hmap.put(2, "1 3 | 3 1");
+        hmap.put(3, "b");
+        return 2;
     }
 
 }
