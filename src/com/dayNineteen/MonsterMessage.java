@@ -31,6 +31,7 @@ public class MonsterMessage {
         hmap.put(1, "a");
         hmap.put(2, "1 3 | 3 1");
         hmap.put(3, "b");
+        hmap.put(4, "1 4 | 2 1");
         return 2;
     }
 
