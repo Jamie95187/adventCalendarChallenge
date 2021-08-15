@@ -31,8 +31,20 @@ public class MonsterMessage {
         hmap.put(1, "a");
         hmap.put(2, "1 3 | 3 1");
         hmap.put(3, "b");
-        hmap.put(4, "1 4 | 2 1");
-        return 2;
+        int counter = 0;
+        int firstMessageIndex = Integer.parseInt(hmap.get(0).split(" ")[0]);
+        int secondMessageIndex = Integer.parseInt(hmap.get(0).split(" ")[1]);
+        if (hmap.get(firstMessageIndex) == "a") {
+            counter++;
+        }
+        String message = hmap.get(secondMessageIndex);
+        String firstHalfMessage = message.split("\\|")[0];
+        String secondHalfMessage = message.split("\\|")[1];
+        if ( hmap.get(Integer.parseInt(firstHalfMessage.split(" ")[0])) == "a" && hmap.get(Integer.parseInt(firstHalfMessage.split(" ")[1])) == "b"
+                || hmap.get(Integer.parseInt(secondHalfMessage.split(" ")[0])) == "b" && hmap.get(Integer.parseInt(secondHalfMessage.split(" ")[1])) == "a") {
+            counter++;
+        }
+        return counter;
     }
 
 }

@@ -157,6 +157,6 @@ public class Runner {
     private static void taskNineteen() {
         MonsterMessage mm = new MonsterMessage();
         System.out.println(mm.solver());
-        mm.readMessages();
+//        mm.readMessages();
     }
 }
