@@ -14,8 +14,10 @@ public class MonsterMessage {
                     "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayNineteen/messageData.txt"
             ));
             String line = reader.readLine();
+            int counter = 0;
             while (line != null) {
                 line = reader.readLine();
+                counter++;
                 System.out.println(line);
             }
             reader.close();
