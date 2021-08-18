@@ -3,9 +3,12 @@ package com.dayNineteen;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MonsterMessage {
+
+    private ArrayList<String> messages = new ArrayList<> (129);
 
     public void readMessages() {
         BufferedReader reader;
@@ -17,6 +20,7 @@ public class MonsterMessage {
             int counter = 1;
             while (line != null && counter < 130) {
                 line = reader.readLine();
+                messages.set(Integer.parseInt(line.substring(0, line.indexOf(':')+1), line.substring(line.indexOf(':')));
                 System.out.println(line);
                 counter++;
             }
