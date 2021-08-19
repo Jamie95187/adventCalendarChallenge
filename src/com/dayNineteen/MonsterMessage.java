@@ -20,7 +20,7 @@ public class MonsterMessage {
             int counter = 1;
             while (line != null && counter < 130) {
                 line = reader.readLine();
-                messages.set(Integer.parseInt(line.substring(0, line.indexOf(':')+1), line.substring(line.indexOf(':')));
+                messages.set(Integer.parseInt(line.substring(0, line.indexOf(':')+1)), line.substring(line.indexOf(':')));
                 System.out.println(line);
                 counter++;
             }
