@@ -11,6 +11,9 @@ public class MonsterMessage {
     private ArrayList<String> messages = new ArrayList<> (129);
 
     public void readMessages() {
+        for (int i = 0; i < 129; i++) {
+            messages.add("");
+        }
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
@@ -18,10 +21,9 @@ public class MonsterMessage {
             ));
             String line = reader.readLine();
             int counter = 1;
-            while (line != null && counter < 130) {
+            while (line != null && counter < 129) {
                 line = reader.readLine();
-                messages.set(Integer.parseInt(line.substring(0, line.indexOf(':')+1)), line.substring(line.indexOf(':')));
-                System.out.println(line);
+                messages.add(Integer.parseInt(line.substring(0, line.indexOf(':'))), line.substring(line.indexOf(':')+1).trim());
                 counter++;
             }
             reader.close();
@@ -51,6 +53,12 @@ public class MonsterMessage {
             counter++;
         }
         return counter;
+    }
+
+    public void printMessages() {
+        for (int i = 0; i < messages.size(); i++) {
+            System.out.println(messages.get(i));
+        }
     }
 
 }
