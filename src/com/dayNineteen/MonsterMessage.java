@@ -9,10 +9,12 @@ import java.util.HashMap;
 public class MonsterMessage {
 
     private ArrayList<String> messages = new ArrayList<> (129);
+    private ArrayList<String> decryptedMessage = new ArrayList<> (129);
 
     public void readMessages() {
         for (int i = 0; i < 129; i++) {
             messages.add("");
+            decryptedMessage.add("");
         }
         BufferedReader reader;
         try {
@@ -53,6 +55,18 @@ public class MonsterMessage {
             counter++;
         }
         return counter;
+    }
+
+    public void iterator(int index) {
+        String message = messages.get(index);
+        if (!message.equals("a") | !message.equals("b")) {
+            if (message.contains("|")) {
+                String firstHalfMessage = message.split("\\|")[0];
+                String secondHalfMessage = message.split("\\|")[1];
+            } else {
+
+            }
+        }
     }
 
     public void printMessages() {
