@@ -63,8 +63,10 @@ public class MonsterMessage {
             if (message.contains("|")) {
                 String firstHalfMessage = message.split("\\|")[0];
                 String secondHalfMessage = message.split("\\|")[1];
+                String[] firstMessageArr = firstHalfMessage.split(" ");
+                String[] secondMessageArr = secondHalfMessage.split(" ");
             } else {
-
+                decryptedMessage.set(index, message);
             }
         }
     }
