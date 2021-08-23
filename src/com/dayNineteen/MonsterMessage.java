@@ -10,6 +10,8 @@ public class MonsterMessage {
 
     private ArrayList<String> messages = new ArrayList<> (129);
     private ArrayList<String> decryptedMessage = new ArrayList<> (129);
+    int indexForA;
+    int indexForB;
 
     public void readMessages() {
         for (int i = 0; i < 129; i++) {
@@ -58,15 +60,26 @@ public class MonsterMessage {
     }
 
     public void iterator(int index) {
-        String message = messages.get(index);
-        if (!message.equals("a") | !message.equals("b")) {
-            if (message.contains("|")) {
-                String firstHalfMessage = message.split("\\|")[0];
-                String secondHalfMessage = message.split("\\|")[1];
-                String[] firstMessageArr = firstHalfMessage.split(" ");
+        String fullMessage = messages.get(index);
+        if (!fullMessage.equals("a") | !fullMessage.equals("b")) {
+            if (fullMessage.contains("|")) {
+                String[] messageSplit = fullMessage.split(" | ");
+                for (String m : messageSplit) {
+                    String[] individualMessage = m.split(" ");
+                    if (!m.trim().contains("a") | !m.trim().contains("b")) {
+
+                    }
+                }
+
                 String[] secondMessageArr = secondHalfMessage.split(" ");
             } else {
-                decryptedMessage.set(index, message);
+                if (fullMessage.contains("a")) {
+                    indexForA = index;
+                }
+                if (fullMessage.contains("b")) {
+                    indexForB = index;
+                }
+                decryptedMessage.set(index, fullMessage);
             }
         }
     }
