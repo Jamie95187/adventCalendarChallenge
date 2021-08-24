@@ -60,13 +60,27 @@ public class MonsterMessage {
     }
 
     public void iterator(int index) {
+        ArrayList<String> decrpytMessage = new ArrayList<>();
         String fullMessage = messages.get(index);
-        if (!fullMessage.equals("a") | !fullMessage.equals("b")) {
+        if (!fullMessage.trim().contains("a") | fullMessage.trim().contains("b")) {
             if (fullMessage.contains("|")) {
                 String[] messageSplit = fullMessage.split(" | ");
                 for (String m : messageSplit) {
-                    String[] individualMessage = m.split(" ");
-                    if (!m.trim().contains("a") | !m.trim().contains("b")) {
+                    String[] individualMessage = m.trim().split(" ");
+                        for (String i : individualMessage) {
+                            if (!i.contains("a") | i.contains("b")) {
+                                String messageAtI = messages.get(Integer.parseInt(i));
+                                String[] splitMessageAtI = messageAtI.split(" | ");
+                                for (String s : splitMessageAtI) {
+                                    
+                                }
+
+                            }
+
+
+
+                        }
+                    if (!individualMessage.trim().contains("a") | individualMessage.trim().contains("b")) {
 
                     }
                 }
