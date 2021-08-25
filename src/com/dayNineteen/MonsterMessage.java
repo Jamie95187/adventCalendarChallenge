@@ -8,10 +8,10 @@ import java.util.HashMap;
 
 public class MonsterMessage {
 
-    private ArrayList<Rule> messages = new ArrayList<> (129);
+    private ArrayList<Rule> messages = new ArrayList<> (130);
 
     public void readMessages() {
-        for (int i = 0; i < 129; i++) {
+        for (int i = 0; i < 130; i++) {
             messages.add(new Rule(""));
         }
         BufferedReader reader;
@@ -21,8 +21,7 @@ public class MonsterMessage {
             ));
             String line = reader.readLine();
             int counter = 1;
-            while (line != null && counter < 129) {
-                line = reader.readLine();
+            while (line != null && counter < 130) {
                 int index = Integer.parseInt(line.substring(0, line.indexOf(':')));
                 System.out.println(line);
                 if (line.contains("|")) {
@@ -32,6 +31,7 @@ public class MonsterMessage {
                     messages.get(index).setLeftRule(line.substring(line.indexOf(':')+1));
                 }
                 counter++;
+                line = reader.readLine();
             }
             reader.close();
         } catch (
