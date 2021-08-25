@@ -8,15 +8,12 @@ import java.util.HashMap;
 
 public class MonsterMessage {
 
-    private ArrayList<String> messages = new ArrayList<> (129);
-    private ArrayList<String> decryptedMessage = new ArrayList<> (129);
-    int indexForA;
-    int indexForB;
+    private ArrayList<Rule> messages = new ArrayList<> (129);
+    String rule0 = "";
 
     public void readMessages() {
         for (int i = 0; i < 129; i++) {
-            messages.add("");
-            decryptedMessage.add("");
+            messages.add(new Rule(""));
         }
         BufferedReader reader;
         try {
@@ -27,7 +24,16 @@ public class MonsterMessage {
             int counter = 1;
             while (line != null && counter < 129) {
                 line = reader.readLine();
-                messages.add(Integer.parseInt(line.substring(0, line.indexOf(':'))), line.substring(line.indexOf(':')+1).trim());
+                int index = Integer.parseInt(line.substring(0, line.indexOf(':')));
+                if (index == 0) {
+                    this.rule0 = line.substring(line.indexOf(':')+1).trim();
+                }
+                if (line.contains("\\|")) {
+                    messages.get(index).setLeftRule(line.substring(line.indexOf(':')+1, line.indexOf('|')).trim());
+                    messages.get(index).setRightRule(line.substring(line.indexOf("\\|")).trim());
+                } else {
+                    messages.get(index).setLeftRule(line.substring(line.indexOf(':')+1));
+                }
                 counter++;
             }
             reader.close();
@@ -57,45 +63,6 @@ public class MonsterMessage {
             counter++;
         }
         return counter;
-    }
-
-    public void iterator(int index) {
-        ArrayList<String> decrpytMessage = new ArrayList<>();
-        String fullMessage = messages.get(index);
-        if (!fullMessage.trim().contains("a") | fullMessage.trim().contains("b")) {
-            if (fullMessage.contains("|")) {
-                String[] messageSplit = fullMessage.split(" | ");
-                for (String m : messageSplit) {
-                    String[] individualMessage = m.trim().split(" ");
-                        for (String i : individualMessage) {
-                            if (!i.contains("a") | i.contains("b")) {
-                                String messageAtI = messages.get(Integer.parseInt(i));
-                                String[] splitMessageAtI = messageAtI.split(" | ");
-                                for (String s : splitMessageAtI) {
-                                    
-                                }
-
-                            }
-
-
-
-                        }
-                    if (!individualMessage.trim().contains("a") | individualMessage.trim().contains("b")) {
-
-                    }
-                }
-
-                String[] secondMessageArr = secondHalfMessage.split(" ");
-            } else {
-                if (fullMessage.contains("a")) {
-                    indexForA = index;
-                }
-                if (fullMessage.contains("b")) {
-                    indexForB = index;
-                }
-                decryptedMessage.set(index, fullMessage);
-            }
-        }
     }
 
     public void printMessages() {
