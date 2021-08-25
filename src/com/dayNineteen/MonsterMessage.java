@@ -9,7 +9,6 @@ import java.util.HashMap;
 public class MonsterMessage {
 
     private ArrayList<Rule> messages = new ArrayList<> (129);
-    String rule0 = "";
 
     public void readMessages() {
         for (int i = 0; i < 129; i++) {
@@ -25,12 +24,10 @@ public class MonsterMessage {
             while (line != null && counter < 129) {
                 line = reader.readLine();
                 int index = Integer.parseInt(line.substring(0, line.indexOf(':')));
-                if (index == 0) {
-                    this.rule0 = line.substring(line.indexOf(':')+1).trim();
-                }
-                if (line.contains("\\|")) {
-                    messages.get(index).setLeftRule(line.substring(line.indexOf(':')+1, line.indexOf('|')).trim());
-                    messages.get(index).setRightRule(line.substring(line.indexOf("\\|")).trim());
+                System.out.println(line);
+                if (line.contains("|")) {
+                    messages.get(index).setLeftRule(line.substring(line.indexOf(':')+1, line.indexOf("|")));
+                    messages.get(index).setRightRule(line.substring(line.indexOf("|")).trim());
                 } else {
                     messages.get(index).setLeftRule(line.substring(line.indexOf(':')+1));
                 }
@@ -67,7 +64,7 @@ public class MonsterMessage {
 
     public void printMessages() {
         for (int i = 0; i < messages.size(); i++) {
-            System.out.println(messages.get(i));
+            System.out.println("Index: " + i + " Left message: " + messages.get(i).left + " Right message: " + messages.get(i).right);
         }
     }
 
