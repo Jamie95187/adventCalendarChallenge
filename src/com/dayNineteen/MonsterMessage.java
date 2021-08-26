@@ -9,6 +9,9 @@ import java.util.HashMap;
 public class MonsterMessage {
 
     private ArrayList<Rule> messages = new ArrayList<> (130);
+    private ArrayList<String> correctRules = new ArrayList<> ();
+    private int numberOfCorrectRules = 0;
+    private String zeroMessage;
 
     public void readMessages() {
         for (int i = 0; i < 130; i++) {
@@ -60,6 +63,9 @@ public class MonsterMessage {
             counter++;
         }
         return counter;
+    }
+
+    public void iterator() {
     }
 
     public void printMessages() {
