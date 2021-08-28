@@ -4,9 +4,10 @@ public class Rule {
 
     public String left;
     public String right = "";
+    public Boolean checked;
 
-    public Rule(String leftRule) {
-        this.left = leftRule;
+    public Rule() {
+        this.checked = false;
     }
 
     public void setLeftRule(String leftRule) {

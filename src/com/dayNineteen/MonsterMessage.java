@@ -11,11 +11,11 @@ public class MonsterMessage {
     private ArrayList<Rule> messages = new ArrayList<> (130);
     private ArrayList<String> correctRules = new ArrayList<> ();
     private int numberOfCorrectRules = 0;
-    private String zeroMessage = " ";
+    private String[] zeroMessage;
 
     public void readMessages() {
         for (int i = 0; i < 130; i++) {
-            messages.add(new Rule(""));
+            messages.add(new Rule());
         }
         BufferedReader reader;
         try {
@@ -27,7 +27,7 @@ public class MonsterMessage {
             while (line != null && counter < 130) {
                 int index = Integer.parseInt(line.substring(0, line.indexOf(':')));
                 if (index == 0) {
-                    zeroMessage = line.substring(line.indexOf(':')+1);
+                    zeroMessage = line.substring(line.indexOf(':')+1).split(" ");
                 }
                 if (line.contains("|")) {
                     messages.get(index).setLeftRule(line.substring(line.indexOf(':')+1, line.indexOf("|")));
@@ -46,7 +46,10 @@ public class MonsterMessage {
     }
 
     public void solverFOrOne() {
-        String[] zeroMessageSplit = zeroMessage.split(" ");
+        String messageBuilder = "";
+        for(String s : zeroMessage) {
+            while()
+        }
     }
 
     public void iterator() {
