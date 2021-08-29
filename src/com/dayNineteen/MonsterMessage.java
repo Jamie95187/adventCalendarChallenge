@@ -48,7 +48,9 @@ public class MonsterMessage {
     public void solverFOrOne() {
         String messageBuilder = "";
         for(String s : zeroMessage) {
-            while()
+            if (messages.get(Integer.parseInt(s)).left != "a" | messages.get(Integer.parseInt(s)).left != "b" && messages.get(Integer.parseInt(s)).checked) {
+
+            }
         }
     }
 
