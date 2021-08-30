@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class MonsterMessage {
 
@@ -45,11 +46,24 @@ public class MonsterMessage {
         }
     }
 
-    public void solverFOrOne() {
-        String messageBuilder = "";
-        for(String s : zeroMessage) {
-            if (messages.get(Integer.parseInt(s)).left != "a" | messages.get(Integer.parseInt(s)).left != "b" && messages.get(Integer.parseInt(s)).checked) {
-
+    public void solverForOne() {
+        LinkedList<String> list = new LinkedList<String>();
+        LinkedList<String> solvedList = new LinkedList<String>();
+        for (String s : zeroMessage) {
+            list.add(s);
+        }
+        while (!list.isEmpty()) {
+            String s = list.removeFirst();
+            String leftRule = messages.get(Integer.parseInt(s)).left;
+            if (leftRule != "64" | leftRule != "50") {
+                if (leftRule.contains(" ")) {
+                    list.addFirst(leftRule.split(" ")[1]);
+                    list.addFirst(leftRule.split(" ")[0]);
+                } else {
+                    list.addFirst(leftRule);
+                }
+            } else {
+                solvedList.add(leftRule);
             }
         }
     }
