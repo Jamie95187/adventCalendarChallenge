@@ -55,20 +55,31 @@ public class MonsterMessage {
         }
         while (!list.isEmpty()) {
             String s = list.removeFirst();
-            System.out.println(s);
             String leftRule = messages.get(Integer.parseInt(s)).left.trim();
-            if (leftRule != "64" | leftRule != "50") {
-                System.out.println("hi");
-                System.out.println(leftRule);
-                if (leftRule.contains(" ")) {
+            System.out.println(leftRule);
+            if (leftRule.contains(" ")) {
+                if (leftRule.split(" ")[0].equals("64") | leftRule.split(" ")[0].equals("50")) {
+//                    System.out.println("Second");
+                    list.addFirst(leftRule.split(" ")[1]);
+                    solvedList.add(leftRule.split(" ")[0]);
+                } else if (leftRule.split(" ")[0].equals("64") | leftRule.split(" ")[0].equals("50")
+                && leftRule.split(" ")[1].equals("64") | leftRule.split(" ")[1].equals("50")) {
+                    solvedList.add(leftRule.split(" ")[0]);
+                    solvedList.add(leftRule.split(" ")[1]);
+                } else {
                     list.addFirst(leftRule.split(" ")[1]);
                     list.addFirst(leftRule.split(" ")[0]);
-                } else {
-                    list.addFirst(leftRule);
                 }
             } else {
-                solvedList.add(leftRule);
+                if (!leftRule.equals("64") | !leftRule.equals("50")) {
+//                    System.out.println("First");
+                    list.addFirst(leftRule);
+                } else {
+                    System.out.println("hello");
+                    solvedList.add(leftRule);
+                }
             }
+            System.out.println(list);
         }
         for (String index : solvedList) {
             message += messages.get(Integer.parseInt(index)).left;
