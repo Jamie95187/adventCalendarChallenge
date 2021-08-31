@@ -10,7 +10,7 @@ import java.util.LinkedList;
 public class MonsterMessage {
 
     private ArrayList<Rule> messages = new ArrayList<> (130);
-    private ArrayList<String> correctRules = new ArrayList<> ();
+    private ArrayList<String> correctMessage = new ArrayList<> ();
     private int numberOfCorrectRules = 0;
     private String[] zeroMessage;
 
@@ -28,7 +28,7 @@ public class MonsterMessage {
             while (line != null && counter < 130) {
                 int index = Integer.parseInt(line.substring(0, line.indexOf(':')));
                 if (index == 0) {
-                    zeroMessage = line.substring(line.indexOf(':')+1).split(" ");
+                    zeroMessage = line.substring(line.indexOf(':')+1).trim().split(" ");
                 }
                 if (line.contains("|")) {
                     messages.get(index).setLeftRule(line.substring(line.indexOf(':')+1, line.indexOf("|")));
@@ -46,16 +46,20 @@ public class MonsterMessage {
         }
     }
 
-    public void solverForOne() {
+    public void solverForLeftHandSide() {
         LinkedList<String> list = new LinkedList<String>();
         LinkedList<String> solvedList = new LinkedList<String>();
+        String message = "";
         for (String s : zeroMessage) {
             list.add(s);
         }
         while (!list.isEmpty()) {
             String s = list.removeFirst();
-            String leftRule = messages.get(Integer.parseInt(s)).left;
+            System.out.println(s);
+            String leftRule = messages.get(Integer.parseInt(s)).left.trim();
             if (leftRule != "64" | leftRule != "50") {
+                System.out.println("hi");
+                System.out.println(leftRule);
                 if (leftRule.contains(" ")) {
                     list.addFirst(leftRule.split(" ")[1]);
                     list.addFirst(leftRule.split(" ")[0]);
@@ -66,9 +70,17 @@ public class MonsterMessage {
                 solvedList.add(leftRule);
             }
         }
+        for (String index : solvedList) {
+            message += messages.get(Integer.parseInt(index)).left;
+        }
+        correctMessage.add(message);
     }
 
     public void iterator() {
+        solverForLeftHandSide();
+        for (String m : correctMessage) {
+            System.out.println(m);
+        }
     }
 
     public void printMessages() {
