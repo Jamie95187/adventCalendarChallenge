@@ -55,6 +55,10 @@ public class MonsterMessage {
         }
         while (!list.isEmpty()) {
             String s = list.removeFirst();
+            if (s.equals("64") | s.equals("50")) {
+                solvedList.add(s);
+                continue;
+            }
             String leftRule = messages.get(Integer.parseInt(s)).left.trim();
             System.out.println(leftRule);
             if (leftRule.contains(" ")) {
