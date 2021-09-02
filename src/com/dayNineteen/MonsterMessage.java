@@ -10,7 +10,7 @@ import java.util.LinkedList;
 public class MonsterMessage {
 
     private ArrayList<Rule> messages = new ArrayList<> (130);
-    private ArrayList<String> correctMessage = new ArrayList<> ();
+    private ArrayList<String> correctMessages = new ArrayList<> ();
     private int numberOfCorrectRules = 0;
     private String[] zeroMessage;
 
@@ -86,14 +86,14 @@ public class MonsterMessage {
             System.out.println(list);
         }
         for (String index : solvedList) {
-            message += messages.get(Integer.parseInt(index)).left;
+            message = message +  messages.get(Integer.parseInt(index)).left;
         }
-        correctMessage.add(message);
+        correctMessages.add(message);
     }
 
     public void iterator() {
         solverForLeftHandSide();
-        for (String m : correctMessage) {
+        for (String m : correctMessages) {
             System.out.println(m);
         }
     }
