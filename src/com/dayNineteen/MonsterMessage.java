@@ -63,7 +63,6 @@ public class MonsterMessage {
             System.out.println(leftRule);
             if (leftRule.contains(" ")) {
                 if (leftRule.split(" ")[0].equals("64") | leftRule.split(" ")[0].equals("50")) {
-//                    System.out.println("Second");
                     list.addFirst(leftRule.split(" ")[1]);
                     solvedList.add(leftRule.split(" ")[0]);
                 } else if (leftRule.split(" ")[0].equals("64") | leftRule.split(" ")[0].equals("50")
@@ -76,17 +75,18 @@ public class MonsterMessage {
                 }
             } else {
                 if (!leftRule.equals("64") | !leftRule.equals("50")) {
-//                    System.out.println("First");
                     list.addFirst(leftRule);
-                } else {
-                    System.out.println("hello");
-                    solvedList.add(leftRule);
                 }
             }
             System.out.println(list);
         }
         for (String index : solvedList) {
-            message = message +  messages.get(Integer.parseInt(index)).left;
+            System.out.println(index);
+            if (index.equals("64")) {
+                message = message + "a";
+            } else {
+                message = message + "b";
+            }
         }
         correctMessages.add(message);
     }
