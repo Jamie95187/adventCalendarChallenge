@@ -60,7 +60,7 @@ public class MonsterMessage {
                 continue;
             }
             String leftRule = messages.get(Integer.parseInt(s)).left.trim();
-            System.out.println(leftRule);
+//            System.out.println(leftRule);
             if (leftRule.contains(" ")) {
                 if (leftRule.split(" ")[0].equals("64") | leftRule.split(" ")[0].equals("50")) {
                     list.addFirst(leftRule.split(" ")[1]);
@@ -78,10 +78,10 @@ public class MonsterMessage {
                     list.addFirst(leftRule);
                 }
             }
-            System.out.println(list);
+//            System.out.println(list);
         }
         for (String index : solvedList) {
-            System.out.println(index);
+//            System.out.println(index);
             if (index.equals("64")) {
                 message = message + "a";
             } else {
