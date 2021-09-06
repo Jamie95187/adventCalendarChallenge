@@ -139,6 +139,7 @@ public class MonsterMessage {
 
     public void iterator() {
         solverForLeftHandSide();
+        solverForRightHandSide();
         for (String m : correctMessages) {
             System.out.println(m);
         }
