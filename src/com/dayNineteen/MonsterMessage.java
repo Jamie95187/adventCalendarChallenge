@@ -32,7 +32,7 @@ public class MonsterMessage {
                 }
                 if (line.contains("|")) {
                     messages.get(index).setLeftRule(line.substring(line.indexOf(':')+1, line.indexOf("|")));
-                    messages.get(index).setRightRule(line.substring(line.indexOf("|")).trim());
+                    messages.get(index).setRightRule(line.substring(line.indexOf("|")+1).trim());
                 } else {
                     messages.get(index).setLeftRule(line.substring(line.indexOf(':')+1));
                 }
