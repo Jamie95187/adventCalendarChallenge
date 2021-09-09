@@ -99,7 +99,6 @@ public class MonsterMessage {
         }
         while (!list.isEmpty()) {
             String s = list.removeFirst();
-            System.out.println(s);
             if (s.equals("64") | s.equals("50")) {
                 solvedList.add(s);
                 continue;
