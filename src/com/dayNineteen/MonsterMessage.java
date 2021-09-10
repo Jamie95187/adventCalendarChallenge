@@ -77,7 +77,6 @@ public class MonsterMessage {
                     list.addFirst(leftRule);
                 }
             }
-//            System.out.println(list);
         }
         for (String index : solvedList) {
 //            System.out.println(index);
