@@ -79,7 +79,6 @@ public class MonsterMessage {
             }
         }
         for (String index : solvedList) {
-//            System.out.println(index);
             if (index.equals("64")) {
                 message = message + "a";
             } else {
