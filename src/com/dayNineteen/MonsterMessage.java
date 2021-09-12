@@ -143,6 +143,22 @@ public class MonsterMessage {
         }
     }
 
+    public void testMethod(String message) {
+        String[] splitMessage = message.split("");
+        String right = "";
+        String left = "";
+        for (String s : splitMessage) {
+            if (s.equals("64") | s.equals("50")) {
+                left = left + s;
+                right = right + s;
+            } else {
+                if (messages.get(Integer.parseInt(s)).right.equals("")) {
+                    left 
+                }
+            }
+        }
+    }
+
     public void printMessages() {
         for (int i = 0; i < messages.size(); i++) {
             System.out.println("Index: " + i + " Left message: " + messages.get(i).left + " Right message: " + messages.get(i).right);
