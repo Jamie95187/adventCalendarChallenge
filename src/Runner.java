@@ -159,5 +159,6 @@ public class Runner {
         mm.readMessages();
         mm.printMessages();
         mm.iterator();
+        mm.testMethod2("4 2 3 5");
     }
 }
