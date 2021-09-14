@@ -160,5 +160,6 @@ public class Runner {
         mm.printMessages();
         mm.iterator();
         mm.testMethod2("4 2 3 5");
+        mm.testMethod3("4 5 5 3 5");
     }
 }
