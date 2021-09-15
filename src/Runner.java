@@ -22,6 +22,7 @@ import jdk.dynalink.Operation;
 
 import javax.script.ScriptException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Runner {
 
@@ -161,5 +162,19 @@ public class Runner {
         mm.iterator();
         mm.testMethod2("4 2 3 5");
         mm.testMethod3("4 5 5 3 5");
+        ArrayList<String> rulesList = new ArrayList<>();
+        rulesList.add("4 4 4 4 5 5");
+        rulesList.add("4 4 4 5 4 5");
+        rulesList.add("4 5 5 4 5 5");
+        rulesList.add("4 5 5 5 4 5");
+        rulesList.add("4 4 5 4 4 5");
+        rulesList.add("4 4 5 5 5 5");
+        rulesList.add("4 5 4 4 4 5");
+        rulesList.add("4 5 4 5 5 5");
+        for (int i = 0; i < rulesList.size(); i++) {
+            if(mm.testCheck(rulesList.get(i)) == false) {
+                System.out.println("no");
+            }
+        }
     }
 }

@@ -216,6 +216,15 @@ public class MonsterMessage {
         System.out.println(right);
     }
 
+    public boolean testCheck(String message){
+        for (String s : message.split(" ")) {
+            if (!s.trim().equals("4") & !s.trim().equals("5")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void printMessages() {
         for (int i = 0; i < messages.size(); i++) {
             System.out.println("Index: " + i + " Left message: " + messages.get(i).left + " Right message: " + messages.get(i).right);
