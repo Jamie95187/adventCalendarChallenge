@@ -156,7 +156,7 @@ public class MonsterMessage {
         }
     }
 
-    public void testMethod2(String message) {
+    public ArrayList<Rule> testSetup() {
         ArrayList<Rule> messagesExample = new ArrayList<>();
         Rule rule0 = new Rule();
         rule0.setLeftRule("4 1 5");
@@ -179,6 +179,11 @@ public class MonsterMessage {
         messagesExample.add(rule3);
         messagesExample.add(rule4);
         messagesExample.add(rule5);
+        return messagesExample;
+    }
+
+    public void testMethod2(String message) {
+        ArrayList<Rule> messagesExample = testSetup();
         String[] splitMessage = message.trim().split(" ");
         String left = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).left + " " + splitMessage[2] + " " + splitMessage[3];
         String right = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).right + " " + splitMessage[2] + " " + splitMessage[3];
@@ -187,28 +192,7 @@ public class MonsterMessage {
     }
 
     public void testMethod3(String message) {
-        ArrayList<Rule> messagesExample = new ArrayList<>();
-        Rule rule0 = new Rule();
-        rule0.setLeftRule("4 1 5");
-        Rule rule1 = new Rule();
-        rule1.setLeftRule("2 3");
-        rule1.setRightRule("3 2");
-        Rule rule2 = new Rule();
-        rule2.setLeftRule("4 4");
-        rule2.setRightRule("5 5");
-        Rule rule3 = new Rule();
-        rule3.setLeftRule("4 5");
-        rule3.setRightRule("5 4");
-        Rule rule4 = new Rule();
-        rule4.setLeftRule("a");
-        Rule rule5 = new Rule();
-        rule5.setLeftRule("b");
-        messagesExample.add(rule0);
-        messagesExample.add(rule1);
-        messagesExample.add(rule2);
-        messagesExample.add(rule3);
-        messagesExample.add(rule4);
-        messagesExample.add(rule5);
+        ArrayList<Rule> messagesExample = testSetup();
         String[] splitMessage = message.trim().split(" ");
         String left = splitMessage[0] + " " + splitMessage[1] + " " + splitMessage[2] + " " + messagesExample.get(Integer.parseInt(splitMessage[3])).left + " " + splitMessage[4];
         String right = splitMessage[0] + " " + splitMessage[1] + " " + splitMessage[2] + " " + messagesExample.get(Integer.parseInt(splitMessage[3])).right + " " + splitMessage[4];
