@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 public class MonsterMessage {
@@ -140,19 +139,6 @@ public class MonsterMessage {
         solverForRightHandSide();
         for (String m : correctMessages) {
             System.out.println(m);
-        }
-    }
-
-    public void testMethod(String message) {
-        String[] splitMessage = message.split("");
-        String right = "";
-        String left = "";
-        for (String s : splitMessage) {
-            if (s.equals("64") | s.equals("50")) {
-                left = left + s;
-                right = right + s;
-            } else {
-            }
         }
     }
 
