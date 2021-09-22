@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class MonsterMessage {
 
@@ -12,6 +13,7 @@ public class MonsterMessage {
     private ArrayList<String> correctMessages = new ArrayList<> ();
     private int numberOfCorrectRules = 0;
     private String[] zeroMessage;
+    private Stack<String> stack = new Stack<String>();
 
     public void readMessages() {
         for (int i = 0; i < 130; i++) {
@@ -143,6 +145,7 @@ public class MonsterMessage {
     }
 
     public ArrayList<Rule> testSetup() {
+        stack.add("415");
         ArrayList<Rule> messagesExample = new ArrayList<>();
         Rule rule0 = new Rule();
         rule0.setLeftRule("4 1 5");
