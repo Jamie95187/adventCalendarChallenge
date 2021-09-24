@@ -178,8 +178,12 @@ public class MonsterMessage {
         String right = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).right + " " + splitMessage[2] + " " + splitMessage[3];
         stack.add(left);
         stack.add(right);
+<<<<<<< HEAD
 //        System.out.println(left);
 //        System.out.println(right);
+=======
+        System.out.println(right);
+>>>>>>> 0348e2e3ab4fa73528d55e8fe9936296d23f91e3
     }
 
     public void testMethod3(String message) {
@@ -189,8 +193,11 @@ public class MonsterMessage {
         String right = splitMessage[0] + " " + splitMessage[1] + " " + splitMessage[2] + " " + messagesExample.get(Integer.parseInt(splitMessage[3])).right + " " + splitMessage[4];
         stack.add(left);
         stack.add(right);
+<<<<<<< HEAD
 //       System.out.println(left);
 //       System.out.println(right);
+=======
+>>>>>>> 0348e2e3ab4fa73528d55e8fe9936296d23f91e3
     }
 
     public boolean testCheck(String message){
