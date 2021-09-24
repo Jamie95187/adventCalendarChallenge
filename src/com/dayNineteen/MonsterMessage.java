@@ -176,8 +176,10 @@ public class MonsterMessage {
         String[] splitMessage = message.trim().split(" ");
         String left = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).left + " " + splitMessage[2] + " " + splitMessage[3];
         String right = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).right + " " + splitMessage[2] + " " + splitMessage[3];
-        System.out.println(left);
-        System.out.println(right);
+        stack.add(left);
+        stack.add(right);
+//        System.out.println(left);
+//        System.out.println(right);
     }
 
     public void testMethod3(String message) {
@@ -185,8 +187,10 @@ public class MonsterMessage {
         String[] splitMessage = message.trim().split(" ");
         String left = splitMessage[0] + " " + splitMessage[1] + " " + splitMessage[2] + " " + messagesExample.get(Integer.parseInt(splitMessage[3])).left + " " + splitMessage[4];
         String right = splitMessage[0] + " " + splitMessage[1] + " " + splitMessage[2] + " " + messagesExample.get(Integer.parseInt(splitMessage[3])).right + " " + splitMessage[4];
-        System.out.println(left);
-        System.out.println(right);
+        stack.add(left);
+        stack.add(right);
+//       System.out.println(left);
+//       System.out.println(right);
     }
 
     public boolean testCheck(String message){
@@ -196,6 +200,11 @@ public class MonsterMessage {
             }
         }
         return true;
+    }
+
+    public void testIteratorMethod() {
+        testSetup();
+        testMethod2(stack.pop());
     }
 
     public void printMessages() {
