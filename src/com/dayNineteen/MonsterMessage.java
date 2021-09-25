@@ -213,6 +213,12 @@ public class MonsterMessage {
         testMethod3(stack.pop());
         testMethod3(stack.pop());
     }
+    
+    public void testPrintStack() {
+        for (String s : stack) {
+            System.out.println(s);
+        }
+    }
 
     public void printMessages() {
         for (int i = 0; i < messages.size(); i++) {
