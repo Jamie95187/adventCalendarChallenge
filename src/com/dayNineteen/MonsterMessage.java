@@ -206,6 +206,12 @@ public class MonsterMessage {
     public void testIteratorMethod() {
         testSetup();
         testMethod2(stack.pop());
+        testMethod2(stack.pop());
+        testMethod2(stack.pop());
+        testMethod3(stack.pop());
+        testMethod3(stack.pop());
+        testMethod3(stack.pop());
+        testMethod3(stack.pop());
     }
 
     public void printMessages() {
