@@ -207,6 +207,7 @@ public class MonsterMessage {
         testMethod3(stack.pop());
         testMethod3(stack.pop());
         testMethod3(stack.pop());
+        testPrintStack();
     }
     
     public void testPrintStack() {
