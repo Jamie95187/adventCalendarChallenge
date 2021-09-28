@@ -145,7 +145,7 @@ public class MonsterMessage {
     }
 
     public ArrayList<Rule> testSetup() {
-        stack.add("415");
+        stack.add("4 1 5");
         ArrayList<Rule> messagesExample = new ArrayList<>();
         Rule rule0 = new Rule();
         rule0.setLeftRule("4 1 5");
@@ -174,15 +174,26 @@ public class MonsterMessage {
     public void testMethod2(String message) {
         ArrayList<Rule> messagesExample = testSetup();
         String[] splitMessage = message.trim().split(" ");
-        String left = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).left + " " + splitMessage[2] + " " + splitMessage[3];
-        String right = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).right + " " + splitMessage[2] + " " + splitMessage[3];
+//        System.out.println(message);
+        String left;
+        String right;
+        if (message.length() == 5) {
+            System.out.println("message");
+            left = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).left + " " + splitMessage[2];
+            right = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).right + " " + splitMessage[2];
+        } else {
+            left = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).left + " " + splitMessage[2] + " " + splitMessage[3];
+            right = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).right + " " + splitMessage[2] + " " + splitMessage[3];
+        }
         stack.add(left);
         stack.add(right);
+        testPrintStack();
     }
 
     public void testMethod3(String message) {
         ArrayList<Rule> messagesExample = testSetup();
         String[] splitMessage = message.trim().split(" ");
+//        System.out.println(message);
         String left = splitMessage[0] + " " + splitMessage[1] + " " + splitMessage[2] + " " + messagesExample.get(Integer.parseInt(splitMessage[3])).left + " " + splitMessage[4];
         String right = splitMessage[0] + " " + splitMessage[1] + " " + splitMessage[2] + " " + messagesExample.get(Integer.parseInt(splitMessage[3])).right + " " + splitMessage[4];
         stack.add(left);
@@ -201,13 +212,14 @@ public class MonsterMessage {
     public void testIteratorMethod() {
         testSetup();
         testMethod2(stack.pop());
-        testMethod2(stack.pop());
-        testMethod2(stack.pop());
-        testMethod3(stack.pop());
-        testMethod3(stack.pop());
-        testMethod3(stack.pop());
-        testMethod3(stack.pop());
         testPrintStack();
+        testMethod2(stack.pop());
+        testMethod2(stack.pop());
+        testMethod3(stack.pop());
+        testMethod3(stack.pop());
+        testMethod3(stack.pop());
+//        testMethod3(stack.pop());
+//        testPrintStack();
     }
     
     public void testPrintStack() {

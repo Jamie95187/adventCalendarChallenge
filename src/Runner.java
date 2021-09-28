@@ -157,12 +157,12 @@ public class Runner {
 
     private static void taskNineteen() {
         MonsterMessage mm = new MonsterMessage();
-        mm.readMessages();
-        mm.printMessages();
-        mm.iterator();
-        mm.testMethod2("4 2 3 5");
-        mm.testMethod3("4 5 5 3 5");
-        ArrayList<String> rulesList = new ArrayList<>();
+//        mm.readMessages();
+//        mm.printMessages();
+        mm.testIteratorMethod();
+//        mm.testMethod2("4 2 3 5");
+//        mm.testMethod3("4 5 5 3 5");
+//        ArrayList<String> rulesList = new ArrayList<>();
 //        rulesList.add("4 4 4 4 5 5");
 //        rulesList.add("4 4 4 5 4 5");
 //        rulesList.add("4 5 5 4 5 5");
