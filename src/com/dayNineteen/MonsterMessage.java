@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Stack;
+import java.util.Queue;
 
 public class MonsterMessage {
 
@@ -13,7 +13,7 @@ public class MonsterMessage {
     private ArrayList<String> correctMessages = new ArrayList<> ();
     private int numberOfCorrectRules = 0;
     private String[] zeroMessage;
-    private Stack<String> stack = new Stack<String>();
+    private Queue<String> queue = new LinkedList<String>();
 
     public void readMessages() {
         for (int i = 0; i < 130; i++) {
@@ -144,8 +144,11 @@ public class MonsterMessage {
         }
     }
 
+    public void addToInitialStack() {
+        queue.add("4 1 5");
+    }
+
     public ArrayList<Rule> testSetup() {
-        stack.add("4 1 5");
         ArrayList<Rule> messagesExample = new ArrayList<>();
         Rule rule0 = new Rule();
         rule0.setLeftRule("4 1 5");
@@ -183,8 +186,8 @@ public class MonsterMessage {
             left = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).left + " " + splitMessage[2] + " " + splitMessage[3];
             right = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).right + " " + splitMessage[2] + " " + splitMessage[3];
         }
-        stack.add(left);
-        stack.add(right);
+        queue.add(left);
+        queue.add(right);
     }
 
     public void testMethod3(String message) {
@@ -192,8 +195,8 @@ public class MonsterMessage {
         String[] splitMessage = message.trim().split(" ");
         String left = splitMessage[0] + " " + splitMessage[1] + " " + splitMessage[2] + " " + messagesExample.get(Integer.parseInt(splitMessage[3])).left + " " + splitMessage[4];
         String right = splitMessage[0] + " " + splitMessage[1] + " " + splitMessage[2] + " " + messagesExample.get(Integer.parseInt(splitMessage[3])).right + " " + splitMessage[4];
-        stack.add(left);
-        stack.add(right);
+        queue.add(left);
+        queue.add(right);
     }
 
     public boolean testCheck(String message){
@@ -208,31 +211,42 @@ public class MonsterMessage {
     public void testIteratorMethod() {
 
         testSetup();
-        System.out.println("Before test method 2 stack: ");
+        System.out.println("Before test method 2 queue: ");
         testPrintStack();
 
-        testMethod2(stack.pop());
-        stack.remove(0);
+        testMethod2(queue.poll());;
         System.out.println("--------------------------------------------------------");
         System.out.println("After 1st  test method 2: ");
         testPrintStack();
 
-        testMethod2(stack.pop());
-        stack.remove(0);
+        testMethod2(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 2nd test method 2: ");
         testPrintStack();
 
-        testMethod2(stack.pop());
-//        testMethod3(stack.pop());
-//        testMethod3(stack.pop());
-//        testMethod3(stack.pop());
-//        testMethod3(stack.pop());
+        testMethod2(queue.poll());
+        System.out.println("--------------------------------------------------------");
+        System.out.println("After 3rd test method 2: ");
+        testPrintStack();
+
+        testMethod3(queue.poll());
+        System.out.println("--------------------------------------------------------");
+        System.out.println("After 1st test method 3: ");
+        testPrintStack();
+
+
+        testMethod3(queue.poll());
+        System.out.println("--------------------------------------------------------");
+        System.out.println("After 2nd test method 3: ");
+        testPrintStack();
+
+//        testMethod3(queue.poll());
+//        testMethod3(queue.poll());
 //        testPrintStack();
     }
     
     public void testPrintStack() {
-        for (String s : stack) {
+        for (String s : queue) {
             System.out.println(s);
         }
     }

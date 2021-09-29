@@ -159,6 +159,7 @@ public class Runner {
         MonsterMessage mm = new MonsterMessage();
 //        mm.readMessages();
 //        mm.printMessages();
+        mm.addToInitialStack();
         mm.testIteratorMethod();
 //        mm.testMethod2("4 2 3 5");
 //        mm.testMethod3("4 5 5 3 5");
