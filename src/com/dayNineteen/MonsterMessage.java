@@ -14,6 +14,7 @@ public class MonsterMessage {
     private int numberOfCorrectRules = 0;
     private String[] zeroMessage;
     private Queue<String> queue = new LinkedList<String>();
+    private ArrayList<String> validRules = new ArrayList<>();
 
     public void readMessages() {
         for (int i = 0; i < 130; i++) {
@@ -47,105 +48,9 @@ public class MonsterMessage {
         }
     }
 
-    public void solverForLeftHandSide() {
-        LinkedList<String> list = new LinkedList<String>();
-        LinkedList<String> solvedList = new LinkedList<String>();
-        String message = "";
-        for (String s : zeroMessage) {
-            list.add(s);
-        }
-        while (!list.isEmpty()) {
-            String s = list.removeFirst();
-            if (s.equals("64") | s.equals("50")) {
-                solvedList.add(s);
-                continue;
-            }
-            String leftRule = messages.get(Integer.parseInt(s)).left.trim();
-            if (leftRule.contains(" ")) {
-                if (leftRule.split(" ")[0].equals("64") | leftRule.split(" ")[0].equals("50")) {
-                    list.addFirst(leftRule.split(" ")[1]);
-                    solvedList.add(leftRule.split(" ")[0]);
-                } else if (leftRule.split(" ")[0].equals("64") | leftRule.split(" ")[0].equals("50")
-                && leftRule.split(" ")[1].equals("64") | leftRule.split(" ")[1].equals("50")) {
-                    solvedList.add(leftRule.split(" ")[0]);
-                    solvedList.add(leftRule.split(" ")[1]);
-                } else {
-                    list.addFirst(leftRule.split(" ")[1]);
-                    list.addFirst(leftRule.split(" ")[0]);
-                }
-            } else {
-                if (!leftRule.equals("64") | !leftRule.equals("50")) {
-                    list.addFirst(leftRule);
-                }
-            }
-        }
-        for (String index : solvedList) {
-            if (index.equals("64")) {
-                message = message + "a";
-            } else {
-                message = message + "b";
-            }
-        }
-        correctMessages.add(message);
-    }
-
-    public void solverForRightHandSide() {
-        LinkedList<String> list = new LinkedList<String>();
-        LinkedList<String> solvedList = new LinkedList<String>();
-        String message = "";
-        for (String s : zeroMessage) {
-            list.add(s);
-        }
-        while (!list.isEmpty()) {
-            String s = list.removeFirst();
-            if (s.equals("64") | s.equals("50")) {
-                solvedList.add(s);
-                continue;
-            }
-            String rule = "";
-            if (messages.get(Integer.parseInt(s)).right.equals("")){
-                rule = messages.get(Integer.parseInt(s)).left.trim();
-            } else {
-                rule = messages.get(Integer.parseInt(s)).right.trim();
-            }
-            if (rule.contains(" ")) {
-                if (rule.split(" ")[0].equals("64") | rule.split(" ")[0].equals("50")) {
-                    list.addFirst(rule.split(" ")[1]);
-                    solvedList.add(rule.split(" ")[0]);
-                } else if (rule.split(" ")[0].equals("64") | rule.split(" ")[0].equals("50")
-                        && rule.split(" ")[1].equals("64") | rule.split(" ")[1].equals("50")) {
-                    solvedList.add(rule.split(" ")[0]);
-                    solvedList.add(rule.split(" ")[1]);
-                } else {
-                    list.addFirst(rule.split(" ")[1]);
-                    list.addFirst(rule.split(" ")[0]);
-                }
-            } else {
-                if (!rule.equals("64") | !rule.equals("50")) {
-                    list.addFirst(rule);
-                }
-            }
-        }
-        for (String index : solvedList) {
-            if (index.equals("64")) {
-                message = message + "a";
-            } else {
-                message = message + "b";
-            }
-        }
-        correctMessages.add(message);
-    }
-
-    public void iterator() {
-        solverForLeftHandSide();
-        solverForRightHandSide();
-        for (String m : correctMessages) {
-            System.out.println(m);
-        }
-    }
-
     public void addToInitialStack() {
         queue.add("4 1 5");
+        testSetup();
     }
 
     public ArrayList<Rule> testSetup() {
@@ -212,42 +117,75 @@ public class MonsterMessage {
 
         testSetup();
         System.out.println("Before test method 2 queue: ");
-        testPrintStack();
+        testPrintQueue();
 
         testMethod2(queue.poll());;
         System.out.println("--------------------------------------------------------");
         System.out.println("After 1st  test method 2: ");
-        testPrintStack();
+        testPrintQueue();
 
         testMethod2(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 2nd test method 2: ");
-        testPrintStack();
+        testPrintQueue();
 
         testMethod2(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 3rd test method 2: ");
-        testPrintStack();
+        testPrintQueue();
 
         testMethod3(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 1st test method 3: ");
-        testPrintStack();
+        testPrintQueue();
 
 
         testMethod3(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 2nd test method 3: ");
-        testPrintStack();
+        testPrintQueue();
 
-//        testMethod3(queue.poll());
-//        testMethod3(queue.poll());
-//        testPrintStack();
+        testMethod3(queue.poll());
+        System.out.println("--------------------------------------------------------");
+        System.out.println("After 3rd test method 3: ");
+        testPrintQueue();
+
+        testMethod3(queue.poll());
+        System.out.println("--------------------------------------------------------");
+        System.out.println("After 2nd test method 3: ");
+        testPrintQueue();
+
+        if (testCheck(queue.peek())) {
+            populateValidRules(queue);
+        }
+
+        printValidRules();
     }
     
-    public void testPrintStack() {
+    public void testPrintQueue() {
         for (String s : queue) {
             System.out.println(s);
+        }
+    }
+
+    public void populateValidRules(Queue<String> rules) {
+        for (String rule : rules){
+            String validRule = "";
+            for(String index: rule.split(" ")) {
+                if (index.equals("4")) {
+                    validRule += "a";
+                }
+                if (index.equals("5")) {
+                    validRule += "b";
+                }
+            }
+            validRules.add(validRule);
+        }
+    }
+
+    public void printValidRules() {
+        for (int i = 0; i < validRules.size(); i++) {
+            System.out.println(validRules.get(i));
         }
     }
 
