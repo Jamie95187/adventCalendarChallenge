@@ -18,7 +18,6 @@ import com.daySix.*;
 import com.daySeven.*;
 import com.dayEight.*;
 import com.dayTen.Adapter;
-import jdk.dynalink.Operation;
 
 import javax.script.ScriptException;
 import java.io.IOException;
@@ -159,6 +158,12 @@ public class Runner {
         MonsterMessage mm = new MonsterMessage();
         mm.addToInitialStack();
         mm.testIteratorMethod();
-        
+        int numberOfValidMessages = 0;
+        for (String message: mm.messagesToBeChecked) {
+            if (mm.validRules.contains(message)) {
+                numberOfValidMessages++;
+            }
+        }
+        System.out.println(numberOfValidMessages);
     }
 }

@@ -9,9 +9,9 @@ import java.util.Queue;
 
 public class MonsterMessage {
 
-//    private ArrayList<Rule> messages = new ArrayList<> (130);
+    private ArrayList<Rule> messages = new ArrayList<> (130);
 //    private ArrayList<String> correctMessages = new ArrayList<> ();
-    public int numberOfCorrectRules = 0;
+//    public int numberOfCorrectRules = 0;
 //    private String[] zeroMessage;
     public Queue<String> queue = new LinkedList<String>();
     public ArrayList<String> validRules = new ArrayList<>();
@@ -79,6 +79,22 @@ public class MonsterMessage {
         messagesExample.add(rule4);
         messagesExample.add(rule5);
         return messagesExample;
+    }
+
+    public void checkRule(String rule) {
+        String[] splitRule = rule.trim().split(" ");
+        String left;
+        String right;
+        int index = 0;
+        for (int i = 0; i < splitRule.length; i++) {
+            // Not equal to rule where they return "a" or "b"
+            if (!splitRule[i].equals("4") | !splitRule[i].equals("5")) {
+                index = i;
+            }
+        }
+        for (int i = 0; i != index && i < splitRule.length; i++) {
+            
+        }
     }
 
     public void testMethod2(String message) {
