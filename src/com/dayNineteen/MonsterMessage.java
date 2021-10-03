@@ -83,18 +83,30 @@ public class MonsterMessage {
 
     public void checkRule(String rule) {
         String[] splitRule = rule.trim().split(" ");
-        String left;
-        String right;
+        ArrayList<Rule> messagesExample = testSetup();
+        String left = "";
+        String right= "";
         int index = 0;
         for (int i = 0; i < splitRule.length; i++) {
             // Not equal to rule where they return "a" or "b"
-            if (!splitRule[i].equals("4") | !splitRule[i].equals("5")) {
+            if (!splitRule[i].equals("4") && !splitRule[i].equals("5")) {
                 index = i;
             }
         }
-        for (int i = 0; i != index && i < splitRule.length; i++) {
-            
+        for (int i = 0; i < splitRule.length; i++) {
+            if (i == index) {
+                left += messagesExample.get(Integer.parseInt(splitRule[i])).left + " ";
+                right += messagesExample.get(Integer.parseInt(splitRule[i])).right + " ";
+            } else {
+                left += splitRule[i] + " ";
+                right += splitRule[i] + " ";
+            }
         }
+        left = left.trim();
+        right = right.trim();
+
+        queue.add(left);
+        queue.add(right);
     }
 
     public void testMethod2(String message) {
@@ -137,38 +149,45 @@ public class MonsterMessage {
         System.out.println("Before test method 2 queue: ");
         testPrintQueue();
 
-        testMethod2(queue.poll());;
+//        testMethod2(queue.poll());
+        checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
-        System.out.println("After 1st  test method 2: ");
+        System.out.println("After 1st test method 2: ");
         testPrintQueue();
 
-        testMethod2(queue.poll());
+//        testMethod2(queue.poll());
+        checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 2nd test method 2: ");
         testPrintQueue();
 
-        testMethod2(queue.poll());
+//        testMethod2(queue.poll());
+        checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 3rd test method 2: ");
         testPrintQueue();
 
-        testMethod3(queue.poll());
+//        testMethod3(queue.poll());
+        checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 1st test method 3: ");
         testPrintQueue();
 
 
-        testMethod3(queue.poll());
+//        testMethod3(queue.poll());
+        checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 2nd test method 3: ");
         testPrintQueue();
 
-        testMethod3(queue.poll());
+//        testMethod3(queue.poll());
+        checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 3rd test method 3: ");
         testPrintQueue();
 
-        testMethod3(queue.poll());
+//        testMethod3(queue.poll());
+        checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 2nd test method 3: ");
         testPrintQueue();
