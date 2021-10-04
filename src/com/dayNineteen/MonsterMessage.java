@@ -108,32 +108,7 @@ public class MonsterMessage {
         queue.add(left);
         queue.add(right);
     }
-
-    public void testMethod2(String message) {
-        ArrayList<Rule> messagesExample = testSetup();
-        String[] splitMessage = message.trim().split(" ");
-        String left;
-        String right;
-        if (message.length() == 5) {
-            left = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).left + " " + splitMessage[2];
-            right = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).right + " " + splitMessage[2];
-        } else {
-            left = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).left + " " + splitMessage[2] + " " + splitMessage[3];
-            right = splitMessage[0] + " " + messagesExample.get(Integer.parseInt(splitMessage[1])).right + " " + splitMessage[2] + " " + splitMessage[3];
-        }
-        queue.add(left);
-        queue.add(right);
-    }
-
-    public void testMethod3(String message) {
-        ArrayList<Rule> messagesExample = testSetup();
-        String[] splitMessage = message.trim().split(" ");
-        String left = splitMessage[0] + " " + splitMessage[1] + " " + splitMessage[2] + " " + messagesExample.get(Integer.parseInt(splitMessage[3])).left + " " + splitMessage[4];
-        String right = splitMessage[0] + " " + splitMessage[1] + " " + splitMessage[2] + " " + messagesExample.get(Integer.parseInt(splitMessage[3])).right + " " + splitMessage[4];
-        queue.add(left);
-        queue.add(right);
-    }
-
+    
     public boolean testCheck(String message){
         for (String s : message.split(" ")) {
             if (!s.trim().equals("4") & !s.trim().equals("5")) {
