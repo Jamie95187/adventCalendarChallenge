@@ -10,9 +10,9 @@ import java.util.Queue;
 public class MonsterMessage {
 
     private ArrayList<Rule> messages = new ArrayList<> (130);
+    private ArrayList<Rule> exampleData = new ArrayList<> (6);
 //    private ArrayList<String> correctMessages = new ArrayList<> ();
 //    public int numberOfCorrectRules = 0;
-//    private String[] zeroMessage;
     public Queue<String> queue = new LinkedList<String>();
     public ArrayList<String> validRules = new ArrayList<>();
     public ArrayList<String> messagesToBeChecked = new ArrayList<>();
@@ -30,9 +30,6 @@ public class MonsterMessage {
 //            int counter = 1;
 //            while (line != null && counter < 130) {
 //                int index = Integer.parseInt(line.substring(0, line.indexOf(':')));
-//                if (index == 0) {
-//                    zeroMessage = line.substring(line.indexOf(':')+1).trim().split(" ");
-//                }
 //                if (line.contains("|")) {
 //                    messages.get(index).setLeftRule(line.substring(line.indexOf(':')+1, line.indexOf("|")));
 //                    messages.get(index).setRightRule(line.substring(line.indexOf("|")+1).trim());
@@ -49,41 +46,49 @@ public class MonsterMessage {
 //        }
 //    }
 
-    public void addToInitialStack() {
-        queue.add("4 1 5");
-        testSetup();
-        populateMessagesToBeChecked();
+    public void readExampleData() {
+        for (int i = 0; i < 5; i++) {
+            exampleData.add(new Rule());
+        }
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(
+                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayNineteen/exampleData.txt"
+            ));
+            String line = reader.readLine();
+            int counter = 0;
+            while (line != null && counter < 5) {
+                int index = Integer.parseInt(line.substring(0, line.indexOf(':')));
+                if (line.contains("|")) {
+                    exampleData.get(index).setLeftRule(line.substring(line.indexOf(':')+1, line.indexOf("|")));
+                    exampleData.get(index).setRightRule(line.substring(line.indexOf("|")+1).trim());
+                } else {
+                    exampleData.get(index).setLeftRule(line.substring(line.indexOf(':')+1));
+                }
+                counter++;
+                line = reader.readLine();
+            }
+            reader.readLine();
+            line = reader.readLine();
+            while (line != null) {
+                messagesToBeChecked.add(line);
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public ArrayList<Rule> testSetup() {
-        ArrayList<Rule> messagesExample = new ArrayList<>();
-        Rule rule0 = new Rule();
-        rule0.setLeftRule("4 1 5");
-        Rule rule1 = new Rule();
-        rule1.setLeftRule("2 3");
-        rule1.setRightRule("3 2");
-        Rule rule2 = new Rule();
-        rule2.setLeftRule("4 4");
-        rule2.setRightRule("5 5");
-        Rule rule3 = new Rule();
-        rule3.setLeftRule("4 5");
-        rule3.setRightRule("5 4");
-        Rule rule4 = new Rule();
-        rule4.setLeftRule("a");
-        Rule rule5 = new Rule();
-        rule5.setLeftRule("b");
-        messagesExample.add(rule0);
-        messagesExample.add(rule1);
-        messagesExample.add(rule2);
-        messagesExample.add(rule3);
-        messagesExample.add(rule4);
-        messagesExample.add(rule5);
-        return messagesExample;
+    public void addToInitialStack() {
+        readExampleData();
+        queue.add(exampleData.get(0).left.trim());
     }
 
     public void checkRule(String rule) {
         String[] splitRule = rule.trim().split(" ");
-        ArrayList<Rule> messagesExample = testSetup();
+        ArrayList<Rule> messagesExample = exampleData;
         String left = "";
         String right= "";
         int index = 0;
@@ -95,11 +100,11 @@ public class MonsterMessage {
         }
         for (int i = 0; i < splitRule.length; i++) {
             if (i == index) {
-                left += messagesExample.get(Integer.parseInt(splitRule[i])).left + " ";
-                right += messagesExample.get(Integer.parseInt(splitRule[i])).right + " ";
+                left += messagesExample.get(Integer.parseInt(splitRule[i])).left.trim() + " ";
+                right += messagesExample.get(Integer.parseInt(splitRule[i])).right.trim() + " ";
             } else {
-                left += splitRule[i] + " ";
-                right += splitRule[i] + " ";
+                left += splitRule[i].trim() + " ";
+                right += splitRule[i].trim() + " ";
             }
         }
         left = left.trim();
@@ -108,7 +113,7 @@ public class MonsterMessage {
         queue.add(left);
         queue.add(right);
     }
-    
+
     public boolean testCheck(String message){
         for (String s : message.split(" ")) {
             if (!s.trim().equals("4") & !s.trim().equals("5")) {
@@ -120,48 +125,40 @@ public class MonsterMessage {
 
     public void testIteratorMethod() {
 
-        testSetup();
         System.out.println("Before test method 2 queue: ");
         testPrintQueue();
 
-//        testMethod2(queue.poll());
         checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 1st test method 2: ");
         testPrintQueue();
 
-//        testMethod2(queue.poll());
         checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 2nd test method 2: ");
         testPrintQueue();
 
-//        testMethod2(queue.poll());
         checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 3rd test method 2: ");
         testPrintQueue();
 
-//        testMethod3(queue.poll());
         checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 1st test method 3: ");
         testPrintQueue();
 
 
-//        testMethod3(queue.poll());
         checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 2nd test method 3: ");
         testPrintQueue();
 
-//        testMethod3(queue.poll());
         checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 3rd test method 3: ");
         testPrintQueue();
 
-//        testMethod3(queue.poll());
         checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
         System.out.println("After 2nd test method 3: ");
@@ -200,19 +197,5 @@ public class MonsterMessage {
             System.out.println(validRules.get(i));
         }
     }
-
-    public void populateMessagesToBeChecked() {
-        messagesToBeChecked.add("ababbb");
-        messagesToBeChecked.add("bababa");
-        messagesToBeChecked.add("abbbab");
-        messagesToBeChecked.add("aaabbb");
-        messagesToBeChecked.add("aaaabbb");
-    }
-
-//    public void printMessages() {
-//        for (int i = 0; i < messages.size(); i++) {
-//            System.out.println("Index: " + i + " Left message: " + messages.get(i).left + " Right message: " + messages.get(i).right);
-//        }
-//    }
-
+    
 }
