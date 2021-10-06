@@ -17,61 +17,27 @@ public class MonsterMessage {
     public ArrayList<String> validRules = new ArrayList<>();
     public ArrayList<String> messagesToBeChecked = new ArrayList<>();
 
-//    public void readMessages() {
-//        for (int i = 0; i < 130; i++) {
-//            messages.add(new Rule());
-//        }
-//        BufferedReader reader;
-//        try {
-//            reader = new BufferedReader(new FileReader(
-//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayNineteen/messageData.txt"
-//            ));
-//            String line = reader.readLine();
-//            int counter = 1;
-//            while (line != null && counter < 130) {
-//                int index = Integer.parseInt(line.substring(0, line.indexOf(':')));
-//                if (line.contains("|")) {
-//                    messages.get(index).setLeftRule(line.substring(line.indexOf(':')+1, line.indexOf("|")));
-//                    messages.get(index).setRightRule(line.substring(line.indexOf("|")+1).trim());
-//                } else {
-//                    messages.get(index).setLeftRule(line.substring(line.indexOf(':')+1));
-//                }
-//                counter++;
-//                line = reader.readLine();
-//            }
-//            reader.close();
-//        } catch (
-//                IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-    public void readExampleData() {
-        for (int i = 0; i < 5; i++) {
-            exampleData.add(new Rule());
+    public void readMessages() {
+        for (int i = 0; i < 130; i++) {
+            messages.add(new Rule());
         }
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(
-                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayNineteen/exampleData.txt"
+                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayNineteen/messageData.txt"
             ));
             String line = reader.readLine();
-            int counter = 0;
-            while (line != null && counter < 5) {
+            int counter = 1;
+            while (line != null && counter < 130) {
                 int index = Integer.parseInt(line.substring(0, line.indexOf(':')));
                 if (line.contains("|")) {
-                    exampleData.get(index).setLeftRule(line.substring(line.indexOf(':')+1, line.indexOf("|")));
-                    exampleData.get(index).setRightRule(line.substring(line.indexOf("|")+1).trim());
+                    messages.get(index).setLeftRule(line.substring(line.indexOf(':')+1, line.indexOf("|")));
+                    messages.get(index).setRightRule(line.substring(line.indexOf("|")+1).trim());
+                    messages.get(index).hasRight = true;
                 } else {
-                    exampleData.get(index).setLeftRule(line.substring(line.indexOf(':')+1));
+                    messages.get(index).setLeftRule(line.substring(line.indexOf(':')+1));
                 }
                 counter++;
-                line = reader.readLine();
-            }
-            reader.readLine();
-            line = reader.readLine();
-            while (line != null) {
-                messagesToBeChecked.add(line);
                 line = reader.readLine();
             }
             reader.close();
@@ -81,14 +47,54 @@ public class MonsterMessage {
         }
     }
 
+//    public void readExampleData() {
+//        for (int i = 0; i < 5; i++) {
+//            exampleData.add(new Rule());
+//        }
+//        BufferedReader reader;
+//        try {
+//            reader = new BufferedReader(new FileReader(
+//                    "/Users/jamie/IdeaProjects/AdventCalendarPuzzles/out/production/AdventCalendarPuzzles/com/dayNineteen/exampleData.txt"
+//            ));
+//            String line = reader.readLine();
+//            int counter = 0;
+//            while (line != null && counter < 5) {
+//                int index = Integer.parseInt(line.substring(0, line.indexOf(':')));
+//                if (line.contains("|")) {
+//                    exampleData.get(index).setLeftRule(line.substring(line.indexOf(':')+1, line.indexOf("|")));
+//                    exampleData.get(index).setRightRule(line.substring(line.indexOf("|")+1).trim());
+//                } else {
+//                    exampleData.get(index).setLeftRule(line.substring(line.indexOf(':')+1));
+//                }
+//                counter++;
+//                line = reader.readLine();
+//            }
+//            reader.readLine();
+//            line = reader.readLine();
+//            while (line != null) {
+//                messagesToBeChecked.add(line);
+//                line = reader.readLine();
+//            }
+//            reader.close();
+//        } catch (
+//                IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public void addToInitialStack() {
-        readExampleData();
-        queue.add(exampleData.get(0).left.trim());
+//        readExampleData();
+        readMessages();
+//        Used for testing example data
+//        queue.add(exampleData.get(0).left.trim());
+        queue.add(messages.get(0).left.trim());
     }
 
     public void checkRule(String rule) {
         String[] splitRule = rule.trim().split(" ");
-        ArrayList<Rule> messagesExample = exampleData;
+//        Used for testing example data
+//        ArrayList<Rule> messagesExample = exampleData;
+        ArrayList<Rule> messagesExample = messages;
         String left = "";
         String right= "";
         int index = 0;
@@ -101,7 +107,9 @@ public class MonsterMessage {
         for (int i = 0; i < splitRule.length; i++) {
             if (i == index) {
                 left += messagesExample.get(Integer.parseInt(splitRule[i])).left.trim() + " ";
-                right += messagesExample.get(Integer.parseInt(splitRule[i])).right.trim() + " ";
+                if (messagesExample.get(Integer.parseInt(splitRule[i])).hasRight) {
+                    right += messagesExample.get(Integer.parseInt(splitRule[i])).right.trim() + " ";
+                }
             } else {
                 left += splitRule[i].trim() + " ";
                 right += splitRule[i].trim() + " ";
@@ -197,5 +205,5 @@ public class MonsterMessage {
             System.out.println(validRules.get(i));
         }
     }
-    
+
 }
