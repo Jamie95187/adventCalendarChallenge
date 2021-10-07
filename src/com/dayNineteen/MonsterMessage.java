@@ -40,6 +40,12 @@ public class MonsterMessage {
                 counter++;
                 line = reader.readLine();
             }
+            reader.readLine();
+            line = reader.readLine();
+            while (line != null) {
+                messagesToBeChecked.add(line);
+                line = reader.readLine();
+            }
             reader.close();
         } catch (
                 IOException e) {
@@ -100,10 +106,12 @@ public class MonsterMessage {
         int index = 0;
         for (int i = 0; i < splitRule.length; i++) {
             // Not equal to rule where they return "a" or "b"
-            if (!splitRule[i].equals("4") && !splitRule[i].equals("5")) {
+            if (!splitRule[i].equals("50") && !splitRule[i].equals("64")) {
                 index = i;
+                break;
             }
         }
+
         for (int i = 0; i < splitRule.length; i++) {
             if (i == index) {
                 left += messagesExample.get(Integer.parseInt(splitRule[i])).left.trim() + " ";
@@ -119,12 +127,16 @@ public class MonsterMessage {
         right = right.trim();
 
         queue.add(left);
-        queue.add(right);
+
+        if (messagesExample.get(Integer.parseInt(splitRule[index])).hasRight) {
+            queue.add(right);
+        }
+
     }
 
     public boolean testCheck(String message){
         for (String s : message.split(" ")) {
-            if (!s.trim().equals("4") & !s.trim().equals("5")) {
+            if (!s.trim().equals("50") & !s.trim().equals("64")) {
                 return false;
             }
         }
@@ -138,39 +150,43 @@ public class MonsterMessage {
 
         checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
-        System.out.println("After 1st test method 2: ");
+        System.out.println("After 1st call");
         testPrintQueue();
 
         checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
-        System.out.println("After 2nd test method 2: ");
+        System.out.println("After 2nd call");
         testPrintQueue();
 
         checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
-        System.out.println("After 3rd test method 2: ");
+        System.out.println("After 3rd call");
         testPrintQueue();
 
         checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
-        System.out.println("After 1st test method 3: ");
+        System.out.println("After 4th call");
         testPrintQueue();
 
 
         checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
-        System.out.println("After 2nd test method 3: ");
+        System.out.println("After 5th call");
         testPrintQueue();
 
         checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
-        System.out.println("After 3rd test method 3: ");
+        System.out.println("After 6th call");
         testPrintQueue();
 
         checkRule(queue.poll());
         System.out.println("--------------------------------------------------------");
-        System.out.println("After 2nd test method 3: ");
+        System.out.println("After 7th call");
         testPrintQueue();
+
+//        while(!testCheck(queue.peek())) {
+//            checkRule(queue.poll());
+//        }
 
         if (testCheck(queue.peek())) {
             populateValidRules(queue);
@@ -189,10 +205,10 @@ public class MonsterMessage {
         for (String rule : rules){
             String validRule = "";
             for(String index: rule.split(" ")) {
-                if (index.equals("4")) {
+                if (index.equals("64")) {
                     validRule += "a";
                 }
-                if (index.equals("5")) {
+                if (index.equals("50")) {
                     validRule += "b";
                 }
             }
@@ -201,6 +217,7 @@ public class MonsterMessage {
     }
 
     public void printValidRules() {
+//        System.out.println(validRules.size());
         for (int i = 0; i < validRules.size(); i++) {
             System.out.println(validRules.get(i));
         }
