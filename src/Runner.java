@@ -159,7 +159,6 @@ public class Runner {
         mm.addToInitialStack();
         mm.testIteratorMethod();
         int numberOfValidMessages = 0;
-        System.out.println("467 = " + mm.messagesToBeChecked.size());
         for (String message: mm.messagesToBeChecked) {
             if (mm.validRules.contains(message)) {
                 numberOfValidMessages++;

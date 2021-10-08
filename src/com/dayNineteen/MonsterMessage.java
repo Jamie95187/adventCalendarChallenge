@@ -40,7 +40,6 @@ public class MonsterMessage {
                 counter++;
                 line = reader.readLine();
             }
-            reader.readLine();
             line = reader.readLine();
             while (line != null) {
                 messagesToBeChecked.add(line);
