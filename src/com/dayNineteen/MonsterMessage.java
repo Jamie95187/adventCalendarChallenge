@@ -89,9 +89,9 @@ public class MonsterMessage {
 //    }
 
     public void addToInitialStack() {
-//        readExampleData();
         readMessages();
 //        Used for testing example data
+//        readExampleData();
 //        queue.add(exampleData.get(0).left.trim());
         queue.add(messages.get(0).left.trim());
     }
@@ -145,54 +145,54 @@ public class MonsterMessage {
 
     public void testIteratorMethod() {
 
-        System.out.println("Before test method 2 queue: ");
-        testPrintQueue();
+//        System.out.println("Before test method 2 queue: ");
+//        testPrintQueue();
+//
+//        checkRule(queue.poll());
+//        System.out.println("--------------------------------------------------------");
+//        System.out.println("After 1st call");
+//        testPrintQueue();
+//
+//        checkRule(queue.poll());
+//        System.out.println("--------------------------------------------------------");
+//        System.out.println("After 2nd call");
+//        testPrintQueue();
+//
+//        checkRule(queue.poll());
+//        System.out.println("--------------------------------------------------------");
+//        System.out.println("After 3rd call");
+//        testPrintQueue();
+//
+//        checkRule(queue.poll());
+//        System.out.println("--------------------------------------------------------");
+//        System.out.println("After 4th call");
+//        testPrintQueue();
+//
+//
+//        checkRule(queue.poll());
+//        System.out.println("--------------------------------------------------------");
+//        System.out.println("After 5th call");
+//        testPrintQueue();
+//
+//        checkRule(queue.poll());
+//        System.out.println("--------------------------------------------------------");
+//        System.out.println("After 6th call");
+//        testPrintQueue();
+//
+//        checkRule(queue.poll());
+//        System.out.println("--------------------------------------------------------");
+//        System.out.println("After 7th call");
+//        testPrintQueue();
 
-        checkRule(queue.poll());
-        System.out.println("--------------------------------------------------------");
-        System.out.println("After 1st call");
-        testPrintQueue();
-
-        checkRule(queue.poll());
-        System.out.println("--------------------------------------------------------");
-        System.out.println("After 2nd call");
-        testPrintQueue();
-
-        checkRule(queue.poll());
-        System.out.println("--------------------------------------------------------");
-        System.out.println("After 3rd call");
-        testPrintQueue();
-
-        checkRule(queue.poll());
-        System.out.println("--------------------------------------------------------");
-        System.out.println("After 4th call");
-        testPrintQueue();
-
-
-        checkRule(queue.poll());
-        System.out.println("--------------------------------------------------------");
-        System.out.println("After 5th call");
-        testPrintQueue();
-
-        checkRule(queue.poll());
-        System.out.println("--------------------------------------------------------");
-        System.out.println("After 6th call");
-        testPrintQueue();
-
-        checkRule(queue.poll());
-        System.out.println("--------------------------------------------------------");
-        System.out.println("After 7th call");
-        testPrintQueue();
-
-//        while(!testCheck(queue.peek())) {
-//            checkRule(queue.poll());
-//        }
+        while(!testCheck(queue.peek())) {
+            checkRule(queue.poll());
+        }
 
         if (testCheck(queue.peek())) {
             populateValidRules(queue);
         }
 
-        printValidRules();
+//        printValidRules();
     }
     
     public void testPrintQueue() {
@@ -217,7 +217,6 @@ public class MonsterMessage {
     }
 
     public void printValidRules() {
-//        System.out.println(validRules.size());
         for (int i = 0; i < validRules.size(); i++) {
             System.out.println(validRules.get(i));
         }
