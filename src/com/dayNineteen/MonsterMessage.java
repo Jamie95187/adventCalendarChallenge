@@ -11,8 +11,6 @@ public class MonsterMessage {
 
     private ArrayList<Rule> messages = new ArrayList<> (130);
     private ArrayList<Rule> exampleData = new ArrayList<> (6);
-//    private ArrayList<String> correctMessages = new ArrayList<> ();
-//    public int numberOfCorrectRules = 0;
     public Queue<String> queue = new LinkedList<String>();
     public ArrayList<String> validRules = new ArrayList<>();
     public ArrayList<String> messagesToBeChecked = new ArrayList<>();
