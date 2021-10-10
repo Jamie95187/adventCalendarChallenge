@@ -10,8 +10,8 @@ import java.util.Queue;
 public class MonsterMessage {
 
     private ArrayList<Rule> messages = new ArrayList<> (130);
-    private ArrayList<Rule> exampleData = new ArrayList<> (6);
-    public Queue<String> queue = new LinkedList<String>();
+//    private ArrayList<Rule> exampleData = new ArrayList<> (6);
+    public Queue<String> queue = new LinkedList<>();
     public ArrayList<String> validRules = new ArrayList<>();
     public ArrayList<String> messagesToBeChecked = new ArrayList<>();
 
