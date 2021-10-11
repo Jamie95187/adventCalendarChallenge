@@ -142,45 +142,6 @@ public class MonsterMessage {
 
     public void testIteratorMethod() {
 
-//        System.out.println("Before test method 2 queue: ");
-//        testPrintQueue();
-//
-//        checkRule(queue.poll());
-//        System.out.println("--------------------------------------------------------");
-//        System.out.println("After 1st call");
-//        testPrintQueue();
-//
-//        checkRule(queue.poll());
-//        System.out.println("--------------------------------------------------------");
-//        System.out.println("After 2nd call");
-//        testPrintQueue();
-//
-//        checkRule(queue.poll());
-//        System.out.println("--------------------------------------------------------");
-//        System.out.println("After 3rd call");
-//        testPrintQueue();
-//
-//        checkRule(queue.poll());
-//        System.out.println("--------------------------------------------------------");
-//        System.out.println("After 4th call");
-//        testPrintQueue();
-//
-//
-//        checkRule(queue.poll());
-//        System.out.println("--------------------------------------------------------");
-//        System.out.println("After 5th call");
-//        testPrintQueue();
-//
-//        checkRule(queue.poll());
-//        System.out.println("--------------------------------------------------------");
-//        System.out.println("After 6th call");
-//        testPrintQueue();
-//
-//        checkRule(queue.poll());
-//        System.out.println("--------------------------------------------------------");
-//        System.out.println("After 7th call");
-//        testPrintQueue();
-
         while(!testCheck(queue.peek())) {
             checkRule(queue.poll());
         }
@@ -194,7 +155,7 @@ public class MonsterMessage {
     
     public void testPrintQueue() {
         for (String s : queue) {
-            System.out.println(s);
+            System.out.printwln(s);
         }
     }
 
