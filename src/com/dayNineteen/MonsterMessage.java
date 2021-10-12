@@ -71,6 +71,7 @@ public class MonsterMessage {
                 if (line.contains("|")) {
                     exampleDataTwo.get(index).setLeftRule(line.substring(line.indexOf(':')+1, line.indexOf("|")));
                     exampleDataTwo.get(index).setRightRule(line.substring(line.indexOf("|")+1).trim());
+                    exampleDataTwo.get(index).hasRight = true;
 //                    exampleData.get(index).setLeftRule(line.substring(line.indexOf(':')+1, line.indexOf("|")));
 //                    exampleData.get(index).setRightRule(line.substring(line.indexOf("|")+1).trim());
                 } else {
@@ -80,7 +81,6 @@ public class MonsterMessage {
                 counter++;
                 line = reader.readLine();
             }
-            reader.readLine();
             line = reader.readLine();
             while (line != null) {
                 messagesToBeChecked.add(line);
@@ -136,7 +136,6 @@ public class MonsterMessage {
         }
         left = left.trim();
         right = right.trim();
-
         queue.add(left);
 
         if (messagesExample.get(Integer.parseInt(splitRule[index])).hasRight) {
@@ -167,7 +166,7 @@ public class MonsterMessage {
             populateValidRules(queue);
         }
 
-//        printValidRules();
+        printValidRules();
     }
     
     public void testPrintQueue() {
