@@ -159,7 +159,13 @@ public class Runner {
         mm.addToInitialStack();
         mm.testIteratorMethod();
         int numberOfValidMessages = 0;
-        for (String message: mm.messagesToBeChecked) {
+        ArrayList<String> removeDuplicatesMessagesToBeChecked = new ArrayList<>();
+        for (String s : mm.messagesToBeChecked) {
+            if (!removeDuplicatesMessagesToBeChecked.contains(s)) {
+                removeDuplicatesMessagesToBeChecked.add(s);
+            }
+        }
+        for (String message: removeDuplicatesMessagesToBeChecked) {
 //            System.out.println(message);
             if (mm.validRules.contains(message)) {
                 numberOfValidMessages++;
