@@ -168,7 +168,7 @@ public class MonsterMessage {
             populateValidRules(queue);
         }
 
-        printValidRules();
+//        printValidRules();
     }
     
     public void testPrintQueue() {
